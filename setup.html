@@ -107,12 +107,23 @@
   .way-pill{font-size:.68rem;font-weight:700;padding:3px 9px;border-radius:999px;background:#e2e8f0;color:#475569}
   .way-pill.rec{background:var(--blue);color:#fff}
   .way p{font-size:.9rem;color:var(--slate);margin:0;line-height:1.7}
+  .way-link{display:inline-block;margin-top:12px;font-size:.86rem;font-weight:700;color:var(--blue);background:#fff;border:1.5px solid var(--blue);border-radius:999px;padding:8px 16px;transition:.2s}
+  .way-link:hover{background:var(--blue);color:#fff}
 
   /* step1: replica + real screenshot */
   .step1-wrap{display:grid;grid-template-columns:1.3fr .7fr;gap:32px;align-items:center;max-width:880px;margin:0 auto 36px}
   @media(max-width:760px){.step1-wrap{grid-template-columns:1fr;gap:28px}.step1-shot{order:-1}}
   .step1-shot{justify-self:center}
   .step1-shot .phone{width:min(230px,72vw)}
+
+  /* free DB banner */
+  .free-db-banner{display:flex;align-items:center;gap:28px;background:linear-gradient(135deg,var(--blue-50),#f0f9ff);border:1.5px solid var(--blue-100);border-radius:20px;padding:28px 32px;box-shadow:var(--shadow-sm)}
+  @media(max-width:680px){.free-db-banner{flex-direction:column;text-align:center;gap:18px;padding:26px 22px}}
+  .fdb-left{flex:1}
+  .fdb-badge{display:inline-block;font-size:.76rem;font-weight:800;letter-spacing:.03em;background:var(--blue);color:#fff;padding:4px 12px;border-radius:999px;margin-bottom:12px}
+  .free-db-banner h3{font-size:1.22rem;margin-bottom:8px;line-height:1.4}
+  .free-db-banner p{font-size:.94rem;color:var(--slate);line-height:1.7;margin:0}
+  .fdb-btn{flex-shrink:0;white-space:nowrap}
 </style>
 </head>
 <body>
@@ -144,6 +155,20 @@
     <span class="eyebrow">🚀 はじめての方へ</span>
     <h1>さあ、はじめてみましょう。</h1>
     <p>「Notionって何？」「トークンって何？」というところから、一つずつ解説します。順番どおりに進めれば、初めての方でも迷わず設定できます。</p>
+  </div>
+</section>
+
+<!-- free DB available now -->
+<section class="section" style="padding:40px 0 0">
+  <div class="wrap-narrow">
+    <div class="free-db-banner reveal">
+      <div class="fdb-left">
+        <span class="fdb-badge">🎁 アプリ公開前でも、今すぐ</span>
+        <h3>配布DBテンプレートは、もう無料で使えます。</h3>
+        <p>Medical・Reference・📋Manual の3つのDB入り。複製すれば、Notionの標準機能だけでも知識の整理を今日から始められます。アプリ公開後は、そのまま繋ぐだけ。</p>
+      </div>
+      <a class="btn btn-primary btn-arrow fdb-btn" href="https://www.notion.com/ja/templates/medinode-db" target="_blank" rel="noopener">無料テンプレを入手</a>
+    </div>
   </div>
 </section>
 
@@ -271,7 +296,8 @@
             <div class="db-way">
               <div class="way recommend">
                 <div class="way-head">📋 ① テンプレートを複製して使う <span class="way-pill rec">おすすめ・初めての方</span></div>
-                <p>アプリ内のリンクから配布テンプレ（Medical／Reference／📋Manual の3DB入り）を自分のNotionへ複製するだけ。<strong>必須プロパティが最初から揃っている</strong>ので、手間なく始められます。</p>
+                <p>配布テンプレ（Medical／Reference／📋Manual の3DB入り）を自分のNotionへ複製するだけ。<strong>必須プロパティが最初から揃っている</strong>ので、手間なく始められます。</p>
+                <a class="way-link" href="https://www.notion.com/ja/templates/medinode-db" target="_blank" rel="noopener">🎁 無料テンプレを入手（Notionマーケットプレイス）→</a>
               </div>
               <div class="way">
                 <div class="way-head">🔗 ② 既存のDBに連携する <span class="way-pill">すでにNotionで運用中の方</span></div>

@@ -34,13 +34,30 @@
   .hero-actions{display:flex;gap:14px;flex-wrap:wrap;margin-bottom:20px}
   .hero-note{font-size:.86rem;color:var(--slate-light)}
   .hero-note strong{color:var(--blue-dark)}
-  .phone-float.top{top:46px;left:-46px}
-  .phone-float.bottom{bottom:64px;right:-40px}
+  /* hero visual: icon + catchphrase */
+  .hero-visual{position:relative;display:grid;place-items:center;min-height:380px}
+  .hv-glow{position:absolute;width:340px;height:340px;border-radius:50%;
+    background:radial-gradient(circle,rgba(37,99,235,.20),rgba(96,165,250,.10) 55%,transparent 72%);
+    filter:blur(8px);z-index:0;animation:hvpulse 4s ease-in-out infinite}
+  @keyframes hvpulse{0%,100%{transform:scale(1);opacity:.9}50%{transform:scale(1.06);opacity:1}}
+  .hv-icon{position:relative;z-index:2;width:min(240px,62vw);height:auto;border-radius:36px;
+    box-shadow:0 30px 60px rgba(37,99,235,.22),0 12px 24px rgba(15,23,42,.12)}
+  .hv-float{position:absolute;z-index:3;background:#fff;border:1px solid var(--line);
+    border-radius:14px;padding:11px 16px;box-shadow:var(--shadow-md);
+    font-size:.84rem;font-weight:700;color:var(--ink);display:flex;align-items:center;gap:8px;white-space:nowrap}
+  .hv-float .dot{width:9px;height:9px;border-radius:50%;background:#22c55e;box-shadow:0 0 0 4px rgba(34,197,94,.18)}
+  .hv-top{top:30px;left:0;animation:hvfloat 5s ease-in-out infinite}
+  .hv-mid{top:50%;right:-8px;transform:translateY(-50%);animation:hvfloat 5.5s ease-in-out .5s infinite}
+  .hv-bottom{bottom:34px;left:18px;animation:hvfloat 6s ease-in-out 1s infinite}
+  @keyframes hvfloat{0%,100%{transform:translateY(0)}50%{transform:translateY(-8px)}}
+  .hv-mid{animation-name:hvfloat-mid}
+  @keyframes hvfloat-mid{0%,100%{transform:translateY(-50%)}50%{transform:translateY(calc(-50% - 8px))}}
   @media(max-width:900px){
     .hero-grid{grid-template-columns:1fr;gap:44px;text-align:center}
     .hero p.lead{margin-left:auto;margin-right:auto}
     .hero-actions{justify-content:center}.eyebrow{margin-inline:auto}
-    .phone-float.top{left:-12px}.phone-float.bottom{right:-8px}
+    .hero-visual{min-height:320px}
+    .hv-top{left:6%}.hv-bottom{left:10%}.hv-mid{right:2%}
   }
   .flow{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
   .flow-step{background:#fff;border:1px solid var(--line);border-radius:var(--radius);padding:30px 26px;box-shadow:var(--shadow-sm);transition:.22s ease}
@@ -116,7 +133,7 @@
   .explore-card p{font-size:.93rem;color:var(--slate)}
   @media(max-width:820px){.explore-grid{grid-template-columns:1fr}}
   .author-card{display:flex;gap:28px;align-items:center;max-width:760px;margin:0 auto;background:#fff;border:1px solid var(--line);border-radius:var(--radius);padding:34px;box-shadow:var(--shadow-sm)}
-  .author-avatar{width:84px;height:84px;border-radius:20px;flex-shrink:0;box-shadow:0 8px 20px rgba(37,99,235,.18)}
+  .author-avatar{width:84px;height:84px;border-radius:20px;flex-shrink:0;object-fit:contain;background:#fff;border:1px solid var(--line);padding:8px;box-shadow:0 8px 20px rgba(15,23,42,.10)}
   .author-card h3{font-size:1.2rem;margin-bottom:4px}
   .author-card .role{color:var(--blue-dark);font-weight:600;font-size:.92rem;margin-bottom:10px}
   .author-card p{color:var(--slate);font-size:.95rem;margin-bottom:12px}
@@ -160,12 +177,14 @@
         <a class="btn btn-primary btn-arrow" href="coming-soon.html">公開情報を見る</a>
         <a class="btn btn-ghost" href="setup.html">セットアップを予習する</a>
       </div>
-      <p class="hero-note"><strong>研修医・看護師・薬剤師・臨床検査技師・学生</strong>など、医療者全般に。</p>
+      <p class="hero-note">医療の現場で学び続ける、<strong>すべての人へ。</strong></p>
     </div>
-    <div style="position:relative">
-      <div class="phone"><img src="assets/screen-search.png" alt="MediNodeの検索画面。同期完了で医療知識179件・参考文献103件が読み込まれている"></div>
-      <div class="phone-float top"><span class="dot"></span>同期完了・282件</div>
-      <div class="phone-float bottom">🔍 0.1秒で検索</div>
+    <div class="hero-visual">
+      <div class="hv-glow"></div>
+      <img class="hv-icon" src="assets/icon-512.png" alt="MediNode アプリアイコン">
+      <div class="hv-float hv-top"><span class="dot"></span>Notionと連携</div>
+      <div class="hv-float hv-mid">🔍 0.1秒で検索</div>
+      <div class="hv-float hv-bottom">🧠 一問一答クイズ</div>
     </div>
   </div>
 </section>
@@ -268,7 +287,7 @@
         <ul><li>0.1秒以下のインスタント検索</li><li>Algoliaの無料アカウントが必要</li><li>使うかどうかは自由（任意機能）</li></ul>
       </div>
     </div>
-    <p class="reveal" style="text-align:center;margin-top:24px"><a href="premium.html" style="color:var(--blue);font-weight:600">パワーモードと所有者フィルタの詳しい仕組みを見る →</a></p>
+    <p class="reveal" style="text-align:center;margin-top:24px"><a href="setup.html" style="color:var(--blue);font-weight:600">モードの選び方をセットアップで見る →</a></p>
   </div>
 </section>
 
@@ -321,7 +340,7 @@
     <div class="explore-grid">
       <a class="explore-card reveal" href="setup.html"><div class="ic">🚀</div><h3>セットアップ手順</h3><p>テンプレ複製・既存DB接続からNotion連携まで。Notionやトークンが何かという前提から、一つずつ確認できます。</p></a>
       <a class="explore-card reveal" href="database.html"><div class="ic">🗂</div><h3>DB連携の仕組み</h3><p>2つの配布DB、必須プロパティ、知識のライフサイクル、任意のNotion AI活用法。</p></a>
-      <a class="explore-card reveal" href="premium.html"><div class="ic">⭐</div><h3>プレミアムと検索モード</h3><p>所有者フィルタ（個人／部署／プレミアム）と、パワーモードの高速検索を解説。</p></a>
+      <a class="explore-card reveal" href="premium.html"><div class="ic">⭐</div><h3>プレミアム</h3><p>救急・集中治療の専門医がキュレーションした医療ナレッジ・参考文献を、自分の知識と並べて引く。</p></a>
     </div>
   </div>
 </section>
@@ -331,7 +350,7 @@
   <div class="wrap">
     <div class="head reveal"><div class="kicker">Author</div><h2>つくった人</h2></div>
     <div class="author-card reveal">
-      <img class="author-avatar" src="assets/icon-192.png" alt="MediNode">
+      <img class="author-avatar" src="assets/author-logo.png" alt="Dr.ノード">
       <div>
         <h3>Dr.ノード（Dr.Node）</h3>
         <div class="role">救急科専門医・集中治療専門医・呼吸療法専門医</div>
