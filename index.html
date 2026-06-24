@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MediNode｜普段のNotionが、そのまま検索DB＋一問一答になる</title>
+<meta name="description" content="MediNodeは、Notionに蓄積した医療知識・参考文献をスマホ・PCから高速検索できる医療者向けWebアプリ。普段の記録が、そのまま検索データベースと一問一答クイズになります。">
+<meta name="theme-color" content="#2563eb">
+<link rel="icon" href="assets/icon-192.png">
+<link rel="apple-touch-icon" href="assets/icon-192.png">
+<meta property="og:type" content="website">
+<meta property="og:title" content="MediNode｜普段のNotionが、そのまま検索DB＋一問一答になる">
+<meta property="og:description" content="医療者向けの知識アプリ。いつものNotionに書いた症例・文献・メモが、一瞬で引ける「第二の脳」に。">
+<meta property="og:image" content="assets/icon-512.png">
+<meta property="og:url" content="https://medical-search-public.vercel.app">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Noto+Sans+JP:wght@400;500;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+<style>
+  /* index-specific */
+  .hero{
+    position:relative;overflow:hidden;
+    background:radial-gradient(900px 500px at 78% -8%,var(--blue-50),transparent 60%),
+      radial-gradient(700px 420px at -6% 10%,#f0f9ff,transparent 55%);
+    padding:84px 0 72px;
+  }
+  .hero-grid{display:grid;grid-template-columns:1.05fr .95fr;gap:56px;align-items:center}
+  .eyebrow{display:inline-flex;align-items:center;gap:8px;background:var(--blue-50);color:var(--blue-dark);
+    font-weight:700;font-size:.82rem;letter-spacing:.04em;padding:7px 14px;border-radius:999px;border:1px solid var(--blue-100);margin-bottom:22px}
+  .hero h1{font-size:clamp(2rem,4.6vw,3.15rem);line-height:1.32;font-weight:800;letter-spacing:.005em;margin-bottom:22px}
+  .hero h1 .hl{color:var(--blue);white-space:nowrap}
+  .hero p.lead{font-size:1.12rem;color:var(--slate);margin-bottom:34px;max-width:520px}
+  .hero-actions{display:flex;gap:14px;flex-wrap:wrap;margin-bottom:20px}
+  .hero-note{font-size:.86rem;color:var(--slate-light)}
+  .hero-note strong{color:var(--blue-dark)}
+  .phone-float.top{top:46px;left:-46px}
+  .phone-float.bottom{bottom:64px;right:-40px}
+  @media(max-width:900px){
+    .hero-grid{grid-template-columns:1fr;gap:44px;text-align:center}
+    .hero p.lead{margin-left:auto;margin-right:auto}
+    .hero-actions{justify-content:center}.eyebrow{margin-inline:auto}
+    .phone-float.top{left:-12px}.phone-float.bottom{right:-8px}
+  }
+  .flow{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+  .flow-step{background:#fff;border:1px solid var(--line);border-radius:var(--radius);padding:30px 26px;box-shadow:var(--shadow-sm);transition:.22s ease}
+  .flow-step:hover{transform:translateY(-4px);box-shadow:var(--shadow-md);border-color:var(--blue-100)}
+  .flow-step .num{width:38px;height:38px;border-radius:11px;background:var(--blue-50);color:var(--blue-dark);font-weight:800;display:grid;place-items:center;margin-bottom:16px;font-size:1.05rem}
+  .flow-step h3{font-size:1.12rem;margin-bottom:8px}
+  .flow-step p{color:var(--slate);font-size:.95rem}
+  @media(max-width:820px){.flow{grid-template-columns:1fr}}
+  .how-shot{display:grid;grid-template-columns:.7fr 1.3fr;gap:40px;align-items:center;margin-top:48px;max-width:820px;margin-left:auto;margin-right:auto}
+  @media(max-width:760px){.how-shot{grid-template-columns:1fr;gap:28px}}
+  .how-shot .phone{width:min(230px,72vw)}
+  .how-shot-text h3{font-size:1.3rem;margin-bottom:16px}
+  .how-shot-text ul{list-style:none;display:flex;flex-direction:column;gap:12px}
+  .how-shot-text li{display:flex;gap:10px;color:var(--slate);font-size:1rem}
+  .how-shot-text li::before{content:"✓";color:var(--blue);font-weight:800}
+  .problem-card{background:#fff;border:1px solid var(--line);border-radius:var(--radius);padding:40px;max-width:760px;margin:0 auto;box-shadow:var(--shadow-sm);text-align:center}
+  .problem-card .quote{font-size:clamp(1.3rem,3vw,1.7rem);font-weight:800;line-height:1.6;margin-bottom:18px}
+  .problem-card .quote span{color:var(--blue)}
+  .problem-card p{color:var(--slate)}
+  .tabs-wrap{display:grid;grid-template-columns:.9fr 1.1fr;gap:56px;align-items:center}
+  .tabs-list{display:flex;flex-direction:column;gap:14px}
+  .tab-item{display:flex;gap:16px;align-items:flex-start;background:#fff;border:1px solid var(--line);border-radius:14px;padding:18px 20px;box-shadow:var(--shadow-sm);transition:.2s}
+  .tab-item:hover{border-color:var(--blue-100);box-shadow:var(--shadow-md)}
+  .tab-item .ic{font-size:1.5rem;line-height:1.3}
+  .tab-item h4{font-size:1.05rem;margin-bottom:3px}
+  .tab-item p{font-size:.92rem;color:var(--slate)}
+  @media(max-width:900px){.tabs-wrap{grid-template-columns:1fr;gap:40px}.tabs-shot{order:-1}}
+  .manual-banner{display:flex;gap:18px;align-items:flex-start;margin-top:28px;background:#fff;border:1px solid var(--line);border-left:4px solid var(--blue);border-radius:14px;padding:24px 26px;box-shadow:var(--shadow-sm)}
+  .manual-banner .manual-ic{font-size:1.9rem;line-height:1.2;flex-shrink:0}
+  .manual-head{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:6px}
+  .manual-head h4{font-size:1.12rem}
+  .new-pill{font-size:.68rem;font-weight:800;letter-spacing:.04em;background:var(--blue);color:#fff;padding:3px 9px;border-radius:999px}
+  .opt-pill{font-size:.7rem;font-weight:700;background:var(--blue-50);color:var(--blue-dark);border:1px solid var(--blue-100);padding:3px 10px;border-radius:999px}
+  .manual-body p{color:var(--slate);font-size:.94rem;line-height:1.75}
+  .shot-gallery{display:grid;grid-template-columns:repeat(3,1fr);gap:28px;margin-top:40px;max-width:880px;margin-left:auto;margin-right:auto}
+  @media(max-width:760px){.shot-gallery{grid-template-columns:1fr 1fr;gap:20px}}
+  @media(max-width:480px){.shot-gallery{grid-template-columns:1fr}}
+  .shot-gallery figure{text-align:center}
+  .shot-gallery .phone{width:min(220px,80vw)}
+  .shot-gallery figcaption{margin-top:14px;font-size:.92rem;font-weight:600;color:var(--slate)}
+  .mode-grid{display:grid;grid-template-columns:1fr 1fr;gap:24px}
+  .mode-card{background:#fff;border:1px solid var(--line);border-radius:var(--radius);padding:34px;box-shadow:var(--shadow-sm)}
+  .mode-card.power{border:1.5px solid var(--blue-100);background:linear-gradient(180deg,#fff,var(--blue-50))}
+  .mode-tag{display:inline-block;font-size:.74rem;font-weight:700;letter-spacing:.04em;padding:5px 12px;border-radius:999px;margin-bottom:14px}
+  .mode-tag.req{background:#dcfce7;color:#15803d}
+  .mode-tag.opt{background:var(--blue-100);color:var(--blue-dark)}
+  .mode-card h3{font-size:1.3rem;margin-bottom:10px}
+  .mode-card ul{list-style:none;margin-top:14px;display:flex;flex-direction:column;gap:10px}
+  .mode-card li{display:flex;gap:10px;font-size:.96rem;color:var(--slate)}
+  .mode-card li::before{content:"✓";color:var(--blue);font-weight:800}
+  @media(max-width:760px){.mode-grid{grid-template-columns:1fr}}
+  .life{display:flex;align-items:stretch;justify-content:center;flex-wrap:wrap}
+  .life-node{flex:1;min-width:200px;background:#fff;border:1px solid var(--line);border-radius:var(--radius);padding:28px 24px;text-align:center;box-shadow:var(--shadow-sm)}
+  .life-node .emo{font-size:2rem;margin-bottom:10px}
+  .life-node h4{font-size:1.08rem;margin-bottom:6px}
+  .life-node p{font-size:.9rem;color:var(--slate)}
+  .life-arrow{display:grid;place-items:center;font-size:1.6rem;color:var(--blue);padding:0 8px}
+  @media(max-width:760px){.life-arrow{transform:rotate(90deg);padding:6px 0}}
+  .priv-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
+  .priv-card{background:linear-gradient(180deg,#fff,var(--bg-soft));border:1px solid var(--line);border-radius:var(--radius);padding:30px 26px;box-shadow:var(--shadow-sm)}
+  .priv-card .ic{font-size:1.7rem;margin-bottom:12px}
+  .priv-card h4{font-size:1.08rem;margin-bottom:8px}
+  .priv-card p{font-size:.93rem;color:var(--slate);line-height:1.7}
+  @media(max-width:820px){.priv-grid{grid-template-columns:1fr}}
+  /* explore subpages */
+  .explore-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
+  .explore-card{display:block;background:#fff;border:1px solid var(--line);border-radius:var(--radius);padding:30px 26px;box-shadow:var(--shadow-sm);transition:.2s}
+  .explore-card:hover{transform:translateY(-4px);box-shadow:var(--shadow-md);border-color:var(--blue-100)}
+  .explore-card .ic{font-size:1.9rem;margin-bottom:14px}
+  .explore-card h3{font-size:1.15rem;margin-bottom:8px;display:flex;align-items:center;gap:8px}
+  .explore-card h3::after{content:"→";color:var(--blue);transition:transform .2s}
+  .explore-card:hover h3::after{transform:translateX(4px)}
+  .explore-card p{font-size:.93rem;color:var(--slate)}
+  @media(max-width:820px){.explore-grid{grid-template-columns:1fr}}
+  .author-card{display:flex;gap:28px;align-items:center;max-width:760px;margin:0 auto;background:#fff;border:1px solid var(--line);border-radius:var(--radius);padding:34px;box-shadow:var(--shadow-sm)}
+  .author-avatar{width:84px;height:84px;border-radius:20px;flex-shrink:0;box-shadow:0 8px 20px rgba(37,99,235,.18)}
+  .author-card h3{font-size:1.2rem;margin-bottom:4px}
+  .author-card .role{color:var(--blue-dark);font-weight:600;font-size:.92rem;margin-bottom:10px}
+  .author-card p{color:var(--slate);font-size:.95rem;margin-bottom:12px}
+  .author-links{display:flex;gap:14px;flex-wrap:wrap}
+  .author-links a{font-size:.9rem;font-weight:600;color:var(--blue);border:1px solid var(--blue-100);padding:7px 16px;border-radius:999px;transition:.2s}
+  .author-links a:hover{background:var(--blue-50)}
+  @media(max-width:600px){.author-card{flex-direction:column;text-align:center}.author-links{justify-content:center}}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap nav">
+    <a class="brand" href="index.html"><img src="assets/icon-192.png" alt="MediNode">MediNode</a>
+    <button class="menu-toggle" aria-label="メニュー" onclick="document.getElementById('navmenu').classList.toggle('open')">☰</button>
+    <nav class="nav-menu" id="navmenu">
+      <a class="link active" href="index.html">ホーム</a>
+      <a class="link" href="setup.html">セットアップ</a>
+      <a class="link" href="database.html">DB連携</a>
+      <a class="link" href="premium.html">プレミアム</a>
+      <a class="btn btn-primary nav-cta" href="coming-soon.html">7月公開予定</a>
+    </nav>
+  </div>
+</header>
+
+<!-- COMING SOON announcement bar -->
+<a class="announce" href="coming-soon.html">
+  <span class="announce-badge">COMING SOON</span>
+  <span class="announce-text"><strong>2026年7月中旬</strong>、一般公開に向けて鋭意製作中です。</span>
+  <span class="announce-link">公開情報を見る →</span>
+</a>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="wrap hero-grid">
+    <div>
+      <span class="eyebrow">🩺 医療者のための知識アプリ・2026年7月中旬公開予定</span>
+      <h1>普段のNotionが、<br>そのまま<span class="hl">検索DB</span>と<br><span class="hl">一問一答</span>になる。</h1>
+      <p class="lead">いつものNotionに書いた症例・文献・メモが、スマホ・PCから一瞬で引ける「第二の脳」に。新しく入力し直す手間はゼロ。ためた知識は、そのまま自分専用の一問一答になります。</p>
+      <div class="hero-actions">
+        <a class="btn btn-primary btn-arrow" href="coming-soon.html">公開情報を見る</a>
+        <a class="btn btn-ghost" href="setup.html">セットアップを予習する</a>
+      </div>
+      <p class="hero-note"><strong>研修医・看護師・薬剤師・臨床検査技師・学生</strong>など、医療者全般に。</p>
+    </div>
+    <div style="position:relative">
+      <div class="phone"><img src="assets/screen-search.png" alt="MediNodeの検索画面。同期完了で医療知識179件・参考文献103件が読み込まれている"></div>
+      <div class="phone-float top"><span class="dot"></span>同期完了・282件</div>
+      <div class="phone-float bottom">🔍 0.1秒で検索</div>
+    </div>
+  </div>
+</section>
+
+<!-- PROBLEM -->
+<section class="section" style="background:var(--bg-soft)">
+  <div class="wrap">
+    <div class="problem-card reveal">
+      <p class="quote">「あの時、<span>調べておけば</span>よかった」</p>
+      <p>一度浮かんだ臨床の疑問は、また同じ場面で戻ってくる。配合変化、腎機能と用量、採血スピッツの順番——。<br>調べたメモはどこかに散らばり、いざという時に引き出せない。記録用と検索用を二重に書くのも続かない。</p>
+    </div>
+  </div>
+</section>
+
+<!-- HOW -->
+<section class="section" id="how">
+  <div class="wrap">
+    <div class="head reveal">
+      <div class="kicker">How it works</div>
+      <h2>書き直さない。いつものNotionが、そのまま資産になる。</h2>
+      <p>MediNodeは新しい入力欄を増やしません。あなたのNotionに繋ぐだけで、記録がそのまま検索データベースとクイズに変わります。</p>
+    </div>
+    <div class="flow">
+      <div class="flow-step reveal"><div class="num">1</div><h3>Notionに繋ぐ</h3><p>普段使っているNotionのデータベースをMediNodeに接続。新しく書き直す必要はありません。</p></div>
+      <div class="flow-step reveal"><div class="num">2</div><h3>すぐ検索できる</h3><p>疾患名・キーワードで横断検索。シンプルモードならNotionを直すと次の検索から即反映されます。</p></div>
+      <div class="flow-step reveal"><div class="num">3</div><h3>そのままクイズに</h3><p>ためたナレッジが、そのままシャッフル出題の一問一答に。自分が集めた知識が、自分専用の問題集になります。</p></div>
+    </div>
+    <div class="how-shot reveal">
+      <div class="phone"><img src="assets/onb-notion.png" alt="書く場所はそのままでいい。Notionに書くだけで即反映、詳細はNotionアプリでそのまま確認、既存DBもそのまま使える"></div>
+      <div class="how-shot-text">
+        <h3>書く場所は、そのままでいい。</h3>
+        <ul>
+          <li><strong>Notionに書くだけで即反映</strong>（シンプルモード）</li>
+          <li>詳細は<strong>Notionアプリでそのまま確認</strong></li>
+          <li><strong>既存DBもそのまま使える</strong>（テンプレ不要）</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TABS -->
+<section class="section" style="background:var(--bg-soft)">
+  <div class="wrap">
+    <div class="head reveal">
+      <div class="kicker">Tabs</div>
+      <h2>知識を引く・育てる、5つのタブ</h2>
+      <p>探す・新着・分類・文献・想起。日々の使い方に合わせて、一つの画面ですべてが完結します。さらに、病院・部署で使うなら📋マニュアルタブも。</p>
+    </div>
+    <div class="tabs-wrap">
+      <div class="tabs-list">
+        <div class="tab-item reveal"><div class="ic">🔍</div><div><h4>検索</h4><p>キーワード検索＋所有者フィルタ（全て／個人／部署／プレミアム）で、必要な知識を一瞬で。</p></div></div>
+        <div class="tab-item reveal"><div class="ic">🆕</div><div><h4>新着</h4><p>最終更新の新しい順に表示。直近で書いた記録をすぐ確認。</p></div></div>
+        <div class="tab-item reveal"><div class="ic">📁</div><div><h4>ジャンル</h4><p>循環・呼吸器・神経・感染症など、ジャンル別にブラウズ。</p></div></div>
+        <div class="tab-item reveal"><div class="ic">📖</div><div><h4>文献</h4><p>著者・ジャーナル・発行年・エビデンスレベルで参考文献を管理。</p></div></div>
+        <div class="tab-item reveal"><div class="ic">🧠</div><div><h4>クイズ</h4><p>ナレッジがそのままシャッフル出題の一問一答に（最大20問）。</p></div></div>
+      </div>
+      <div class="tabs-shot reveal">
+        <div class="phone"><img src="assets/app-genre.png" alt="MediNodeのジャンルタブ。救急蘇生・循環・呼吸・腎・感染症などがジャンル別に件数バッジ付きで並ぶ"></div>
+      </div>
+    </div>
+
+    <!-- NEW: manual tab -->
+    <div class="manual-banner reveal">
+      <div class="manual-ic">📋</div>
+      <div class="manual-body">
+        <div class="manual-head"><h4>マニュアルタブ</h4><span class="new-pill">NEW</span><span class="opt-pill">任意・病院/部署向け</span></div>
+        <p>病院・部署の<strong>マニュアル／お知らせ／業務改善</strong>を検索・新着表示。種別（📕マニュアル・📢お知らせ・🔧業務改善）で色分けされ、改訂すると自動で上に並びます。Manual DBを設定した人だけに表示される<strong>オプトイン方式</strong>で、Notion直読みのため<strong>パワーモードでも再同期は不要</strong>です。</p>
+      </div>
+    </div>
+
+    <!-- screenshot gallery -->
+    <div class="shot-gallery">
+      <figure class="reveal"><div class="phone"><img src="assets/app-new.png" alt="新着タブ。今週追加されたプレミアム知識が新しい順に並ぶ"></div><figcaption>🆕 新着</figcaption></figure>
+      <figure class="reveal"><div class="phone"><img src="assets/app-reference.png" alt="文献タブ。ICUチームのガイドラインやRCTが著者・発行年つきで並ぶ"></div><figcaption>📖 文献</figcaption></figure>
+      <figure class="reveal"><div class="phone"><img src="assets/app-quiz.png" alt="クイズタブ。ナレッジがシャッフル出題の一問一答として並ぶ"></div><figcaption>🧠 クイズ</figcaption></figure>
+    </div>
+  </div>
+</section>
+
+<!-- MODES -->
+<section class="section">
+  <div class="wrap">
+    <div class="head reveal">
+      <div class="kicker">Two modes</div>
+      <h2>同じ知識を、2通りの速度で引ける</h2>
+      <p>まず試したいならシンプルモード。速度と大量データを求めるならパワーモード。用途で選べます。</p>
+    </div>
+    <div class="mode-grid">
+      <div class="mode-card reveal">
+        <span class="mode-tag req">必須・すぐ使える</span>
+        <h3>シンプルモード</h3>
+        <p style="color:var(--slate)">Notionを直接検索。追加サービス不要で、Notionを直せば次の検索から即反映されます（表示まで1〜3秒）。</p>
+        <ul><li>同期ボタン不要のライブ反映</li><li>必要な鍵はNotion Tokenのみ</li><li>まず試したい人・即反映重視に</li></ul>
+      </div>
+      <div class="mode-card power reveal">
+        <span class="mode-tag opt">任意・パワーアップ</span>
+        <h3>パワーモード</h3>
+        <p style="color:var(--slate)">Algoliaに事前同期して、0.1秒以下の爆速検索。日本語の部分一致やジャンル絞り込みも快適です。</p>
+        <ul><li>0.1秒以下のインスタント検索</li><li>Algoliaの無料アカウントが必要</li><li>使うかどうかは自由（任意機能）</li></ul>
+      </div>
+    </div>
+    <p class="reveal" style="text-align:center;margin-top:24px"><a href="premium.html" style="color:var(--blue);font-weight:600">パワーモードと所有者フィルタの詳しい仕組みを見る →</a></p>
+  </div>
+</section>
+
+<!-- LIFECYCLE -->
+<section class="section" style="background:var(--bg-soft)">
+  <div class="wrap">
+    <div class="head reveal">
+      <div class="kicker">Knowledge lifecycle</div>
+      <h2>「曖昧な疑問」から「使える知識」まで</h2>
+      <p>調べたことが迷子にならないよう、知識を3つの状態で管理。疑問を一つずつ片づけるたびに、次に迷わない自分が増えていきます。</p>
+    </div>
+    <div class="life">
+      <div class="life-node reveal"><div class="emo">❓</div><h4>CQ（臨床疑問）</h4><p>浮かんだ臨床疑問を、その場で取りこぼさず登録（調査中）。</p></div>
+      <div class="life-arrow reveal">→</div>
+      <div class="life-node reveal"><div class="emo">💡</div><h4>ナレッジ</h4><p>確認済みの知識に昇格。クイズの出題対象になります。</p></div>
+      <div class="life-arrow reveal">→</div>
+      <div class="life-node reveal"><div class="emo">📋</div><h4>まとめ</h4><p>たまった知識を体系的な解説へ。ジャンルごとに整理。</p></div>
+    </div>
+    <div class="note-callout reveal" style="max-width:760px;margin:30px auto 0">
+      <span class="ic">🧠</span>
+      <div><strong>クイズの出題条件：</strong>「💡ナレッジ」かつ「要約が入力済み（10文字以上）」のページを、シャッフルして最大20問ずつ出題します。自分がためた知識が、そのまま自分専用の一問一答になります。</div>
+    </div>
+  </div>
+</section>
+
+<!-- PRIVACY -->
+<section class="section">
+  <div class="wrap">
+    <div class="head reveal">
+      <div class="kicker">Privacy &amp; PWA</div>
+      <h2>データは、あなたの手元に。</h2>
+      <p>検索内容やNotionの中身を、サーバーに溜め込みません。安心して日々の知識を預けられます。</p>
+    </div>
+    <div class="priv-grid">
+      <div class="priv-card reveal"><div class="ic">🔒</div><h4>localStorageのみ</h4><p>設定は端末のローカルにのみ保存。サーバー側に永続保存しません。</p></div>
+      <div class="priv-card reveal"><div class="ic">🚫</div><h4>溜め込まない</h4><p>検索内容やNotionの中身を蓄積しない設計。プライバシーを尊重します。</p></div>
+      <div class="priv-card reveal"><div class="ic">📱</div><h4>PWA対応</h4><p>スマホのホーム画面に追加すれば、アプリ感覚でいつでも起動できます。</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- EXPLORE / subpages -->
+<section class="section" style="background:var(--bg-soft)">
+  <div class="wrap">
+    <div class="head reveal">
+      <div class="kicker">Learn more</div>
+      <h2>もっと詳しく</h2>
+      <p>導入・データベース・プレミアムの仕組みを、それぞれのページで一つずつ確認できます。</p>
+    </div>
+    <div class="explore-grid">
+      <a class="explore-card reveal" href="setup.html"><div class="ic">🚀</div><h3>セットアップ手順</h3><p>テンプレ複製・既存DB接続からNotion連携まで。Notionやトークンが何かという前提から、一つずつ確認できます。</p></a>
+      <a class="explore-card reveal" href="database.html"><div class="ic">🗂</div><h3>DB連携の仕組み</h3><p>2つの配布DB、必須プロパティ、知識のライフサイクル、任意のNotion AI活用法。</p></a>
+      <a class="explore-card reveal" href="premium.html"><div class="ic">⭐</div><h3>プレミアムと検索モード</h3><p>所有者フィルタ（個人／部署／プレミアム）と、パワーモードの高速検索を解説。</p></a>
+    </div>
+  </div>
+</section>
+
+<!-- AUTHOR -->
+<section class="section">
+  <div class="wrap">
+    <div class="head reveal"><div class="kicker">Author</div><h2>つくった人</h2></div>
+    <div class="author-card reveal">
+      <img class="author-avatar" src="assets/icon-192.png" alt="MediNode">
+      <div>
+        <h3>Dr.ノード（Dr.Node）</h3>
+        <div class="role">救急科専門医・集中治療専門医・呼吸療法専門医</div>
+        <p>「医療 × Notion × AI」をテーマに、医療者の学びをラクにする道具を開発・発信しています。MediNodeは、自身の臨床での「あの時調べておけば」をなくすために生まれました。</p>
+        <div class="author-links">
+          <a href="https://note.com/gifted_arnica594" target="_blank" rel="noopener">note</a>
+          <a href="https://x.com/dr_node0" target="_blank" rel="noopener">X @dr_node0</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FINAL CTA -->
+<section class="section cta-band">
+  <div class="wrap">
+    <h2 class="reveal">いつものNotionを、<br>「引ける知識」に変えてみる。</h2>
+    <p class="reveal">MediNodeは2026年7月中旬に公開予定です。公開のお知らせはXとnoteで配信します。</p>
+    <a class="btn btn-primary btn-arrow reveal" href="coming-soon.html">公開情報を見る</a>
+    <small class="reveal">医療者全般向け・公開までの間もサイトで予習できます</small>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap foot">
+    <div>
+      <div class="brand"><img src="assets/icon-192.png" alt="" style="width:30px;height:30px;border-radius:8px">MediNode</div>
+      <p class="foot-tagline">普段のNotionが、そのまま検索DBと一問一答になる、医療者向けの知識アプリ。</p>
+    </div>
+    <div class="foot-col">
+      <h5>ページ</h5>
+      <a href="index.html">ホーム</a>
+      <a href="setup.html">セットアップ</a>
+      <a href="database.html">DB連携</a>
+      <a href="premium.html">プレミアム</a>
+    </div>
+    <div class="foot-col">
+      <h5>リンク</h5>
+      <a href="coming-soon.html">アプリ（7月公開予定）</a>
+      <a href="https://note.com/gifted_arnica594" target="_blank" rel="noopener">note</a>
+      <a href="https://x.com/dr_node0" target="_blank" rel="noopener">X @dr_node0</a>
+    </div>
+    <div class="foot-copy">
+      <span>© 2026 Dr.Node / MediNode</span>
+      <span>Connects with Notion</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+  const io=new IntersectionObserver((e)=>{e.forEach(x=>{if(x.isIntersecting){x.target.classList.add('in');io.unobserve(x.target);}})},{threshold:.15});
+  document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+</script>
+</body>
+</html>

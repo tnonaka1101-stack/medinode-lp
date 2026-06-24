@@ -1,0 +1,477 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>セットアップ手順｜MediNode</title>
+<meta name="description" content="MediNodeの導入手順を、Notionやトークンが何かという前提から一つずつ解説。これを見ながら進めれば、初めての方でも迷わず設定できます。">
+<meta name="theme-color" content="#2563eb">
+<link rel="icon" href="assets/icon-192.png">
+<link rel="apple-touch-icon" href="assets/icon-192.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Noto+Sans+JP:wght@400;500;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+<style>
+  /* ---- intro / what-is ---- */
+  .whatis-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:8px}
+  @media(max-width:820px){.whatis-grid{grid-template-columns:1fr}}
+  .whatis{background:#fff;border:1px solid var(--line);border-radius:14px;padding:22px;box-shadow:var(--shadow-sm)}
+  .whatis .q{font-size:.78rem;font-weight:700;color:var(--blue);background:var(--blue-50);border:1px solid var(--blue-100);display:inline-block;padding:3px 10px;border-radius:999px;margin-bottom:10px}
+  .whatis h4{font-size:1.05rem;margin-bottom:6px}
+  .whatis p{font-size:.92rem;color:var(--slate)}
+
+  /* ---- route tabs ---- */
+  .route-tabs{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin-bottom:8px}
+  .route-tab{
+    display:flex;flex-direction:column;align-items:center;gap:2px;
+    background:#fff;border:1.5px solid var(--line);border-radius:16px;
+    padding:16px 22px;cursor:pointer;transition:.2s;min-width:200px;text-align:center;
+  }
+  .route-tab:hover{border-color:var(--blue-100)}
+  .route-tab.active{border-color:var(--blue);background:var(--blue-50);box-shadow:0 6px 16px rgba(37,99,235,.12)}
+  .route-tab .emo{font-size:1.6rem}
+  .route-tab .t{font-weight:700;font-size:1rem;margin-top:4px}
+  .route-tab .s{font-size:.78rem;color:var(--slate-light)}
+  .route-tab .badge-prem{font-size:.68rem;background:#ede9fe;color:#6d28d9;border-radius:999px;padding:2px 8px;font-weight:700;margin-top:4px}
+
+  .route-panel{display:none}
+  .route-panel.active{display:block;animation:fade .35s ease}
+  @keyframes fade{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+  .route-intro{
+    background:var(--blue-50);border:1px solid var(--blue-100);border-radius:16px;
+    padding:22px 26px;margin:28px 0 36px;text-align:center;
+  }
+  .route-intro h3{font-size:1.2rem;margin-bottom:6px;color:var(--blue-dark)}
+  .route-intro p{color:var(--slate);font-size:.96rem}
+
+  /* ---- stepper ---- */
+  .steps{position:relative}
+  .step{position:relative;padding:0 0 4px 56px;margin-bottom:8px}
+  .step::before{content:"";position:absolute;left:18px;top:42px;bottom:-14px;width:2px;background:var(--line)}
+  .step:last-child::before{display:none}
+  .step .badge{position:absolute;left:0;top:2px;width:38px;height:38px;border-radius:11px;background:var(--blue);color:#fff;font-weight:800;display:grid;place-items:center;font-size:1.05rem;box-shadow:0 6px 14px rgba(37,99,235,.28);z-index:2}
+  .step .badge.opt{background:#fff;color:var(--blue);border:2px solid var(--blue-100)}
+  .step .badge.done{background:#16a34a}
+  .step-card{background:#fff;border:1px solid var(--line);border-radius:var(--radius);padding:24px 26px;box-shadow:var(--shadow-sm);margin-bottom:18px}
+  .step-card h3{font-size:1.18rem;margin-bottom:6px;display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+  .step-card .tag{font-size:.7rem;font-weight:700;padding:3px 10px;border-radius:999px;letter-spacing:.03em}
+  .step-card .tag.req{background:#dcfce7;color:#15803d}
+  .step-card .tag.opt{background:var(--blue-100);color:var(--blue-dark)}
+  .step-card p{color:var(--slate);font-size:.96rem;margin-bottom:10px}
+  .step-card ol,.step-card ul{margin:8px 0 4px;padding-left:20px;color:var(--slate);font-size:.95rem}
+  .step-card li{margin-bottom:7px}
+  .step-card code{background:var(--bg-soft);border:1px solid var(--line);border-radius:6px;padding:2px 7px;font-size:.86em;color:var(--blue-dark);font-family:"Inter",monospace}
+  .step-card a.inline{color:var(--blue);font-weight:600}
+  .step-card a.inline:hover{text-decoration:underline}
+
+  /* what-is inline box */
+  .qbox{background:#f0f9ff;border:1px solid #bae6fd;border-radius:12px;padding:14px 16px;margin:12px 0;font-size:.9rem;color:#0c4a6e}
+  .qbox summary{cursor:pointer;font-weight:700;color:#0369a1;list-style:none;display:flex;align-items:center;gap:8px}
+  .qbox summary::-webkit-details-marker{display:none}
+  .qbox summary::before{content:"💡";font-size:1rem}
+  .qbox summary::after{content:"＋";margin-left:auto;color:#0369a1;font-weight:800}
+  .qbox[open] summary::after{content:"−"}
+  .qbox .body{margin-top:10px;line-height:1.7;color:#0c4a6e}
+  .qbox .body strong{color:#075985}
+
+  /* mode choice cards (replicating app step2) */
+  .mode-choice{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:6px}
+  @media(max-width:680px){.mode-choice{grid-template-columns:1fr}}
+  .mc{border-radius:14px;padding:18px 20px;border:1.5px solid}
+  .mc.simple{border-color:#bbf7d0;background:#f0fdf4}
+  .mc.power{border-color:#bfdbfe;background:#eff6ff}
+  .mc .mc-head{display:flex;align-items:center;gap:8px;font-weight:700;font-size:1.02rem;margin-bottom:8px;flex-wrap:wrap}
+  .mc .pill{font-size:.7rem;font-weight:700;padding:3px 10px;border-radius:999px}
+  .mc.simple .pill{background:#16a34a;color:#fff}
+  .mc.power .pill{background:#2563eb;color:#fff}
+  .mc p{font-size:.9rem;color:var(--slate);margin-bottom:4px}
+  .mc .small{font-size:.82rem;color:var(--slate-light)}
+
+  /* step1 choice cards (replicating app) */
+  .choice-replica{display:flex;flex-direction:column;gap:12px;margin-top:6px}
+  .choice{display:flex;gap:14px;align-items:flex-start;border:1.5px solid var(--line);border-radius:14px;padding:16px 18px;background:#fff}
+  .choice.on{border-color:var(--blue);background:var(--blue-50)}
+  .choice .chk{width:22px;height:22px;border-radius:6px;border:2px solid var(--line);flex-shrink:0;margin-top:2px;display:grid;place-items:center;font-size:.8rem;color:#fff}
+  .choice.on .chk{background:var(--blue);border-color:var(--blue)}
+  .choice .ctxt h5{font-size:1rem;margin-bottom:3px;display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+  .choice .ctxt .lbl{font-size:.72rem;color:var(--slate-light);font-weight:600}
+  .choice .ctxt p{font-size:.88rem;color:var(--slate);margin:0}
+
+  /* DB way (2 options to prepare DB) */
+  .db-way{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:8px}
+  @media(max-width:680px){.db-way{grid-template-columns:1fr}}
+  .way{border:1.5px solid var(--line);border-radius:14px;padding:18px 20px;background:#fff}
+  .way.recommend{border-color:var(--blue);background:var(--blue-50)}
+  .way-head{display:flex;align-items:center;gap:8px;font-weight:700;font-size:1rem;margin-bottom:8px;flex-wrap:wrap}
+  .way-pill{font-size:.68rem;font-weight:700;padding:3px 9px;border-radius:999px;background:#e2e8f0;color:#475569}
+  .way-pill.rec{background:var(--blue);color:#fff}
+  .way p{font-size:.9rem;color:var(--slate);margin:0;line-height:1.7}
+
+  /* step1: replica + real screenshot */
+  .step1-wrap{display:grid;grid-template-columns:1.3fr .7fr;gap:32px;align-items:center;max-width:880px;margin:0 auto 36px}
+  @media(max-width:760px){.step1-wrap{grid-template-columns:1fr;gap:28px}.step1-shot{order:-1}}
+  .step1-shot{justify-self:center}
+  .step1-shot .phone{width:min(230px,72vw)}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap nav">
+    <a class="brand" href="index.html"><img src="assets/icon-192.png" alt="MediNode">MediNode</a>
+    <button class="menu-toggle" aria-label="メニュー" onclick="document.getElementById('navmenu').classList.toggle('open')">☰</button>
+    <nav class="nav-menu" id="navmenu">
+      <a class="link" href="index.html">ホーム</a>
+      <a class="link active" href="setup.html">セットアップ</a>
+      <a class="link" href="database.html">DB連携</a>
+      <a class="link" href="premium.html">プレミアム</a>
+      <a class="btn btn-primary nav-cta" href="coming-soon.html">7月公開予定</a>
+    </nav>
+  </div>
+</header>
+
+<!-- COMING SOON announcement bar -->
+<a class="announce" href="coming-soon.html">
+  <span class="announce-badge">COMING SOON</span>
+  <span class="announce-text"><strong>2026年7月中旬</strong>、一般公開に向けて鋭意製作中です。</span>
+  <span class="announce-link">公開情報を見る →</span>
+</a>
+
+<section class="page-hero">
+  <div class="wrap">
+    <div class="crumb"><a href="index.html">ホーム</a> ／ セットアップ</div>
+    <span class="eyebrow">🚀 はじめての方へ</span>
+    <h1>さあ、はじめてみましょう。</h1>
+    <p>「Notionって何？」「トークンって何？」というところから、一つずつ解説します。順番どおりに進めれば、初めての方でも迷わず設定できます。</p>
+  </div>
+</section>
+
+<!-- before you start: glossary -->
+<section class="section" style="padding-bottom:40px">
+  <div class="wrap-narrow">
+    <div class="head left reveal" style="margin-bottom:24px">
+      <div class="kicker">Before you start</div>
+      <h2>はじめに：3つの言葉だけ覚えればOK</h2>
+      <p style="color:var(--slate)">設定で出てくる言葉は、ほぼこの3つだけ。ここを押さえれば、あとは流れに沿うだけです。</p>
+    </div>
+    <div class="whatis-grid">
+      <div class="whatis reveal">
+        <span class="q">これは何？</span>
+        <h4>Notion（ノーション）</h4>
+        <p>メモ・表・データベースを作れる無料の万能ノートアプリ。MediNodeは「あなたがNotionに書いた医療メモ」を読みに行って検索します。お持ちでなければ無料登録から。</p>
+      </div>
+      <div class="whatis reveal">
+        <span class="q">これは何？</span>
+        <h4>データベース（DB）</h4>
+        <p>Notionの中の「表形式のページ集」のこと。1行＝1つの知識。MediNodeは配布テンプレを複製するだけで、必要な形のDBが手に入ります。</p>
+      </div>
+      <div class="whatis reveal">
+        <span class="q">これは何？</span>
+        <h4>コネクトToken（トークン）</h4>
+        <p>MediNodeがあなたのNotionを読むための「合鍵」。<code>ntn_</code> で始まる文字列です。Notionの設定ページで無料で発行でき、あなたのブラウザにだけ保存されます。</p>
+      </div>
+    </div>
+    <div class="note-callout reveal" style="margin-top:24px">
+      <span class="ic">🔒</span>
+      <div>入力したトークンやキーは<strong>あなたの端末（ブラウザ）にだけ保存</strong>され、サーバーには送られません。DBを「Web公開」する必要もありません（非公開のまま読めます）。</div>
+    </div>
+  </div>
+</section>
+
+<!-- route selection -->
+<section class="section" style="background:var(--bg-soft)">
+  <div class="wrap-narrow">
+    <div class="head reveal">
+      <div class="kicker">Step 1 — 何から始める？</div>
+      <h2>まず「どの知識を使うか」を選びます</h2>
+      <p>アプリを開くと最初に聞かれます（複数選択OK・あとから追加も可能）。選んだ内容で、続く手順が変わります。下のタブで、自分に合うルートを選んでください。</p>
+    </div>
+
+    <!-- replica of app step1 + real screenshot -->
+    <div class="step1-wrap reveal">
+      <div class="card" style="padding:24px">
+        <div style="font-weight:800;font-size:1.08rem;margin-bottom:4px">何から始めますか？</div>
+        <p style="color:var(--slate-light);font-size:.86rem;margin-bottom:16px">使いたいものを選んでください（複数選択可）。あとから「設定」で追加もできます。</p>
+        <div class="choice-replica">
+          <div class="choice on"><div class="chk">✓</div><div class="ctxt"><h5>🧑 自分の知識を使う <span class="lbl">個人のNotion</span></h5><p>自分のNotionに作った医療メモを検索します。自分のコネクトTokenとDBを使います。</p></div></div>
+          <div class="choice"><div class="chk"></div><div class="ctxt"><h5>🏢 みんなの知識を使う <span class="lbl">部署の共有DB</span></h5><p>職場で共有しているDBを検索します。代表者からもらったTokenとURLでOK（自分のNotionは不要）。</p></div></div>
+          <div class="choice"><div class="chk"></div><div class="ctxt"><h5>⭐ 専門医の知識を使う <span class="lbl">プレミアム</span></h5><p>作者（専門医）が配信する医療ナレッジを検索します。自分のNotion/Algolia設定は不要で、すぐ使えます。</p></div></div>
+        </div>
+      </div>
+      <div class="step1-shot">
+        <div class="phone"><img src="assets/onb-sources.png" alt="MediNodeのオンボーディング画面。使いたい知識を選んで始められます（自分の知識・みんなの知識・専門医の知識）"></div>
+      </div>
+    </div>
+
+    <p style="text-align:center;color:var(--slate);font-weight:600;margin-bottom:16px">▼ あなたのルートを選ぶと、手順が切り替わります</p>
+    <div class="route-tabs">
+      <div class="route-tab active" data-route="self" onclick="selectRoute('self')">
+        <span class="emo">🧑</span><span class="t">自分の知識</span><span class="s">個人のNotionを使う</span>
+      </div>
+      <div class="route-tab" data-route="team" onclick="selectRoute('team')">
+        <span class="emo">🏢</span><span class="t">みんなの知識</span><span class="s">部署の共有DBを使う</span>
+      </div>
+      <div class="route-tab" data-route="premium" onclick="selectRoute('premium')">
+        <span class="emo">⭐</span><span class="t">専門医の知識</span><span class="badge-prem">プレミアム</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- route panels -->
+<section class="section" style="padding-top:48px">
+  <div class="wrap-narrow">
+
+    <!-- ROUTE: SELF -->
+    <div class="route-panel active" id="route-self">
+      <div class="route-intro">
+        <h3>🧑 自分の知識を使うルート</h3>
+        <p>自分のNotionに作った医療メモを検索・クイズ化します。手順は「モード選択 → Notion設定 →（必要なら）オプション」。最短ならNotionを繋ぐだけです。</p>
+      </div>
+      <div class="steps">
+
+        <div class="step reveal">
+          <div class="badge done">1</div>
+          <div class="step-card">
+            <h3>「自分の知識を使う」を選ぶ <span class="tag req">必須</span></h3>
+            <p>最初の画面で「🧑 自分の知識を使う」にチェックして「次へ」。これでこのルートに進みます。</p>
+          </div>
+        </div>
+
+        <div class="step reveal">
+          <div class="badge">2</div>
+          <div class="step-card">
+            <h3>接続モードを選ぶ <span class="tag req">必須</span></h3>
+            <p>検索の速さと手軽さのどちらを取るかを選びます。あとから設定でいつでも変更できます。</p>
+            <div class="mode-choice">
+              <div class="mc simple">
+                <div class="mc-head">📋 シンプルモード <span class="pill">まず試す方へ</span></div>
+                <p>Algoliaアカウント不要、設定は<strong>Notion Tokenのみ</strong>。最短ですぐ始められます。</p>
+                <p class="small">※ 検索のたびNotionへ問い合わせるため、表示まで1〜3秒かかります。</p>
+              </div>
+              <div class="mc power">
+                <div class="mc-head">⚡ パワーモード <span class="pill">本格利用に</span></div>
+                <p>Algoliaで<strong>0.1秒以下の高速検索</strong>。日本語の部分一致やジャンル絞り込みも快適。</p>
+                <p class="small">※ Algoliaの無料アカウントが必要。記事を更新するたび再同期します。</p>
+              </div>
+            </div>
+            <details class="qbox" style="margin-top:14px">
+              <summary>Algolia（アルゴリア）って何？</summary>
+              <div class="body">超高速な検索エンジンのサービスです。<strong>無料プラン（Build）</strong>があり、これを使うと検索が一瞬になります。<strong>必須ではありません</strong>——まずはシンプルモードで試し、物足りなくなってからで大丈夫です。</div>
+            </details>
+          </div>
+        </div>
+
+        <div class="step reveal">
+          <div class="badge">3</div>
+          <div class="step-card">
+            <h3>使うDBを用意する <span class="tag req">必須</span></h3>
+            <p>ここがメインです。まず「どのDBを検索対象にするか」を決めます。<strong>2通りから選べます</strong>。</p>
+            <div class="db-way">
+              <div class="way recommend">
+                <div class="way-head">📋 ① テンプレートを複製して使う <span class="way-pill rec">おすすめ・初めての方</span></div>
+                <p>アプリ内のリンクから配布テンプレ（Medical／Reference／📋Manual の3DB入り）を自分のNotionへ複製するだけ。<strong>必須プロパティが最初から揃っている</strong>ので、手間なく始められます。</p>
+              </div>
+              <div class="way">
+                <div class="way-head">🔗 ② 既存のDBに連携する <span class="way-pill">すでにNotionで運用中の方</span></div>
+                <p>すでに医療メモのDBをNotionで使っているなら、複製せず<strong>そのDBのURLを貼って接続</strong>できます。その際は<strong>必須プロパティ名（名前・ジャンル・知識レベル・要約・キーワード）を正確に合わせて</strong>おきます。選択肢の値（ジャンル名など）は自由でOKです。</p>
+              </div>
+            </div>
+            <details class="qbox" style="margin-top:14px">
+              <summary>データベース（DB）って何？どっちを選べばいい？</summary>
+              <div class="body">DBは「表形式のページ集」のこと（1行＝1つの知識）。<strong>初めての方は①テンプレ複製が確実</strong>です。すでにNotionで症例メモや勉強ノートをDBで管理している方は、②で今のDBをそのまま活かせます。後から追加・変更もできます。</div>
+            </details>
+          </div>
+        </div>
+
+        <div class="step reveal">
+          <div class="badge">4</div>
+          <div class="step-card">
+            <h3>合鍵（コネクトToken）を作って接続する <span class="tag req">必須</span></h3>
+            <p>MediNodeがあなたのDBを読めるように、合鍵を発行して、DBにつなぎます。</p>
+            <ol>
+              <li><strong>コネクトTokenを取得</strong>：<a class="inline" href="https://www.notion.so/my-integrations" target="_blank" rel="noopener">notion.so/my-integrations</a> →「新しいインテグレーション」を作成 →「シークレット（アクセストークン）」の <code>ntn_</code> から始まる文字列をコピー。</li>
+              <li><strong>DBに合鍵を接続</strong>：使うDBページを開き、右上「<strong>…</strong>」→「<strong>コネクトを追加</strong>」→ 作ったコネクトを選択。Medical DB・Reference DB の両方に行います。</li>
+              <li><strong>アプリに入力</strong>：セットアップ画面でコネクトTokenと各DBのURLを貼り付けて保存。</li>
+            </ol>
+            <details class="qbox">
+              <summary>インテグレーション／コネクトって何？（トークンとの関係）</summary>
+              <div class="body">「インテグレーション（旧称）」＝「コネクト（新称）」で、<strong>外部アプリにNotionを読ませる許可の単位</strong>です。これを作ると合鍵（<code>ntn_</code> トークン）が発行されます。さらに「どのDBを読ませるか」を、各DBの「…→コネクトを追加」で個別に許可します。<strong>この接続を忘れると同期時に「403エラー」</strong>になります。</div>
+            </details>
+            <div class="warn-callout" style="margin-top:12px"><span class="ic">⚠️</span><div>トークンは <code>ntn_</code>（新）または <code>secret_</code>（旧）で始まります。パスワードと同じく他人に教えないでください。</div></div>
+          </div>
+        </div>
+
+        <div class="step reveal">
+          <div class="badge opt">+</div>
+          <div class="step-card">
+            <h3>Algolia設定＆同期 <span class="tag opt">パワーモードのみ</span></h3>
+            <p>シンプルモードならこの手順は<strong>表示されません</strong>。パワーモードを選んだ時だけ必要です。</p>
+            <ul>
+              <li><a class="inline" href="https://www.algolia.com/" target="_blank" rel="noopener">Algolia</a> で無料アカウント（Buildプラン）を作成</li>
+              <li>ダッシュボード →「Settings → API Keys」で3つをコピー：<strong>App ID</strong> ／ <strong>Search-Only API Key</strong>（検索用）／ <strong>Admin API Key</strong>（同期用）</li>
+              <li>キーを入力後、「🔄 データを再同期する」で同期。Notionを更新したら毎回再同期します。</li>
+            </ul>
+            <div class="warn-callout" style="margin-top:12px"><span class="ic">⚠️</span><div>「Admin API Key」と「Search-Only Key」を取り違えないように。Admin Keyは秘密にしてください。</div></div>
+          </div>
+        </div>
+
+        <div class="step reveal">
+          <div class="badge opt">+</div>
+          <div class="step-card">
+            <h3>オプション設定 <span class="tag opt">任意</span></h3>
+            <p>ほとんどの方はスキップでOK。あとから設定画面（⚙️）で変更できます。部署DB・プレミアム・<strong>📋マニュアルDB</strong>を後から足すのもここからです。</p>
+            <details class="qbox">
+              <summary>📋マニュアルタブって何？（病院・部署向け）</summary>
+              <div class="body">病院・部署の<strong>マニュアル／お知らせ／業務改善</strong>を検索・新着表示できる任意のタブです。Manual DBを設定すると表示されます（設定した人だけに出るオプトイン方式）。新着順はNotionの最終更新日時を使うので改訂すると自動で上に来ます。Notion直読みのため<strong>パワーモードでも再同期は不要</strong>です。</div>
+            </details>
+          </div>
+        </div>
+
+        <div class="step reveal">
+          <div class="badge done">✓</div>
+          <div class="step-card">
+            <h3>完了！検索してみる</h3>
+            <p>「設定を保存して検索を開始」を押せば完了。シンプルモードなら、Notionを直すと次の検索から即反映されます。お疲れさまでした。</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ROUTE: TEAM -->
+    <div class="route-panel" id="route-team">
+      <div class="route-intro">
+        <h3>🏢 みんなの知識を使うルート</h3>
+        <p>職場・チームで共有しているDBを検索します。<strong>自分のNotionは不要</strong>。代表者から「トークン」と「DBのURL」をもらって貼るだけ。モード選択もスキップされ、すぐ使えます。</p>
+      </div>
+      <div class="steps">
+        <div class="step reveal">
+          <div class="badge done">1</div>
+          <div class="step-card">
+            <h3>「みんなの知識を使う」を選ぶ <span class="tag req">必須</span></h3>
+            <p>最初の画面で「🏢 みんなの知識を使う」にチェック。部署のみを選んだ場合、Algoliaなどの設定はスキップされます。</p>
+          </div>
+        </div>
+        <div class="step reveal">
+          <div class="badge">2</div>
+          <div class="step-card">
+            <h3>代表者から2つをもらう <span class="tag req">必須</span></h3>
+            <p>チームでDBを管理している代表者（先輩・管理担当）に、次の2つを聞きます。</p>
+            <ul>
+              <li><strong>共有用のコネクトToken</strong>（<code>ntn_</code> で始まる文字列）</li>
+              <li><strong>共有DBのURL</strong>（部署のMedical DB／Reference DBのリンク）</li>
+            </ul>
+            <details class="qbox">
+              <summary>看護師など「ゲスト」でも使える？</summary>
+              <div class="body">はい。MediNodeはNotion公式AIのコネクトではなく、<strong>利用者自身（または代表者）が作る内部コネクト（<code>ntn_</code> トークン）</strong>でDBに接続します。対象DBに「コネクトを追加」されていれば、メンバー・ゲストの区別なくアプリ内で閲覧できます。</div>
+            </details>
+          </div>
+        </div>
+        <div class="step reveal">
+          <div class="badge">3</div>
+          <div class="step-card">
+            <h3>アプリに貼り付ける <span class="tag req">必須</span></h3>
+            <p>もらったトークンとDBのURLを、セットアップ画面（または設定→部署DB）に貼り付けて保存。これだけで部署の知識を検索できます。</p>
+            <div class="note-callout" style="margin-top:10px"><span class="ic">💡</span><div>検索バー下の<strong>「部署」フィルタ</strong>でチームの知識に絞り込めます。自分の知識（個人）と一緒に横断検索も可能です。</div></div>
+          </div>
+        </div>
+        <div class="step reveal">
+          <div class="badge done">✓</div>
+          <div class="step-card">
+            <h3>完了！</h3>
+            <p>自分でNotionを用意しなくても、チームの知識をすぐ引けます。後から「自分の知識」を足したくなったら、設定からいつでも追加できます。</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ROUTE: PREMIUM -->
+    <div class="route-panel" id="route-premium">
+      <div class="route-intro">
+        <h3>⭐ 専門医の知識を使うルート</h3>
+        <p>作者（専門医）がメンテナンスする医療ナレッジ・参考文献を検索します。<strong>自分のNotionもAlgoliaも不要</strong>。登録すればすぐ使えます。シンプルモードのままでも利用できます。</p>
+      </div>
+      <div class="steps">
+        <div class="step reveal">
+          <div class="badge done">1</div>
+          <div class="step-card">
+            <h3>「専門医の知識を使う」を選ぶ <span class="tag req">必須</span></h3>
+            <p>最初の画面で「⭐ 専門医の知識を使う」にチェック。Notion/Algoliaの設定はスキップされます。</p>
+          </div>
+        </div>
+        <div class="step reveal">
+          <div class="badge">2</div>
+          <div class="step-card">
+            <h3>プレミアムに登録 <span class="tag req">必須</span></h3>
+            <p>各タブの<strong>「⭐プレミアム」フィルタ</strong>、または設定パネルの登録ボタンから手続きします。決済はStripeの画面で行います（価格は登録画面に表示）。</p>
+            <details class="qbox">
+              <summary>支払いは安全？端末をまたいで使える？</summary>
+              <div class="body">カード情報は決済代行の<strong>Stripeが管理</strong>し、アプリは保持しません。また「ログイン」（メールアドレスのみ・パスワード不要）すれば、<strong>プレミアム契約をスマホ・PCなど複数端末で引き継げます</strong>。ログインは任意で、基本機能はログインなしでも使えます。</div>
+            </details>
+            <div class="note-callout" style="margin-top:10px"><span class="ic">ℹ️</span><div>お申し込み・お支払いは<strong>アプリ内</strong>で行います。このサイトでは手続きできません。</div></div>
+          </div>
+        </div>
+        <div class="step reveal">
+          <div class="badge done">✓</div>
+          <div class="step-card">
+            <h3>完了！</h3>
+            <p>登録後すぐ、⭐プレミアムフィルタで作者のキュレーション知識を検索できます。自分・部署の知識と並べて横断検索も可能です。</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- common: PWA note -->
+<section class="section" style="background:var(--bg-soft)">
+  <div class="wrap-narrow">
+    <div class="head reveal" style="margin-bottom:28px">
+      <div class="kicker">Tips</div>
+      <h2>つまずきやすいポイント</h2>
+    </div>
+    <div style="display:flex;flex-direction:column;gap:14px">
+      <div class="warn-callout reveal"><span class="ic">📱</span><div><strong>スマホのホーム画面に追加（PWA）するなら：</strong>SafariとPWAは保存場所が別です。<strong>先にホーム画面へ追加してから、PWAを開いて設定</strong>してください。Safariで設定してもPWAには引き継がれません。</div></div>
+      <div class="warn-callout reveal"><span class="ic">🔄</span><div><strong>追加した知識が出てこない：</strong>パワーモードでは、Notionを更新したら「🔄 データを再同期する」が必要です。シンプルモードは即反映で同期不要です。</div></div>
+      <div class="warn-callout reveal"><span class="ic">🚫</span><div><strong>同期で「403エラー」：</strong>DBへの「コネクトを追加」が漏れています。各DBの「…→コネクトを追加」を確認してください。</div></div>
+      <div class="note-callout reveal"><span class="ic">🔐</span><div><strong>Web公開は不要：</strong>アプリ内の閲覧はトークン＋API経由なので、DBは非公開のままでOK。医療情報を扱うため、Web公開はオフのままを推奨します。</div></div>
+    </div>
+  </div>
+</section>
+
+<section class="section cta-band">
+  <div class="wrap">
+    <h2 class="reveal">公開後は、この流れで数分。</h2>
+    <p class="reveal">MediNodeは2026年7月中旬に公開予定です。公開されたら、このページを開いたままウィザードを並べて進めるとスムーズです。</p>
+    <a class="btn btn-primary btn-arrow reveal" href="coming-soon.html">公開情報を見る</a>
+    <small class="reveal">入力するキーは端末のブラウザにのみ保存されます</small>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap foot">
+    <div>
+      <div class="brand"><img src="assets/icon-192.png" alt="" style="width:30px;height:30px;border-radius:8px">MediNode</div>
+      <p class="foot-tagline">普段のNotionが、そのまま検索DBと一問一答になる、医療者向けの知識アプリ。</p>
+    </div>
+    <div class="foot-col"><h5>ページ</h5><a href="index.html">ホーム</a><a href="setup.html">セットアップ</a><a href="database.html">DB連携</a><a href="premium.html">プレミアム</a></div>
+    <div class="foot-col"><h5>リンク</h5><a href="coming-soon.html">アプリ（7月公開予定）</a><a href="https://note.com/gifted_arnica594" target="_blank" rel="noopener">note</a><a href="https://x.com/dr_node0" target="_blank" rel="noopener">X @dr_node0</a></div>
+    <div class="foot-copy"><span>© 2026 Dr.Node / MediNode</span><span>Connects with Notion</span></div>
+  </div>
+</footer>
+
+<script>
+  function selectRoute(r){
+    document.querySelectorAll('.route-tab').forEach(t=>t.classList.toggle('active',t.dataset.route===r));
+    document.querySelectorAll('.route-panel').forEach(p=>p.classList.remove('active'));
+    document.getElementById('route-'+r).classList.add('active');
+    // re-trigger reveal for newly shown panel
+    document.querySelectorAll('#route-'+r+' .reveal').forEach(el=>el.classList.add('in'));
+  }
+  const io=new IntersectionObserver((e)=>{e.forEach(x=>{if(x.isIntersecting){x.target.classList.add('in');io.unobserve(x.target);}})},{threshold:.1});
+  document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+</script>
+</body>
+</html>

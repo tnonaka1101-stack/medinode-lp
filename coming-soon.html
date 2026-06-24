@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Coming Soon｜MediNode（7月中旬公開予定）</title>
+<meta name="description" content="MediNodeは2026年7月中旬の一般公開に向けて鋭意製作中です。公開のお知らせはXとnoteで配信します。">
+<meta name="theme-color" content="#2563eb">
+<link rel="icon" href="assets/icon-192.png">
+<link rel="apple-touch-icon" href="assets/icon-192.png">
+<meta property="og:title" content="MediNode｜7月中旬公開予定">
+<meta property="og:description" content="普段のNotionが、そのまま検索DBと一問一答になる医療者向けアプリ。7月中旬公開に向けて鋭意製作中です。">
+<meta property="og:image" content="assets/icon-512.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Noto+Sans+JP:wght@400;500;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+<style>
+  body{min-height:100vh;display:flex;flex-direction:column}
+  .cs-main{
+    flex:1;display:grid;place-items:center;text-align:center;
+    padding:80px 24px;position:relative;overflow:hidden;
+    background:
+      radial-gradient(900px 500px at 80% -10%,var(--blue-50),transparent 60%),
+      radial-gradient(700px 420px at -6% 10%,#f0f9ff,transparent 55%);
+  }
+  .cs-inner{max-width:620px;position:relative;z-index:2}
+  .cs-logo{width:96px;height:96px;border-radius:24px;margin:0 auto 26px;box-shadow:var(--shadow-lg)}
+  .cs-badge{
+    display:inline-flex;align-items:center;gap:9px;
+    background:var(--blue);color:#fff;font-weight:800;letter-spacing:.04em;
+    font-size:.92rem;padding:9px 20px;border-radius:999px;margin-bottom:24px;
+    box-shadow:0 8px 20px rgba(37,99,235,.3);
+  }
+  .cs-badge .pulse{width:10px;height:10px;border-radius:50%;background:#fff;animation:pulse 1.6s infinite}
+  @keyframes pulse{0%{box-shadow:0 0 0 0 rgba(255,255,255,.6)}70%{box-shadow:0 0 0 10px rgba(255,255,255,0)}100%{box-shadow:0 0 0 0 rgba(255,255,255,0)}}
+  .cs-main h1{font-size:clamp(2.1rem,5.5vw,3.2rem);font-weight:800;line-height:1.35;margin-bottom:18px}
+  .cs-main h1 .hl{color:var(--blue)}
+  .cs-lead{font-size:1.12rem;color:var(--slate);line-height:1.85;margin-bottom:34px}
+  .cs-lead strong{color:var(--blue-dark)}
+
+  /* progress */
+  .cs-progress{max-width:420px;margin:0 auto 36px}
+  .cs-progress .bar{height:10px;border-radius:999px;background:var(--blue-100);overflow:hidden;box-shadow:inset 0 1px 2px rgba(0,0,0,.06)}
+  .cs-progress .bar span{display:block;height:100%;width:80%;border-radius:999px;background:linear-gradient(90deg,var(--blue),#60a5fa);animation:grow 1.4s ease forwards}
+  @keyframes grow{from{width:0}to{width:80%}}
+  .cs-progress .label{display:flex;justify-content:space-between;font-size:.82rem;color:var(--slate-light);margin-top:8px;font-weight:600}
+
+  .cs-actions{display:flex;gap:14px;flex-wrap:wrap;justify-content:center;margin-bottom:18px}
+  .cs-actions .btn-x{background:#0f172a;color:#fff}
+  .cs-actions .btn-x:hover{background:#1e293b;transform:translateY(-2px)}
+  .cs-note{font-size:.88rem;color:var(--slate-light)}
+  .cs-back{margin-top:30px}
+  .cs-back a{color:var(--blue);font-weight:600;font-size:.95rem}
+  .cs-back a:hover{text-decoration:underline}
+
+  /* preview chips */
+  .cs-chips{display:flex;gap:10px;flex-wrap:wrap;justify-content:center;margin:0 auto 34px;max-width:520px}
+  .cs-chip{background:#fff;border:1px solid var(--line);border-radius:999px;padding:8px 16px;font-size:.85rem;font-weight:600;color:var(--slate);box-shadow:var(--shadow-sm)}
+  .cs-chip .e{margin-right:5px}
+  .cs-phone{margin:0 auto 34px;width:min(240px,70vw)}
+  .cs-phone .phone{width:100%;margin:0 auto;border-radius:38px;padding:10px;background:linear-gradient(160deg,#1e293b,#0f172a);box-shadow:var(--shadow-lg);position:relative}
+  .cs-phone .phone::before{content:"";position:absolute;top:14px;left:50%;transform:translateX(-50%);width:110px;height:24px;background:#0f172a;border-radius:0 0 16px 16px;z-index:3}
+  .cs-phone .phone img{border-radius:30px;display:block}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap nav">
+    <a class="brand" href="index.html"><img src="assets/icon-192.png" alt="MediNode">MediNode</a>
+    <a class="link" href="index.html" style="font-size:.92rem;font-weight:600;color:var(--slate)">← サイトに戻る</a>
+  </div>
+</header>
+
+<main class="cs-main">
+  <div class="cs-inner">
+    <img class="cs-logo" src="assets/icon-512.png" alt="MediNode">
+    <div class="cs-badge"><span class="pulse"></span>COMING SOON</div>
+    <h1>2026年<span class="hl">7月中旬</span>、<br>公開に向けて鋭意製作中です。</h1>
+    <p class="cs-lead">
+      アプリ本体は現在、一般公開に向けて最終調整中です。<br>
+      もうしばらくお待ちください。<strong>公開のお知らせはXとnoteで配信します。</strong>
+    </p>
+
+    <div class="cs-progress">
+      <div class="bar"><span></span></div>
+      <div class="label"><span>製作中…</span><span>公開予定：7月中旬</span></div>
+    </div>
+
+    <div class="cs-chips">
+      <div class="cs-chip"><span class="e">🔍</span>高速検索</div>
+      <div class="cs-chip"><span class="e">🧠</span>一問一答クイズ</div>
+      <div class="cs-chip"><span class="e">📋</span>マニュアル</div>
+      <div class="cs-chip"><span class="e">⭐</span>専門医の知識</div>
+    </div>
+
+    <div class="cs-phone"><div class="phone"><img src="assets/onb-hero.png" alt="MediNodeアプリのオンボーディング画面。移動中も当直中も知識はすぐそこに"></div></div>
+
+    <div class="cs-actions">
+      <a class="btn btn-x" href="https://x.com/dr_node0" target="_blank" rel="noopener">𝕏 で公開通知を受け取る</a>
+      <a class="btn btn-ghost" href="https://note.com/gifted_arnica594" target="_blank" rel="noopener">note を見る</a>
+    </div>
+    <p class="cs-note">公開までの間も、サイトで機能・セットアップ・DB連携を予習できます。</p>
+
+    <div class="cs-back">
+      <a href="index.html">← MediNodeを詳しく見る（紹介サイトへ）</a>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap foot">
+    <div>
+      <div class="brand"><img src="assets/icon-192.png" alt="" style="width:30px;height:30px;border-radius:8px">MediNode</div>
+      <p class="foot-tagline">普段のNotionが、そのまま検索DBと一問一答になる、医療者向けの知識アプリ。</p>
+    </div>
+    <div class="foot-col"><h5>ページ</h5><a href="index.html">ホーム</a><a href="setup.html">セットアップ</a><a href="database.html">DB連携</a><a href="premium.html">プレミアム</a></div>
+    <div class="foot-col"><h5>リンク</h5><a href="https://note.com/gifted_arnica594" target="_blank" rel="noopener">note</a><a href="https://x.com/dr_node0" target="_blank" rel="noopener">X @dr_node0</a></div>
+    <div class="foot-copy"><span>© 2026 Dr.Node / MediNode</span><span>Coming Soon・2026年7月中旬</span></div>
+  </div>
+</footer>
+
+</body>
+</html>

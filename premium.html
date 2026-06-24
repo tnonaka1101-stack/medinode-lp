@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>プレミアムと検索モード｜MediNode</title>
+<meta name="description" content="MediNodeの所有者フィルタ（全て／個人／部署／プレミアム）と、シンプル／パワーの2つの検索モードを解説。プレミアムでは作者（専門医）がキュレーションした医療知識を、自分のNotionと並べて串刺し検索できます。">
+<meta name="theme-color" content="#2563eb">
+<link rel="icon" href="assets/icon-192.png">
+<link rel="apple-touch-icon" href="assets/icon-192.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Noto+Sans+JP:wght@400;500;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+<style>
+  .filter-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:18px}
+  @media(max-width:880px){.filter-grid{grid-template-columns:1fr 1fr}}
+  @media(max-width:520px){.filter-grid{grid-template-columns:1fr}}
+  .filter-card{background:#fff;border:1px solid var(--line);border-radius:var(--radius);padding:24px 22px;box-shadow:var(--shadow-sm);transition:.2s}
+  .filter-card:hover{transform:translateY(-3px);box-shadow:var(--shadow-md)}
+  .filter-card.prem{border:1.5px solid #c4b5fd;background:linear-gradient(180deg,#fff,#faf5ff)}
+  .filter-chip{display:inline-block;font-size:.78rem;font-weight:700;padding:5px 12px;border-radius:999px;margin-bottom:12px}
+  .filter-chip.all{background:#e2e8f0;color:#334155}
+  .filter-chip.personal{background:var(--blue-100);color:var(--blue-dark)}
+  .filter-chip.team{background:#dcfce7;color:#15803d}
+  .filter-chip.prem{background:#ede9fe;color:#6d28d9}
+  .filter-card h4{font-size:1.05rem;margin-bottom:6px}
+  .filter-card p{font-size:.9rem;color:var(--slate)}
+
+  .split{display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:center}
+  @media(max-width:880px){.split{grid-template-columns:1fr;gap:36px}.split .shot{order:-1}}
+
+  .mode-table{width:100%;border-collapse:collapse;background:#fff;border:1px solid var(--line);border-radius:var(--radius);overflow:hidden;box-shadow:var(--shadow-sm)}
+  .mode-table th,.mode-table td{padding:15px 18px;text-align:left;font-size:.93rem;border-bottom:1px solid var(--line)}
+  .mode-table thead th{background:var(--bg-soft);font-weight:700}
+  .mode-table th:first-child{color:var(--slate-light);font-weight:600;width:120px}
+  .mode-table td.simple{color:var(--slate)}
+  .mode-table td.power{color:var(--blue-dark);font-weight:600;background:var(--blue-50)}
+  .mode-table tr:last-child td{border-bottom:none}
+
+  .price-card{max-width:520px;margin:0 auto;background:#fff;border:1.5px solid #c4b5fd;border-radius:24px;padding:40px;text-align:center;box-shadow:var(--shadow-md);background:linear-gradient(180deg,#fff,#faf5ff)}
+  .price-card .star{font-size:2.2rem;margin-bottom:10px}
+  .price-card h3{font-size:1.4rem;margin-bottom:6px}
+  .price-card .price{font-size:2.6rem;font-weight:800;color:#6d28d9;margin:10px 0 2px}
+  .price-card .price small{font-size:1rem;font-weight:600;color:var(--slate-light)}
+  .price-card ul{list-style:none;text-align:left;max-width:340px;margin:22px auto 26px;display:flex;flex-direction:column;gap:12px}
+  .price-card li{display:flex;gap:10px;color:var(--slate);font-size:.96rem}
+  .price-card li::before{content:"✓";color:#7c3aed;font-weight:800}
+  .price-card .btn-prem{background:#7c3aed;color:#fff;box-shadow:0 8px 20px rgba(124,58,237,.3)}
+  .price-card .btn-prem:hover{background:#6d28d9;transform:translateY(-2px)}
+  .price-card .price-note{font-size:1.15rem;font-weight:700;color:#6d28d9;margin:10px 0 2px;line-height:1.5}
+  .price-card .price-note span{font-size:.84rem;font-weight:500;color:var(--slate-light)}
+
+  /* premium feature grid */
+  .prem-feat-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
+  @media(max-width:880px){.prem-feat-grid{grid-template-columns:1fr 1fr}}
+  @media(max-width:600px){.prem-feat-grid{grid-template-columns:1fr}}
+  .prem-feat{background:#fff;border:1px solid var(--line);border-radius:var(--radius);padding:26px 24px;box-shadow:var(--shadow-sm);transition:.2s}
+  .prem-feat:hover{transform:translateY(-3px);box-shadow:var(--shadow-md);border-color:#ddd6fe}
+  .prem-feat .ic{font-size:1.7rem;margin-bottom:12px}
+  .prem-feat h4{font-size:1.08rem;margin-bottom:8px}
+  .prem-feat p{font-size:.92rem;color:var(--slate);line-height:1.7}
+
+  /* premium story (problem -> answer) */
+  .story-row{display:grid;grid-template-columns:1fr auto 1fr;gap:18px;align-items:stretch}
+  @media(max-width:760px){.story-row{grid-template-columns:1fr}}
+  .story-side{border-radius:16px;padding:26px;border:1.5px solid}
+  .story-side.problem{background:#fff7ed;border-color:#fed7aa}
+  .story-side.answer{background:#faf5ff;border-color:#ddd6fe}
+  .story-label{font-weight:700;font-size:.92rem;margin-bottom:10px}
+  .story-side.problem .story-label{color:#c2410c}
+  .story-side.answer .story-label{color:#7c3aed}
+  .story-side p{font-size:.96rem;color:var(--slate);line-height:1.8;margin:0}
+  .story-side.problem strong{color:#9a3412}
+  .story-side.answer strong{color:#6d28d9}
+  .story-arrow{display:grid;place-items:center;font-size:1.8rem;color:#7c3aed;font-weight:800}
+  @media(max-width:760px){.story-arrow{transform:rotate(90deg);padding:4px 0}}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap nav">
+    <a class="brand" href="index.html"><img src="assets/icon-192.png" alt="MediNode">MediNode</a>
+    <button class="menu-toggle" aria-label="メニュー" onclick="document.getElementById('navmenu').classList.toggle('open')">☰</button>
+    <nav class="nav-menu" id="navmenu">
+      <a class="link" href="index.html">ホーム</a>
+      <a class="link" href="setup.html">セットアップ</a>
+      <a class="link" href="database.html">DB連携</a>
+      <a class="link active" href="premium.html">プレミアム</a>
+      <a class="btn btn-primary nav-cta" href="coming-soon.html">7月公開予定</a>
+    </nav>
+  </div>
+</header>
+
+<!-- COMING SOON announcement bar -->
+<a class="announce" href="coming-soon.html">
+  <span class="announce-badge">COMING SOON</span>
+  <span class="announce-text"><strong>2026年7月中旬</strong>、一般公開に向けて鋭意製作中です。</span>
+  <span class="announce-link">公開情報を見る →</span>
+</a>
+
+<section class="page-hero">
+  <div class="wrap">
+    <div class="crumb"><a href="index.html">ホーム</a> ／ プレミアム</div>
+    <span class="eyebrow">⭐ Premium &amp; Search</span>
+    <h1>知識の輪を、個人から外へ。</h1>
+    <p>自分の知識（個人）、職場の共有知識（部署）、作者がキュレーションした知識（プレミアム）。所有者フィルタで切り替えながら、串刺しで検索できます。</p>
+  </div>
+</section>
+
+<!-- owner filter -->
+<section class="section">
+  <div class="wrap">
+    <div class="split">
+      <div>
+        <div class="head left" style="margin-bottom:28px">
+          <div class="kicker">Owner filter</div>
+          <h2>4つの所有者フィルタ</h2>
+          <p style="color:var(--slate)">検索バーの下のタブで、どの知識を対象にするかを切り替えます。「全て」を選べば横断検索できます。</p>
+        </div>
+        <div class="filter-grid">
+          <div class="filter-card reveal"><span class="filter-chip all">全て</span><h4>すべて統合</h4><p>個人・部署・プレミアムをまとめて横断検索。</p></div>
+          <div class="filter-card reveal"><span class="filter-chip personal">個人</span><h4>自分のDB</h4><p>自分のNotion DB由来の知識。日々ためた第二の脳。</p></div>
+          <div class="filter-card reveal"><span class="filter-chip team">部署</span><h4>チーム共有</h4><p>職場で共有するNotion DB由来。チームの知識を全員で。</p></div>
+          <div class="filter-card prem reveal"><span class="filter-chip prem">プレミアム</span><h4>キュレーション</h4><p>作者が運営する専用の医療知識。自分の設定は不要。</p></div>
+        </div>
+      </div>
+      <div class="shot reveal" style="text-align:center">
+        <div class="phone"><img src="assets/screen-filter.png" alt="MediNodeの検索画面。検索バーの下に「全て・個人・部署・プレミアム」の所有者フィルタが並ぶ"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- search modes -->
+<section class="section" style="background:var(--bg-soft)">
+  <div class="wrap">
+    <div class="head reveal">
+      <div class="kicker">Two modes</div>
+      <h2>2つの検索モードの違い</h2>
+      <p>同じ知識を、2通りの速度で。まず試すならシンプル、速度重視ならパワー。切り替えは設定から。</p>
+    </div>
+    <div style="max-width:760px;margin:0 auto">
+      <table class="mode-table reveal">
+        <thead><tr><th></th><th>シンプルモード</th><th>パワーモード</th></tr></thead>
+        <tbody>
+          <tr><th>データ元</th><td class="simple">Notion 直接検索</td><td class="power">Algolia（事前同期）</td></tr>
+          <tr><th>速度</th><td class="simple">表示まで1〜3秒</td><td class="power">0.1秒以下・爆速</td></tr>
+          <tr><th>同期</th><td class="simple">不要（ライブ反映）</td><td class="power">手動で再同期</td></tr>
+          <tr><th>必要な鍵</th><td class="simple">Notion Token のみ</td><td class="power">Notion + Algolia</td></tr>
+          <tr><th>向く人</th><td class="simple">まず試す・即反映重視</td><td class="power">速度・大量データ重視</td></tr>
+          <tr><th>位置づけ</th><td class="simple">必須・標準</td><td class="power">任意・パワーアップ</td></tr>
+        </tbody>
+      </table>
+      <div class="note-callout reveal" style="margin-top:22px">
+        <span class="ic">⚡</span>
+        <div>パワーモードは<strong>任意</strong>です。シンプルモードだけでも十分使えます。大量のデータを高速に引きたくなったら、Algoliaを設定して同期しましょう。</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- premium story: what is it -->
+<section class="section">
+  <div class="wrap-narrow">
+    <div class="head reveal">
+      <div class="kicker">What is Premium</div>
+      <h2>「DBを自分でゼロから作る」を、肩代わりします</h2>
+    </div>
+    <div class="story reveal">
+      <div class="story-row">
+        <div class="story-side problem">
+          <div class="story-label">😣 こんな悩み</div>
+          <p>MediNodeは便利そう。でも——<strong>「自分のNotionに医療知識を一から書きためる」のは、正直しんどい。</strong>最初は中身がほぼ空で、検索しても何も出てこない。</p>
+        </div>
+        <div class="story-arrow">→</div>
+        <div class="story-side answer">
+          <div class="story-label">✨ プレミアムなら</div>
+          <p><strong>専門医がすでに作り込んだ知識ベースが、最初から入っている状態</strong>に。あなたは集める前から、確かな知識を検索・クイズで使えます。</p>
+        </div>
+      </div>
+    </div>
+    <p class="reveal" style="text-align:center;color:var(--slate);max-width:720px;margin:28px auto 0;line-height:1.9">
+      具体的には、作者（救急科・集中治療専門医の <strong>Dr.ノード</strong>）が継続的にメンテナンスする
+      <strong>医療ナレッジDB</strong>と<strong>参考文献DB</strong>を、アプリ内で配信。
+      あなた自身のメモ（個人）・職場の知識（部署）と<strong>同じ画面に並べて串刺し検索</strong>できます。
+      臨床の現場で「使える形」に整理された知識が、設定なしですぐ手に入る——それがプレミアムです。
+    </p>
+  </div>
+</section>
+
+<!-- what is premium: features -->
+<section class="section" style="background:var(--bg-soft)">
+  <div class="wrap">
+    <div class="head reveal">
+      <div class="kicker">Features</div>
+      <h2>プレミアムでできること</h2>
+      <p>専門医がキュレーションした知識を、あなたの知識と並べて、全タブで活用できます。</p>
+    </div>
+    <div class="prem-feat-grid">
+      <div class="prem-feat reveal"><div class="ic">🩺</div><h4>専門医がキュレーション</h4><p>救急・集中治療の現場で使う知識を、専門医が継続的に追加・更新。自分で一から集めなくても、確かな知識をすぐ引けます。</p></div>
+      <div class="prem-feat reveal"><div class="ic">❓</div><h4>臨床疑問を投稿できる</h4><p>気になる臨床疑問を投稿すると、<strong>専門医が回答し、プレミアムナレッジに反映</strong>。みんなの疑問が、みんなの知識に育っていきます。</p></div>
+      <div class="prem-feat reveal"><div class="ic">🔀</div><h4>自分の知識と横断検索</h4><p>個人・部署・プレミアムを「全て」で統合検索。自分のメモと専門医の知識を、同じ画面で並べて確認できます。</p></div>
+      <div class="prem-feat reveal"><div class="ic">📑</div><h4>全タブで使える</h4><p>検索・新着・ジャンル・文献・クイズの<strong>すべてのタブ</strong>で「⭐プレミアム」フィルタが効きます。クイズ学習の問題集としても。</p></div>
+      <div class="prem-feat reveal"><div class="ic">⚙️</div><h4>設定いらずで動く</h4><p>あなた個人のNotionもAlgoliaも不要。<strong>シンプルモードのまま</strong>でも利用でき、登録すればすぐ表示されます。</p></div>
+      <div class="prem-feat reveal"><div class="ic">📱</div><h4>端末をまたいで引き継ぎ</h4><p>メールアドレスだけのログイン（パスワード不要）で、スマホ・PCなど複数端末に契約を引き継げます。</p></div>
+      <div class="prem-feat reveal"><div class="ic">🔄</div><h4>いつでも解約OK</h4><p>解約はいつでも可能。手続き後、次回更新日以降の課金は発生しません。気軽に試せます。</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- premium plan -->
+<section class="section">
+  <div class="wrap">
+    <div class="head reveal">
+      <div class="kicker">Plan</div>
+      <h2>登録はアプリ内から</h2>
+      <p>各タブの「⭐プレミアム」フィルタ、または設定パネルの登録ボタンから手続きできます。</p>
+    </div>
+    <div class="price-card reveal">
+      <div class="star">⭐</div>
+      <h3>MediNode プレミアム</h3>
+      <div class="price-note">月額サブスクリプション<br><span>（料金は登録画面に表示されます）</span></div>
+      <ul>
+        <li>専門医がキュレーションした医療ナレッジ・参考文献</li>
+        <li>臨床疑問を投稿 → 専門医が回答してナレッジに反映</li>
+        <li>全タブで使える「⭐プレミアム」フィルタ</li>
+        <li>個人のNotion／Algolia設定は不要・すぐ使える</li>
+        <li>個人・部署の知識と統合して横断検索</li>
+        <li>ログインで端末をまたいで引き継ぎ・いつでも解約可</li>
+      </ul>
+      <a class="btn btn-prem" href="coming-soon.html">7月公開予定・お知らせを受け取る</a>
+      <p style="margin-top:16px;font-size:.82rem;color:var(--slate-light)">プレミアムは公開後、アプリ内（決済代行：Stripe）でお申し込みいただけます。カード情報はStripeが管理し、アプリは保持しません。最新の料金は登録画面の表示をご確認ください。</p>
+    </div>
+  </div>
+</section>
+
+<!-- settings entry -->
+<section class="section" style="background:var(--bg-soft)">
+  <div class="wrap">
+    <div class="split">
+      <div class="shot reveal" style="text-align:center">
+        <div class="phone"><img src="assets/app-settings.png" alt="MediNodeの設定画面。部署DB設定・プレミアムDB設定・モード変更・お知らせ・セットアップガイド・臨床疑問を投稿するなどのメニュー"></div>
+      </div>
+      <div>
+        <div class="head left">
+          <div class="kicker">Settings</div>
+          <h2>設定画面から、すべてに行ける</h2>
+          <p style="color:var(--slate)">右上の歯車から、運用に必要な操作へまとめてアクセスできます。</p>
+        </div>
+        <ul style="list-style:none;display:flex;flex-direction:column;gap:14px;margin-top:8px">
+          <li class="reveal" style="display:flex;gap:12px"><span style="font-size:1.2rem">🏥</span><div><strong>部署DB設定</strong><br><span style="color:var(--slate);font-size:.92rem">チームで共有するNotion DBを接続。</span></div></li>
+          <li class="reveal" style="display:flex;gap:12px"><span style="font-size:1.2rem">⭐</span><div><strong>プレミアムDB設定</strong><br><span style="color:var(--slate);font-size:.92rem">作者提供のナレッジ・参考文献を追加。</span></div></li>
+          <li class="reveal" style="display:flex;gap:12px"><span style="font-size:1.2rem">🔀</span><div><strong>モードを変更する</strong><br><span style="color:var(--slate);font-size:.92rem">シンプル↔パワーの切替・APIキーの再設定。</span></div></li>
+          <li class="reveal" style="display:flex;gap:12px"><span style="font-size:1.2rem">📘</span><div><strong>セットアップ＆運用ガイド</strong><br><span style="color:var(--slate);font-size:.92rem">困ったときの手順・AIオートフィル・クイズの使い方。</span></div></li>
+          <li class="reveal" style="display:flex;gap:12px"><span style="font-size:1.2rem">❓</span><div><strong>臨床疑問を投稿する <span style="color:#7c3aed">⭐</span></strong><br><span style="color:var(--slate);font-size:.92rem">専門医が回答し、プレミアムナレッジに反映されます。</span></div></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section cta-band">
+  <div class="wrap">
+    <h2 class="reveal">まずは無料で、個人の知識から。</h2>
+    <p class="reveal">シンプルモードと個人フィルタだけでも、十分に「第二の脳」になります。プレミアムは必要になってからで大丈夫です。</p>
+    <a class="btn btn-primary btn-arrow reveal" href="coming-soon.html">公開情報を見る</a>
+    <small class="reveal">MediNodeは2026年7月中旬に公開予定です</small>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap foot">
+    <div>
+      <div class="brand"><img src="assets/icon-192.png" alt="" style="width:30px;height:30px;border-radius:8px">MediNode</div>
+      <p class="foot-tagline">普段のNotionが、そのまま検索DBと一問一答になる、医療者向けの知識アプリ。</p>
+    </div>
+    <div class="foot-col"><h5>ページ</h5><a href="index.html">ホーム</a><a href="setup.html">セットアップ</a><a href="database.html">DB連携</a><a href="premium.html">プレミアム</a></div>
+    <div class="foot-col"><h5>リンク</h5><a href="coming-soon.html">アプリ（7月公開予定）</a><a href="https://note.com/gifted_arnica594" target="_blank" rel="noopener">note</a><a href="https://x.com/dr_node0" target="_blank" rel="noopener">X @dr_node0</a></div>
+    <div class="foot-copy"><span>© 2026 Dr.Node / MediNode</span><span>Connects with Notion</span></div>
+  </div>
+</footer>
+
+<script>
+  const io=new IntersectionObserver((e)=>{e.forEach(x=>{if(x.isIntersecting){x.target.classList.add('in');io.unobserve(x.target);}})},{threshold:.12});
+  document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+</script>
+</body>
+</html>
