@@ -227,7 +227,7 @@
     <div class="crumb"><a href="index.html">ホーム</a> ／ セットアップ</div>
     <span class="eyebrow">🚀 はじめての方へ</span>
     <h1>さあ、はじめてみましょう。</h1>
-    <p>「Notionって何？」「トークンって何？」というところから、一つずつ解説します。順番どおりに進めれば、初めての方でも迷わず設定できます。</p>
+    <p>Notionもトークンも、はじめてで大丈夫。順番に沿って進めば、迷わず繋がります。</p>
   </div>
 </section>
 
@@ -237,9 +237,9 @@
     <div class="quickstart reveal">
       <span class="qs-ic">🍃</span>
       <div>
-        <h3>設定が不安な方へ ── 一番かんたんな始め方</h3>
-        <p>「Notion」も「トークン」も、<strong>最初は触らなくて大丈夫</strong>です。まず <strong>「⭐ 専門医の知識」だけ</strong>を選べば、設定ゼロで今日から検索・クイズを試せます。使い方に慣れてから、自分のNotionを繋げばOK。<br>そして、もしつまずいても心配いりません。<strong>アプリが「何が足りないか」をその場で教えてくれる</strong>ので、表示されたメッセージのとおりに直すだけです。</p>
-        <span class="qs-mini">⏱ 自分のNotionを繋ぐ場合でも、目安は5〜10分</span>
+        <h3>まずは、設定なしで。</h3>
+        <p>「⭐ 専門医の知識」を選べば、Notionもトークンもいりません。その日から、検索とクイズが使えます。<br>自分のNotionを繋ぐのは、使いたくなってからで十分です。</p>
+        <span class="qs-mini">⏱ Notionを繋ぐ場合でも、5〜10分ほど</span>
       </div>
     </div>
   </div>
@@ -271,25 +271,22 @@
       <div class="whatis reveal">
         <span class="q">これは何？</span>
         <h4>Notion（ノーション）</h4>
-        <p>メモ・表・データベースを作れる無料の万能ノートアプリ。MediNodeは「あなたがNotionに書いた医療メモ」を読みに行って検索します。お持ちでなければ無料登録から。</p>
-        <p class="why">たとえるなら<b>あなたの本棚</b>。MediNodeは、その本棚から一瞬で目的の本を探し出す係です。</p>
+        <p>メモ・表・データベースを作れる、無料のノートアプリ。MediNodeは、あなたがNotionに書いた医療メモを読みに行って検索します。お持ちでなければ無料登録から。</p>
       </div>
       <div class="whatis reveal">
         <span class="q">これは何？</span>
         <h4>データベース（DB）</h4>
-        <p>Notionの中の「表形式のページ集」のこと。1行＝1つの知識。MediNodeは配布テンプレを複製するだけで、必要な形のDBが手に入ります。</p>
-        <p class="why">たとえるなら<b>本棚の中の1つの棚</b>。「配布テンプレを複製」＝棚をまるごとコピーして持ってくる、というイメージです。</p>
+        <p>Notionの中の「表形式のページ」のこと。1行が1つの知識。配布テンプレを複製すれば、必要な形のDBがそのまま手に入ります。</p>
       </div>
       <div class="whatis reveal">
         <span class="q">これは何？</span>
         <h4>コネクトToken（トークン）</h4>
-        <p>MediNodeがあなたのNotionを読むための「合鍵」。<code>ntn_</code> で始まる文字列です。Notionの設定ページで無料で発行でき、暗号化して保存されます。</p>
-        <p class="why">たとえるなら<b>本棚を開ける合鍵</b>。鍵を作って（発行）、どの棚を開けてよいか（DBに接続）を許可します。これがこのページで一番のヤマ場です。</p>
+        <p>MediNodeがあなたのNotionを読むための鍵。<code>ntn_</code> で始まる文字列で、Notionの設定ページから無料で発行できます。入力後は暗号化して保存されます。</p>
       </div>
     </div>
     <div class="note-callout reveal" style="margin-top:20px">
       <span class="ic">💡</span>
-      <div>この3つはすべて<strong>無料</strong>です。もう1つ「Algolia（アルゴリア）」という言葉も出てきますが、これは検索をさらに速くしたい上級者向けの<strong>任意</strong>のもの。使わなくても全機能が動くので、最初は気にしなくて大丈夫です（後の手順でやさしく解説します）。</div>
+      <div>この3つは、すべて無料です。「Algolia」という言葉ももう一つ出てきますが、検索をさらに速くしたい人向けの<strong>任意</strong>のもの。使わなくても、すべての機能が動きます。</div>
     </div>
     <div class="note-callout reveal" style="margin-top:12px">
       <span class="ic">🔒</span>
@@ -426,7 +423,7 @@
           <div class="badge">4</div>
           <div class="step-card">
             <h3>合鍵（コネクトToken）を作って接続する <span class="tag req">必須</span></h3>
-            <p>ここが一番のヤマ場ですが、やることは<strong>「①合鍵を作る → ②どの棚を開けてよいか許可する → ③アプリに貼る」の3つだけ</strong>。下の画面イメージのとおりに進めれば大丈夫です。</p>
+            <p>やることは3つ。<strong>鍵をつくり、読み込むDBに接続を許可して、アプリに貼ります。</strong></p>
 
             <div class="uiguide reveal">
               <figure class="uifig">
@@ -439,7 +436,7 @@
                     <div class="ui-input ui-mark"><span>ntn_a1b2c3d4e5f6…</span><span class="ui-copy">📋 コピー</span></div>
                   </div>
                 </div>
-                <figcaption><span class="n">1</span><span><b>合鍵を作ってコピー</b>：<a class="inline" href="https://www.notion.so/my-integrations" target="_blank" rel="noopener">notion.so/my-integrations</a> を開き（要ログイン）→「新規コネクト」→ 認証方法「アクセストークン」→ 作成後に出る <code>ntn_</code> で始まる文字列をコピー。</span></figcaption>
+                <figcaption><span class="n">1</span><span><b>鍵をつくってコピー</b>：<a class="inline" href="https://www.notion.so/my-integrations" target="_blank" rel="noopener">notion.so/my-integrations</a> を開き（要ログイン）→「新規コネクト」→ 認証方法「アクセストークン」→ 作成後に出る <code>ntn_</code> で始まる文字列をコピー。</span></figcaption>
               </figure>
 
               <figure class="uifig">
@@ -454,7 +451,7 @@
                     </div>
                   </div>
                 </div>
-                <figcaption><span class="n">2</span><span><b>棚を開ける許可</b>：使うDBページを開き、右上「<strong>…</strong>」→「<strong>コネクトを追加</strong>」→ さっき作ったコネクトを選択。<strong>Medical DBとReference DBの両方</strong>に行うのを忘れずに。</span></figcaption>
+                <figcaption><span class="n">2</span><span><b>読み込みを許可</b>：使うDBページを開き、右上「<strong>…</strong>」→「<strong>コネクトを追加</strong>」→ さきほどのコネクトを選択。<strong>Medical DBとReference DBの両方</strong>で行います。</span></figcaption>
               </figure>
             </div>
             <div class="note-callout" style="margin-top:6px"><span class="ic">3️⃣</span><div><strong>アプリに貼る</strong>：セットアップ画面で、コピーしたコネクトTokenと各DBのURLを貼り付けて保存すれば完了です。</div></div>
@@ -463,7 +460,7 @@
               <summary>「インテグレーション」と「コネクト」って違うもの？</summary>
               <div class="body">同じものです。Notionが名前を変えている途中で、<strong>「インテグレーション（旧称）」＝「コネクト（新称）」</strong>。どちらも<strong>外部アプリにNotionを読ませる許可</strong>のことです。これを作ると合鍵（<code>ntn_</code> トークン）ができ、さらに「どのDBを読ませるか」を各DBの「…→コネクトを追加」で1つずつ許可します。</div>
             </details>
-            <div class="warn-callout" style="margin-top:12px"><span class="ic">⚠️</span><div>トークンは <code>ntn_</code>（新）または <code>secret_</code>（旧）で始まります。パスワードと同じく他人に教えないでください。<br><strong>「②の接続」を忘れると、あとで「403エラー」</strong>と出ます（＝棚に鍵を通していない状態）。そのときは各DBの「…→コネクトを追加」を見直せば直ります。</div></div>
+            <div class="warn-callout" style="margin-top:12px"><span class="ic">⚠️</span><div>トークンは <code>ntn_</code>（新）または <code>secret_</code>（旧）で始まります。パスワードと同じく他人に教えないでください。<br><strong>「②の接続」を忘れると、同期のときに「403エラー」</strong>と出ます。各DBの「…→コネクトを追加」を見直せば直ります。</div></div>
           </div>
         </div>
 
@@ -471,7 +468,7 @@
           <div class="badge opt">+</div>
           <div class="step-card">
             <h3>Algolia設定＆同期 <span class="tag opt">パワーモードのみ</span></h3>
-            <p>シンプルモードならこの手順は<strong>表示されません</strong>。パワーモードを選んだ時だけ必要です。まずは飛ばして、速さが欲しくなってからで大丈夫です。</p>
+            <p>シンプルモードなら、この手順は<strong>表示されません</strong>。パワーモードを選んだときだけ必要です。速さがほしくなってからで十分です。</p>
             <ol>
               <li><a class="inline" href="https://www.algolia.com/" target="_blank" rel="noopener">Algolia</a> で無料アカウント（Buildプラン）を作成</li>
               <li>ダッシュボード →「Settings → API Keys」を開き、下の<strong>3つ</strong>をコピー</li>
@@ -482,7 +479,7 @@
               <div class="keycard safe"><span class="kn">2</span><div><h5>Search-Only API Key <span class="ktag">公開OK・検索用</span></h5><p>「検索するだけ」の鍵。読み取り専用なので安全です。</p></div></div>
               <div class="keycard secret"><span class="kn">3</span><div><h5>Admin API Key <span class="ktag">秘密・同期用</span></h5><p>データを書き換えられる強力な鍵。<strong>絶対に他人に渡さないでください。</strong>同期のときに使います。</p></div></div>
             </div>
-            <div class="warn-callout" style="margin-top:10px"><span class="ic">⚠️</span><div>一番やりがちな間違いが、<strong>③Admin Key の欄に ②Search-Only Key を入れてしまう</strong>こと。同期する鍵は必ず<strong>「Admin」</strong>の方です（似た名前なので要注意）。取り違えると「App IDまたはAdmin API Keyが正しくありません」と出ます。</div></div>
+            <div class="warn-callout" style="margin-top:10px"><span class="ic">⚠️</span><div><strong>③Admin Key の欄に ②Search-Only Key を入れる取り違え</strong>に注意。同期に使う鍵は<strong>「Admin」</strong>です。取り違えると「App IDまたはAdmin API Keyが正しくありません」と表示されます。</div></div>
             <div class="note-callout" style="margin-top:10px"><span class="ic">🔄</span><div>Notionに新しい知識を書いたら、<strong>「🔄 データを再同期する」を押すと反映</strong>されます（パワーモードの特徴）。すぐ反映したい人はシンプルモードが向いています。</div></div>
           </div>
         </div>
