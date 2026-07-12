@@ -10,22 +10,28 @@
   --brand-200:#c4e6d8;
   --brand-100:#e7f3ee;
   --brand-50:#f0f9f5;
+  /* 暖色アクセント（テラコッタ）——緑一辺倒を避けるための差し色 */
+  --accent:#c2673c;
+  --accent-600:#a8542e;
+  --accent-100:#f6e2d5;
+  --accent-50:#fbf2ea;
   /* 旧ページ互換エイリアス（setup/database/premium/coming-soon がそのまま新テーマになる） */
   --blue:var(--brand);
   --blue-dark:var(--brand-dark);
   --blue-50:var(--brand-50);
   --blue-100:var(--brand-100);
-  --ink:#1c2a24;
-  --slate:#486055;
-  --slate-light:#68806f;
-  --line:#dfeae4;
+  /* テキスト・下地は暖色ニュートラル寄せ（緑の面積を落として上品に） */
+  --ink:#211f1b;
+  --slate:#57534b;
+  --slate-light:#8a8175;
+  --line:#e8e3db;
   --bg:#ffffff;
-  --bg-soft:#f6faf8;
+  --bg-soft:#f7f5ef;
   --green:#2c8a6a;
   --radius:18px;
-  --shadow-sm:0 1px 2px rgba(18,79,58,.05),0 1px 3px rgba(28,42,36,.07);
-  --shadow-md:0 10px 30px rgba(25,107,79,.10),0 4px 10px rgba(28,42,36,.06);
-  --shadow-lg:0 30px 60px rgba(25,107,79,.14),0 10px 24px rgba(28,42,36,.08);
+  --shadow-sm:0 1px 2px rgba(40,33,22,.05),0 1px 3px rgba(40,33,22,.07);
+  --shadow-md:0 10px 30px rgba(40,33,22,.08),0 4px 10px rgba(40,33,22,.05);
+  --shadow-lg:0 30px 60px rgba(40,33,22,.12),0 10px 24px rgba(40,33,22,.07);
   --font:"Noto Sans JP","Inter",system-ui,-apple-system,"Segoe UI",sans-serif;
 }
 *{box-sizing:border-box;margin:0;padding:0}

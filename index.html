@@ -41,12 +41,13 @@
   /* ---- hero ---- */
   .hero{
     position:relative;overflow:hidden;
-    background:radial-gradient(900px 500px at 78% -8%,var(--brand-50),transparent 60%),
-      radial-gradient(700px 420px at -6% 10%,#eef8f3,transparent 55%);
+    background:radial-gradient(900px 500px at 80% -8%,var(--brand-50),transparent 58%),
+      radial-gradient(760px 460px at -8% 8%,#faf5ec,transparent 55%),
+      linear-gradient(180deg,#fcfbf8,#fff 60%);
     padding:80px 0 72px;
   }
   .hero::before{content:"";position:absolute;inset:0;pointer-events:none;
-    background-image:radial-gradient(rgba(25,107,79,.10) 1px,transparent 1.5px);
+    background-image:radial-gradient(rgba(87,83,75,.09) 1px,transparent 1.5px);
     background-size:22px 22px;
     -webkit-mask-image:radial-gradient(720px 520px at 74% 30%,#000,transparent 72%);
     mask-image:radial-gradient(720px 520px at 74% 30%,#000,transparent 72%)}
@@ -56,7 +57,16 @@
   .hero h1{font-size:clamp(2rem,4.6vw,3.15rem);line-height:1.32;font-weight:800;letter-spacing:.005em;margin-bottom:22px}
   .hero h1 .hl{color:var(--brand);white-space:nowrap}
   .hero p.lead{font-size:1.12rem;color:var(--slate);margin-bottom:30px;max-width:520px}
-  .hero-actions{display:flex;gap:14px;flex-wrap:wrap;margin-bottom:22px}
+  .hero-actions{display:flex;gap:14px;flex-wrap:wrap;margin-bottom:18px}
+  .hero-note-link{display:inline-flex;align-items:center;gap:10px;margin-bottom:20px;
+    background:#fff;border:1px solid var(--accent-100);border-radius:999px;padding:7px 8px 7px 8px;
+    box-shadow:var(--shadow-sm);font-size:.84rem;font-weight:600;color:var(--slate);transition:.2s ease}
+  .hero-note-link:hover{border-color:var(--accent);box-shadow:var(--shadow-md);transform:translateY(-1px)}
+  .hnl-tag{font-size:.72rem;font-weight:800;letter-spacing:.03em;background:#25231f;color:#fff;padding:4px 10px;border-radius:999px}
+  .hnl-text{color:var(--ink)}
+  .hnl-arrow{color:var(--accent-600);font-weight:800;padding-right:6px;transition:transform .2s}
+  .hero-note-link:hover .hnl-arrow{transform:translateX(3px)}
+  @media(max-width:900px){.hero-note-link{margin-inline:auto}}
   .hero-trust{display:flex;gap:10px;flex-wrap:wrap}
   .trust-pill{display:inline-flex;align-items:center;gap:7px;font-size:.8rem;font-weight:600;color:var(--slate);
     background:#fff;border:1px solid var(--line);border-radius:999px;padding:6px 14px;box-shadow:var(--shadow-sm)}
@@ -271,14 +281,58 @@
   @media(max-width:760px){.mode-grid{grid-template-columns:1fr}}
 
   /* ---- lifecycle ---- */
-  .life{display:flex;align-items:stretch;justify-content:center;flex-wrap:wrap}
-  .life-node{flex:1;min-width:200px;background:#fff;border:1px solid var(--line);border-radius:var(--radius);padding:28px 24px;text-align:center;box-shadow:var(--shadow-sm)}
-  .life-node .emo{font-size:2rem;margin-bottom:10px}
-  .life-node h4{font-size:1.08rem;margin-bottom:6px}
-  .life-node p{font-size:.9rem;color:var(--slate)}
-  .life-arrow{display:grid;place-items:center;font-size:1.6rem;color:var(--brand);padding:0 8px;animation:nudge 2s ease-in-out infinite}
+  .life{display:flex;align-items:stretch;justify-content:center;flex-wrap:nowrap}
+  .life-node{flex:1;min-width:0;background:#fff;border:1px solid var(--line);border-radius:var(--radius);padding:26px 18px;text-align:center;box-shadow:var(--shadow-sm)}
+  .life-node .emo{font-size:1.9rem;margin-bottom:10px}
+  .life-node h4{font-size:1.02rem;margin-bottom:6px}
+  .life-node p{font-size:.86rem;color:var(--slate)}
+  .life-node.accent{border-color:var(--accent-100);background:linear-gradient(180deg,#fff,var(--accent-50))}
+  .life-node.accent h4{color:var(--accent-600)}
+  .life-arrow{display:grid;place-items:center;font-size:1.4rem;color:var(--brand);padding:0 6px;animation:nudge 2s ease-in-out infinite}
   @keyframes nudge{0%,100%{transform:translateX(0)}50%{transform:translateX(5px)}}
-  @media(max-width:760px){.life-arrow{transform:rotate(90deg);padding:6px 0;animation:none}}
+  @media(max-width:860px){
+    .life{flex-direction:column;align-items:stretch;max-width:420px;margin:0 auto}
+    .life-arrow{transform:rotate(90deg);padding:6px 0;animation:none}
+  }
+
+  /* ---- featured note (勉強術) ---- */
+  .note-feature{display:grid;grid-template-columns:1fr 1.05fr;gap:0;max-width:960px;margin:0 auto;
+    border-radius:24px;overflow:hidden;border:1px solid var(--accent-100);
+    box-shadow:0 24px 60px rgba(40,33,22,.12),0 8px 20px rgba(40,33,22,.06);
+    background:#fff;transition:transform .25s ease,box-shadow .25s ease}
+  .note-feature:hover{transform:translateY(-4px);box-shadow:0 32px 70px rgba(40,33,22,.16),0 10px 24px rgba(40,33,22,.08)}
+  .nf-visual{position:relative;padding:40px 34px;display:flex;flex-direction:column;justify-content:center;gap:20px;
+    background:linear-gradient(160deg,#fbf4ec,#f6e7d8);overflow:hidden}
+  .nf-visual::before{content:"";position:absolute;inset:0;pointer-events:none;
+    background-image:radial-gradient(rgba(194,103,60,.14) 1px,transparent 1.6px);background-size:20px 20px;
+    -webkit-mask-image:radial-gradient(320px 260px at 20% 20%,#000,transparent 75%);mask-image:radial-gradient(320px 260px at 20% 20%,#000,transparent 75%)}
+  .nf-tag{position:relative;align-self:flex-start;font-size:.74rem;font-weight:800;letter-spacing:.04em;
+    background:#25231f;color:#fff;padding:5px 13px;border-radius:999px}
+  .nf-arc{position:relative;display:flex;flex-wrap:wrap;align-items:center;gap:6px}
+  .nfa-item{display:inline-flex;align-items:center;gap:5px;font-size:.78rem;font-weight:700;color:var(--slate);
+    background:#fff;border:1px solid var(--accent-100);border-radius:999px;padding:6px 12px;box-shadow:var(--shadow-sm)}
+  .nfa-item b{font-size:.92rem;font-weight:400}
+  .nfa-item.on{background:var(--accent);color:#fff;border-color:var(--accent)}
+  .nfa-sep{color:var(--accent-600);font-weight:800;font-size:.8rem}
+  .nf-piece{position:relative;font-size:.82rem;font-weight:700;color:var(--accent-600)}
+  .nf-body{padding:40px 36px;display:flex;flex-direction:column;justify-content:center;gap:14px}
+  .nf-eyebrow{font-size:.78rem;font-weight:700;color:var(--accent-600);letter-spacing:.04em}
+  .nf-body h3{font-size:1.5rem;line-height:1.45;font-weight:800;letter-spacing:.01em}
+  .nf-body h3 small{display:block;font-size:.92rem;font-weight:600;color:var(--slate);margin-top:6px}
+  .nf-body p{font-size:.95rem;color:var(--slate);line-height:1.85}
+  .nf-link{align-self:flex-start;display:inline-flex;align-items:center;gap:9px;margin-top:4px;
+    font-size:1rem;font-weight:700;color:#fff;background:var(--accent);border-radius:999px;padding:13px 28px;
+    box-shadow:0 8px 20px rgba(194,103,60,.30);transition:.2s ease}
+  .nf-link::after{content:"→";transition:transform .2s}
+  .note-feature:hover .nf-link{background:var(--accent-600)}
+  .note-feature:hover .nf-link::after{transform:translateX(4px)}
+  @media(max-width:820px){
+    .note-feature{grid-template-columns:1fr}
+    .nf-visual{padding:32px 26px}
+    .nf-body{padding:30px 28px}
+    .nf-body h3{font-size:1.3rem}
+  }
+  @media(prefers-reduced-motion:reduce){.note-feature:hover{transform:none}}
 
   /* ---- privacy ---- */
   .priv-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
@@ -391,6 +445,11 @@
         <a class="btn btn-primary btn-arrow" href="coming-soon.html">公開情報を見る</a>
         <a class="btn btn-ghost" href="setup.html">はじめかたを予習する</a>
       </div>
+      <a class="hero-note-link" href="https://note.com/gifted_arnica594/n/n4d3997dad16e" target="_blank" rel="noopener">
+        <span class="hnl-tag">📖 note</span>
+        <span class="hnl-text">集中治療医の「AI時代の勉強術」で紹介中</span>
+        <span class="hnl-arrow">→</span>
+      </a>
       <div class="hero-trust">
         <span class="trust-pill"><span class="tp-ic">✓</span>パスワード不要ではじめられる</span>
         <span class="trust-pill"><span class="tp-ic">✓</span>検索の中身は溜めない設計</span>
@@ -650,8 +709,8 @@
   <div class="wrap">
     <div class="head reveal">
       <div class="kicker">Knowledge lifecycle</div>
-      <h2>「曖昧な疑問」から「使える知識」まで</h2>
-      <p>調べたことが迷子にならないよう、知識を3つの状態で管理。疑問を一つずつ片づけるたびに、次に迷わない自分が増えていきます。</p>
+      <h2>「曖昧な疑問」から「引き出せる知識」まで</h2>
+      <p>調べたことが迷子にならないよう、知識を状態で管理。捕まえて、自分の言葉にして、体系化し、必要なときに引き出す——ひとつの勉強術が、そのまま画面になっています。</p>
     </div>
     <div class="life">
       <div class="life-node reveal"><div class="emo">❓</div><h4>CQ（臨床疑問）</h4><p>浮かんだ臨床疑問を、その場で取りこぼさず登録（調査中）。</p></div>
@@ -659,11 +718,45 @@
       <div class="life-node reveal"><div class="emo">💡</div><h4>ナレッジ</h4><p>確認済みの知識に昇格。クイズの出題対象になります。</p></div>
       <div class="life-arrow reveal">→</div>
       <div class="life-node reveal"><div class="emo">📋</div><h4>まとめ</h4><p>たまった知識を体系的な解説へ。ジャンルごとに整理。</p></div>
+      <div class="life-arrow reveal">→</div>
+      <div class="life-node accent reveal"><div class="emo">🔁</div><h4>引き出す</h4><p>思い出して、初めて使える知識に。MediNodeが担う最後のピース。</p></div>
     </div>
     <div class="note-callout reveal" style="max-width:760px;margin:30px auto 0">
       <svg class="icn" style="color:#7e22ce"><use href="#i-bulb"/></svg>
       <div><strong>クイズの出題条件：</strong>「💡ナレッジ」かつ「要約が入力済み（10文字以上）」のページを、シャッフルして最大20問ずつ出題します。自分がためた知識が、そのまま自分専用の一問一答になります。</div>
     </div>
+  </div>
+</section>
+
+<!-- FEATURED NOTE -->
+<section class="section" id="method">
+  <div class="wrap">
+    <div class="head reveal">
+      <div class="kicker" style="color:var(--accent-600)">Study method</div>
+      <h2>この道具は、ひとつの<span style="color:var(--accent-600)">勉強術</span>から生まれました。</h2>
+      <p>「調べたのに、思い出せない」をなくすための知識の育て方。その考え方を、集中治療医がnoteに書いています。MediNodeは、それを実際に回すための道具です。</p>
+    </div>
+    <a class="note-feature reveal" href="https://note.com/gifted_arnica594/n/n4d3997dad16e" target="_blank" rel="noopener">
+      <div class="nf-visual" aria-hidden="true">
+        <span class="nf-tag">📖 note</span>
+        <div class="nf-arc">
+          <span class="nfa-item"><b>❓</b>捕まえる</span>
+          <span class="nfa-sep">→</span>
+          <span class="nfa-item"><b>💡</b>言葉にする</span>
+          <span class="nfa-sep">→</span>
+          <span class="nfa-item"><b>📋</b>体系化する</span>
+          <span class="nfa-sep">→</span>
+          <span class="nfa-item on"><b>🔁</b>引き出す</span>
+        </div>
+        <div class="nf-piece">MediNode が担うのは、この最後のピース</div>
+      </div>
+      <div class="nf-body">
+        <span class="nf-eyebrow">集中治療医のnote</span>
+        <h3>これがAI時代の勉強術<br><small>ー 集中治療医が実践する知識の育て方 ー</small></h3>
+        <p>AIは「答えをくれる相手」ではなく、自分の知識を育てる速度を上げるパートナー。読んで終わりにしない、引き出せる知識のつくり方を紹介しています。</p>
+        <span class="nf-link">noteを読む</span>
+      </div>
+    </a>
   </div>
 </section>
 
