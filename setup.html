@@ -113,8 +113,27 @@
   /* step1: replica + real screenshot */
   .step1-wrap{display:grid;grid-template-columns:1.3fr .7fr;gap:32px;align-items:center;max-width:880px;margin:0 auto 36px}
   @media(max-width:760px){.step1-wrap{grid-template-columns:1fr;gap:28px}.step1-shot{order:-1}}
-  .step1-shot{justify-self:center}
-  .step1-shot .phone{width:min(230px,72vw)}
+  .step1-shot{justify-self:center;text-align:center}
+  .step1-shot figcaption{margin-top:12px;font-size:.85rem;color:var(--slate-light)}
+  /* 実UI再現：初回セットアップ「何から始めますか？」のモック */
+  .wiz-phone{position:relative;margin:0 auto;width:min(252px,72vw);border-radius:36px;padding:9px;background:linear-gradient(160deg,#28372f,#17211c);box-shadow:var(--shadow-lg)}
+  .wiz-phone::before{content:"";position:absolute;top:13px;left:50%;transform:translateX(-50%);width:92px;height:20px;background:#17211c;border-radius:0 0 13px 13px;z-index:3}
+  .wiz-screen{border-radius:28px;background:linear-gradient(180deg,#f0f9f5,#fbfdfc 30%);overflow:hidden;padding:36px 12px 14px;display:flex;flex-direction:column;gap:9px;text-align:left}
+  .wiz-head{text-align:center;margin-bottom:2px}
+  .wiz-head img{width:26px;height:26px;border-radius:8px;margin:0 auto 4px;display:block;box-shadow:0 2px 8px rgba(28,42,36,.15)}
+  .wiz-head .t{font-weight:800;font-size:.8rem;line-height:1.3}
+  .wiz-head .s{font-size:.56rem;color:var(--slate-light)}
+  .wiz-card{background:#fff;border:1px solid var(--line);border-radius:14px;padding:12px;box-shadow:var(--shadow-sm);display:flex;flex-direction:column;gap:7px}
+  .wiz-card .wt{font-weight:800;font-size:.7rem}
+  .wiz-card .ws{font-size:.52rem;color:var(--slate-light)}
+  .wopt{border:1.5px solid var(--line);border-radius:10px;padding:7px 8px;display:flex;gap:6px;align-items:flex-start}
+  .wopt.on{border-color:var(--brand-400);background:var(--brand-50)}
+  .wopt .wchk{width:12px;height:12px;border-radius:4px;background:#e5e7eb;flex-shrink:0;margin-top:2px;display:grid;place-items:center;font-size:.5rem;line-height:1;color:transparent}
+  .wopt.on .wchk{background:var(--brand);color:#fff}
+  .wopt h6{font-size:.58rem;font-weight:700;line-height:1.45;display:flex;align-items:center;gap:4px;flex-wrap:wrap}
+  .wopt .wl{font-size:.46rem;color:var(--slate-light);background:var(--bg-soft);border:1px solid var(--line);border-radius:999px;padding:1px 6px;font-weight:600;white-space:nowrap}
+  .wopt p{font-size:.5rem;color:var(--slate-light);line-height:1.55;margin-top:1px}
+  .wiz-next{margin-top:2px;background:var(--brand);color:#fff;text-align:center;border-radius:9px;padding:7px 0;font-size:.62rem;font-weight:700}
 
   /* free DB banner */
   .free-db-banner{display:flex;align-items:center;gap:28px;background:linear-gradient(135deg,var(--blue-50),#eef8f3);border:1.5px solid var(--blue-100);border-radius:20px;padding:28px 32px;box-shadow:var(--shadow-sm)}
@@ -220,13 +239,25 @@
         <p style="color:var(--slate-light);font-size:.86rem;margin-bottom:16px">使いたいものを選んでください（複数選択可）。あとから「設定」で追加もできます。</p>
         <div class="choice-replica">
           <div class="choice on"><div class="chk">✓</div><div class="ctxt"><h5>🧑 自分の知識を使う <span class="lbl">個人のNotion</span></h5><p>自分のNotionに作った医療メモを検索します。自分のコネクトTokenとDBを使います。</p></div></div>
-          <div class="choice"><div class="chk"></div><div class="ctxt"><h5>🏢 みんなの知識を使う <span class="lbl">部署の共有DB</span></h5><p>職場で共有しているDBを検索します。代表者からもらったTokenとURLでOK（自分のNotionは不要）。</p></div></div>
+          <div class="choice"><div class="chk"></div><div class="ctxt"><h5>🏥 みんなの知識を使う <span class="lbl">部署の共有DB</span></h5><p>職場で共有しているDBを検索します。代表者からもらったTokenとURLでOK（自分のNotionは不要）。</p></div></div>
           <div class="choice"><div class="chk"></div><div class="ctxt"><h5>⭐ 専門医の知識を使う <span class="lbl">プレミアム</span></h5><p>作者（専門医）が配信する医療ナレッジを検索します。自分のNotion/Algolia設定は不要で、すぐ使えます。</p></div></div>
         </div>
       </div>
-      <div class="step1-shot">
-        <div class="phone"><img src="assets/shot-onb-steps.png" alt="MediNodeのオンボーディング画面。まず使う知識を選ぶ→選んだものを設定→完了して検索開始、の3ステップで始められる"></div>
-      </div>
+      <figure class="step1-shot">
+        <div class="wiz-phone" role="img" aria-label="アプリの初回セットアップ画面。「何から始めますか？」で、自分の知識・みんなの知識・専門医の知識から複数選択して次へ進む">
+          <div class="wiz-screen">
+            <div class="wiz-head"><img src="assets/icon-192.png" alt=""><div class="t">MediNode</div><div class="s">初回セットアップ</div></div>
+            <div class="wiz-card">
+              <div><div class="wt">何から始めますか？</div><div class="ws">使いたいものを選んでください（複数選択可）</div></div>
+              <div class="wopt on"><span class="wchk">✓</span><div><h6>🧑 自分の知識を使う <span class="wl">個人のNotion</span></h6><p>自分のNotionに作った医療メモを検索します</p></div></div>
+              <div class="wopt"><span class="wchk">✓</span><div><h6>🏥 みんなの知識を使う <span class="wl">部署の共有DB</span></h6><p>職場で共有しているDBを検索します</p></div></div>
+              <div class="wopt"><span class="wchk">✓</span><div><h6>⭐ 専門医の知識を使う <span class="wl">プレミアム</span></h6><p>専門医が配信する医療ナレッジを検索します</p></div></div>
+              <div class="wiz-next">次へ →</div>
+            </div>
+          </div>
+        </div>
+        <figcaption>アプリの「初回セットアップ」画面</figcaption>
+      </figure>
     </div>
 
     <p style="text-align:center;color:var(--slate);font-weight:600;margin-bottom:16px">▼ あなたのルートを選ぶと、手順が切り替わります</p>
@@ -235,7 +266,7 @@
         <span class="emo">🧑</span><span class="t">自分の知識</span><span class="s">個人のNotionを使う</span>
       </div>
       <div class="route-tab" data-route="team" onclick="selectRoute('team')">
-        <span class="emo">🏢</span><span class="t">みんなの知識</span><span class="s">部署の共有DBを使う</span>
+        <span class="emo">🏥</span><span class="t">みんなの知識</span><span class="s">部署の共有DBを使う</span>
       </div>
       <div class="route-tab" data-route="premium" onclick="selectRoute('premium')">
         <span class="emo">⭐</span><span class="t">専門医の知識</span><span class="badge-prem">プレミアム</span>
@@ -368,7 +399,7 @@
     <!-- ROUTE: TEAM -->
     <div class="route-panel" id="route-team">
       <div class="route-intro">
-        <h3>🏢 みんなの知識を使うルート</h3>
+        <h3>🏥 みんなの知識を使うルート</h3>
         <p>職場・チームで共有しているDBを検索します。<strong>自分のNotionは不要</strong>。代表者から「トークン」と「DBのURL」をもらって貼るだけ。モード選択もスキップされ、すぐ使えます。</p>
       </div>
       <div class="steps">
@@ -376,7 +407,7 @@
           <div class="badge done">1</div>
           <div class="step-card">
             <h3>「みんなの知識を使う」を選ぶ <span class="tag req">必須</span></h3>
-            <p>最初の画面で「🏢 みんなの知識を使う」にチェック。部署のみを選んだ場合、Algoliaなどの設定はスキップされます。</p>
+            <p>最初の画面で「🏥 みんなの知識を使う」にチェック。部署のみを選んだ場合、Algoliaなどの設定はスキップされます。</p>
           </div>
         </div>
         <div class="step reveal">
