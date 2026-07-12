@@ -135,6 +135,60 @@
   .wopt p{font-size:.5rem;color:var(--slate-light);line-height:1.55;margin-top:1px}
   .wiz-next{margin-top:2px;background:var(--brand);color:#fff;text-align:center;border-radius:9px;padding:7px 0;font-size:.62rem;font-weight:700}
 
+  /* ---- quick-start reassurance ---- */
+  .quickstart{display:flex;gap:18px;align-items:flex-start;background:linear-gradient(135deg,var(--accent-50),#fff);border:1.5px solid var(--accent-100);border-radius:18px;padding:24px 26px;box-shadow:var(--shadow-sm)}
+  .quickstart .qs-ic{font-size:1.7rem;line-height:1.2;flex-shrink:0}
+  .quickstart h3{font-size:1.12rem;margin-bottom:6px;color:var(--accent-600)}
+  .quickstart p{font-size:.94rem;color:var(--slate);line-height:1.8;margin:0}
+  .quickstart strong{color:var(--ink)}
+  .quickstart .qs-mini{display:inline-flex;align-items:center;gap:6px;font-size:.8rem;font-weight:700;color:var(--accent-600);background:#fff;border:1px solid var(--accent-100);border-radius:999px;padding:4px 12px;margin-top:12px}
+
+  /* ---- glossary analogy line ---- */
+  .whatis .why{font-size:.86rem;color:var(--slate-light);margin-top:8px;padding-top:8px;border-top:1px dashed var(--line)}
+  .whatis .why b{color:var(--accent-600)}
+
+  /* ---- time / difficulty chips on route intro ---- */
+  .route-meta{display:flex;gap:8px;justify-content:center;flex-wrap:wrap;margin-top:12px}
+  .route-meta span{font-size:.76rem;font-weight:700;background:#fff;border:1px solid var(--line);border-radius:999px;padding:4px 12px;color:var(--slate)}
+  .route-meta span b{color:var(--brand)}
+
+  /* ---- UI browser-window mock (visual how-to) ---- */
+  .uiguide{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin:14px 0 4px}
+  @media(max-width:680px){.uiguide{grid-template-columns:1fr}}
+  .uifig{display:flex;flex-direction:column}
+  .uiwin{border:1px solid var(--line);border-radius:12px;overflow:hidden;box-shadow:var(--shadow-sm);background:#fff}
+  .uiwin-bar{display:flex;align-items:center;gap:5px;padding:8px 11px;background:#f1efe9;border-bottom:1px solid var(--line)}
+  .uiwin-bar i{width:9px;height:9px;border-radius:50%;background:#d9d4ca;display:block}
+  .uiwin-url{margin-left:6px;font-size:.6rem;color:var(--slate-light);background:#fff;border:1px solid var(--line);border-radius:6px;padding:3px 9px;font-family:"Inter",monospace;flex:1;overflow:hidden;white-space:nowrap;text-overflow:ellipsis}
+  .uiwin-body{padding:14px;display:flex;flex-direction:column;gap:9px}
+  .uiwin-body .ui-row{font-size:.74rem;color:var(--slate);display:flex;align-items:center;gap:7px}
+  .uiwin-body .ui-lab{font-size:.62rem;font-weight:700;color:var(--slate-light)}
+  .ui-btn{display:inline-flex;align-items:center;gap:5px;font-size:.66rem;font-weight:700;color:#fff;background:var(--brand);border-radius:7px;padding:5px 11px;align-self:flex-start}
+  .ui-input{font-size:.66rem;font-family:"Inter",monospace;color:var(--brand-dark);background:var(--bg-soft);border:1px solid var(--line);border-radius:7px;padding:6px 9px;display:flex;align-items:center;justify-content:space-between;gap:8px}
+  .ui-copy{font-size:.58rem;font-weight:700;color:#fff;background:var(--accent);border-radius:5px;padding:3px 8px;white-space:nowrap}
+  .ui-menu{border:1px solid var(--line);border-radius:9px;box-shadow:var(--shadow-md);overflow:hidden;background:#fff;align-self:flex-end;min-width:150px}
+  .ui-menu .mi{font-size:.66rem;padding:7px 11px;color:var(--slate);border-bottom:1px solid var(--line);display:flex;align-items:center;gap:7px}
+  .ui-menu .mi:last-child{border-bottom:none}
+  .ui-menu .mi.hot{background:var(--brand-50);color:var(--brand-dark);font-weight:700}
+  .ui-mark{outline:2px solid var(--accent);outline-offset:2px;border-radius:8px}
+  .uifig figcaption{font-size:.82rem;color:var(--slate);margin-top:10px;display:flex;gap:7px;align-items:flex-start}
+  .uifig figcaption b{color:var(--brand-dark)}
+  .uifig figcaption .n{flex-shrink:0;width:20px;height:20px;border-radius:6px;background:var(--brand);color:#fff;font-size:.7rem;font-weight:800;display:grid;place-items:center}
+
+  /* ---- Algolia 3-keys card ---- */
+  .keys{display:flex;flex-direction:column;gap:10px;margin:12px 0 4px}
+  .keycard{display:flex;gap:12px;align-items:flex-start;border:1px solid var(--line);border-left:4px solid var(--line);border-radius:12px;padding:13px 16px;background:#fff}
+  .keycard .kn{flex-shrink:0;width:24px;height:24px;border-radius:7px;font-weight:800;font-size:.8rem;display:grid;place-items:center;color:#fff}
+  .keycard h5{font-size:.94rem;margin-bottom:2px;font-family:"Inter",sans-serif}
+  .keycard p{font-size:.84rem;color:var(--slate);margin:0;line-height:1.6}
+  .keycard .ktag{font-size:.66rem;font-weight:800;padding:2px 8px;border-radius:999px;margin-left:6px;vertical-align:1px}
+  .keycard.safe{border-left-color:#16a34a}
+  .keycard.safe .kn{background:#16a34a}
+  .keycard.safe .ktag{background:#dcfce7;color:#15803d}
+  .keycard.secret{border-left-color:#dc2626;background:#fef6f6}
+  .keycard.secret .kn{background:#dc2626}
+  .keycard.secret .ktag{background:#fee2e2;color:#b91c1c}
+
   /* free DB banner */
   .free-db-banner{display:flex;align-items:center;gap:28px;background:linear-gradient(135deg,var(--blue-50),#eef8f3);border:1.5px solid var(--blue-100);border-radius:20px;padding:28px 32px;box-shadow:var(--shadow-sm)}
   @media(max-width:680px){.free-db-banner{flex-direction:column;text-align:center;gap:18px;padding:26px 22px}}
@@ -177,8 +231,22 @@
   </div>
 </section>
 
-<!-- free DB available now -->
+<!-- reassurance: easiest path first -->
 <section class="section" style="padding:40px 0 0">
+  <div class="wrap-narrow">
+    <div class="quickstart reveal">
+      <span class="qs-ic">🍃</span>
+      <div>
+        <h3>設定が不安な方へ ── 一番かんたんな始め方</h3>
+        <p>「Notion」も「トークン」も、<strong>最初は触らなくて大丈夫</strong>です。まず <strong>「⭐ 専門医の知識」だけ</strong>を選べば、設定ゼロで今日から検索・クイズを試せます。使い方に慣れてから、自分のNotionを繋げばOK。<br>そして、もしつまずいても心配いりません。<strong>アプリが「何が足りないか」をその場で教えてくれる</strong>ので、表示されたメッセージのとおりに直すだけです。</p>
+        <span class="qs-mini">⏱ 自分のNotionを繋ぐ場合でも、目安は5〜10分</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- free DB available now -->
+<section class="section" style="padding:36px 0 0">
   <div class="wrap-narrow">
     <div class="free-db-banner reveal">
       <div class="fdb-left">
@@ -204,19 +272,26 @@
         <span class="q">これは何？</span>
         <h4>Notion（ノーション）</h4>
         <p>メモ・表・データベースを作れる無料の万能ノートアプリ。MediNodeは「あなたがNotionに書いた医療メモ」を読みに行って検索します。お持ちでなければ無料登録から。</p>
+        <p class="why">たとえるなら<b>あなたの本棚</b>。MediNodeは、その本棚から一瞬で目的の本を探し出す係です。</p>
       </div>
       <div class="whatis reveal">
         <span class="q">これは何？</span>
         <h4>データベース（DB）</h4>
         <p>Notionの中の「表形式のページ集」のこと。1行＝1つの知識。MediNodeは配布テンプレを複製するだけで、必要な形のDBが手に入ります。</p>
+        <p class="why">たとえるなら<b>本棚の中の1つの棚</b>。「配布テンプレを複製」＝棚をまるごとコピーして持ってくる、というイメージです。</p>
       </div>
       <div class="whatis reveal">
         <span class="q">これは何？</span>
         <h4>コネクトToken（トークン）</h4>
-        <p>MediNodeがあなたのNotionを読むための「合鍵」。<code>ntn_</code> で始まる文字列です。Notionの設定ページで無料で発行でき、あなたのブラウザにだけ保存されます。</p>
+        <p>MediNodeがあなたのNotionを読むための「合鍵」。<code>ntn_</code> で始まる文字列です。Notionの設定ページで無料で発行でき、暗号化して保存されます。</p>
+        <p class="why">たとえるなら<b>本棚を開ける合鍵</b>。鍵を作って（発行）、どの棚を開けてよいか（DBに接続）を許可します。これがこのページで一番のヤマ場です。</p>
       </div>
     </div>
-    <div class="note-callout reveal" style="margin-top:24px">
+    <div class="note-callout reveal" style="margin-top:20px">
+      <span class="ic">💡</span>
+      <div>この3つはすべて<strong>無料</strong>です。もう1つ「Algolia（アルゴリア）」という言葉も出てきますが、これは検索をさらに速くしたい上級者向けの<strong>任意</strong>のもの。使わなくても全機能が動くので、最初は気にしなくて大丈夫です（後の手順でやさしく解説します）。</div>
+    </div>
+    <div class="note-callout reveal" style="margin-top:12px">
       <span class="ic">🔒</span>
       <div>入力したトークンやキーは、ログイン後に<strong>暗号化したうえで保存</strong>され、スマホ・PCなど別の端末でも同じ設定で使えます。DBを「Web公開」する必要はありません（非公開のまま読めます）。</div>
     </div>
@@ -284,6 +359,11 @@
       <div class="route-intro">
         <h3>🧑 自分の知識を使うルート</h3>
         <p>自分のNotionに作った医療メモを検索・クイズ化します。手順は「モード選択 → Notion設定 →（必要なら）オプション」。最短ならNotionを繋ぐだけです。</p>
+        <div class="route-meta">
+          <span>⏱ 目安 <b>5〜10分</b></span>
+          <span>💳 費用 <b>0円</b>（Notionもトークンも無料）</span>
+          <span>🔁 やり直し自由</span>
+        </div>
       </div>
       <div class="steps">
 
@@ -346,17 +426,44 @@
           <div class="badge">4</div>
           <div class="step-card">
             <h3>合鍵（コネクトToken）を作って接続する <span class="tag req">必須</span></h3>
-            <p>MediNodeがあなたのDBを読めるように、合鍵を発行して、DBにつなぎます。</p>
-            <ol>
-              <li><strong>コネクトTokenを取得</strong>：<a class="inline" href="https://www.notion.so/my-integrations" target="_blank" rel="noopener">notion.so/my-integrations</a> →「新しいインテグレーション」を作成 →「シークレット（アクセストークン）」の <code>ntn_</code> から始まる文字列をコピー。</li>
-              <li><strong>DBに合鍵を接続</strong>：使うDBページを開き、右上「<strong>…</strong>」→「<strong>コネクトを追加</strong>」→ 作ったコネクトを選択。Medical DB・Reference DB の両方に行います。</li>
-              <li><strong>アプリに入力</strong>：セットアップ画面でコネクトTokenと各DBのURLを貼り付けて保存。</li>
-            </ol>
-            <details class="qbox">
-              <summary>インテグレーション／コネクトって何？（トークンとの関係）</summary>
-              <div class="body">「インテグレーション（旧称）」＝「コネクト（新称）」で、<strong>外部アプリにNotionを読ませる許可の単位</strong>です。これを作ると合鍵（<code>ntn_</code> トークン）が発行されます。さらに「どのDBを読ませるか」を、各DBの「…→コネクトを追加」で個別に許可します。<strong>この接続を忘れると同期時に「403エラー」</strong>になります。</div>
+            <p>ここが一番のヤマ場ですが、やることは<strong>「①合鍵を作る → ②どの棚を開けてよいか許可する → ③アプリに貼る」の3つだけ</strong>。下の画面イメージのとおりに進めれば大丈夫です。</p>
+
+            <div class="uiguide reveal">
+              <figure class="uifig">
+                <div class="uiwin" aria-hidden="true">
+                  <div class="uiwin-bar"><i></i><i></i><i></i><span class="uiwin-url">notion.so/my-integrations</span></div>
+                  <div class="uiwin-body">
+                    <span class="ui-btn ui-mark">＋ 新規コネクト</span>
+                    <div class="ui-row"><span class="ui-lab">認証方法</span> アクセストークン</div>
+                    <div class="ui-row"><span class="ui-lab">作成すると表示されます ▼</span></div>
+                    <div class="ui-input ui-mark"><span>ntn_a1b2c3d4e5f6…</span><span class="ui-copy">📋 コピー</span></div>
+                  </div>
+                </div>
+                <figcaption><span class="n">1</span><span><b>合鍵を作ってコピー</b>：<a class="inline" href="https://www.notion.so/my-integrations" target="_blank" rel="noopener">notion.so/my-integrations</a> を開き（要ログイン）→「新規コネクト」→ 認証方法「アクセストークン」→ 作成後に出る <code>ntn_</code> で始まる文字列をコピー。</span></figcaption>
+              </figure>
+
+              <figure class="uifig">
+                <div class="uiwin" aria-hidden="true">
+                  <div class="uiwin-bar"><i></i><i></i><i></i><span class="uiwin-url">あなたのDBページ</span></div>
+                  <div class="uiwin-body">
+                    <div class="ui-row" style="justify-content:flex-end;width:100%"><span class="ui-lab">右上の</span><span class="ui-btn ui-mark" style="background:#e5e7eb;color:#374151">···</span></div>
+                    <div class="ui-menu">
+                      <div class="mi">🔗 リンクをコピー</div>
+                      <div class="mi">📄 複製</div>
+                      <div class="mi hot ui-mark">🔌 コネクトを追加</div>
+                    </div>
+                  </div>
+                </div>
+                <figcaption><span class="n">2</span><span><b>棚を開ける許可</b>：使うDBページを開き、右上「<strong>…</strong>」→「<strong>コネクトを追加</strong>」→ さっき作ったコネクトを選択。<strong>Medical DBとReference DBの両方</strong>に行うのを忘れずに。</span></figcaption>
+              </figure>
+            </div>
+            <div class="note-callout" style="margin-top:6px"><span class="ic">3️⃣</span><div><strong>アプリに貼る</strong>：セットアップ画面で、コピーしたコネクトTokenと各DBのURLを貼り付けて保存すれば完了です。</div></div>
+
+            <details class="qbox" style="margin-top:14px">
+              <summary>「インテグレーション」と「コネクト」って違うもの？</summary>
+              <div class="body">同じものです。Notionが名前を変えている途中で、<strong>「インテグレーション（旧称）」＝「コネクト（新称）」</strong>。どちらも<strong>外部アプリにNotionを読ませる許可</strong>のことです。これを作ると合鍵（<code>ntn_</code> トークン）ができ、さらに「どのDBを読ませるか」を各DBの「…→コネクトを追加」で1つずつ許可します。</div>
             </details>
-            <div class="warn-callout" style="margin-top:12px"><span class="ic">⚠️</span><div>トークンは <code>ntn_</code>（新）または <code>secret_</code>（旧）で始まります。パスワードと同じく他人に教えないでください。</div></div>
+            <div class="warn-callout" style="margin-top:12px"><span class="ic">⚠️</span><div>トークンは <code>ntn_</code>（新）または <code>secret_</code>（旧）で始まります。パスワードと同じく他人に教えないでください。<br><strong>「②の接続」を忘れると、あとで「403エラー」</strong>と出ます（＝棚に鍵を通していない状態）。そのときは各DBの「…→コネクトを追加」を見直せば直ります。</div></div>
           </div>
         </div>
 
@@ -364,13 +471,19 @@
           <div class="badge opt">+</div>
           <div class="step-card">
             <h3>Algolia設定＆同期 <span class="tag opt">パワーモードのみ</span></h3>
-            <p>シンプルモードならこの手順は<strong>表示されません</strong>。パワーモードを選んだ時だけ必要です。</p>
-            <ul>
+            <p>シンプルモードならこの手順は<strong>表示されません</strong>。パワーモードを選んだ時だけ必要です。まずは飛ばして、速さが欲しくなってからで大丈夫です。</p>
+            <ol>
               <li><a class="inline" href="https://www.algolia.com/" target="_blank" rel="noopener">Algolia</a> で無料アカウント（Buildプラン）を作成</li>
-              <li>ダッシュボード →「Settings → API Keys」で3つをコピー：<strong>App ID</strong> ／ <strong>Search-Only API Key</strong>（検索用）／ <strong>Admin API Key</strong>（同期用）</li>
-              <li>キーを入力後、「🔄 データを再同期する」で同期。Notionを更新したら毎回再同期します。</li>
-            </ul>
-            <div class="warn-callout" style="margin-top:12px"><span class="ic">⚠️</span><div>「Admin API Key」と「Search-Only Key」を取り違えないように。Admin Keyは秘密にしてください。</div></div>
+              <li>ダッシュボード →「Settings → API Keys」を開き、下の<strong>3つ</strong>をコピー</li>
+              <li>アプリに貼り付け →「🔄 データを再同期する」で同期完了</li>
+            </ol>
+            <div class="keys">
+              <div class="keycard safe"><span class="kn">1</span><div><h5>Application ID <span class="ktag">公開OK</span></h5><p>アプリの識別番号。名前のようなもので、人に見られても問題ありません。</p></div></div>
+              <div class="keycard safe"><span class="kn">2</span><div><h5>Search-Only API Key <span class="ktag">公開OK・検索用</span></h5><p>「検索するだけ」の鍵。読み取り専用なので安全です。</p></div></div>
+              <div class="keycard secret"><span class="kn">3</span><div><h5>Admin API Key <span class="ktag">秘密・同期用</span></h5><p>データを書き換えられる強力な鍵。<strong>絶対に他人に渡さないでください。</strong>同期のときに使います。</p></div></div>
+            </div>
+            <div class="warn-callout" style="margin-top:10px"><span class="ic">⚠️</span><div>一番やりがちな間違いが、<strong>③Admin Key の欄に ②Search-Only Key を入れてしまう</strong>こと。同期する鍵は必ず<strong>「Admin」</strong>の方です（似た名前なので要注意）。取り違えると「App IDまたはAdmin API Keyが正しくありません」と出ます。</div></div>
+            <div class="note-callout" style="margin-top:10px"><span class="ic">🔄</span><div>Notionに新しい知識を書いたら、<strong>「🔄 データを再同期する」を押すと反映</strong>されます（パワーモードの特徴）。すぐ反映したい人はシンプルモードが向いています。</div></div>
           </div>
         </div>
 
