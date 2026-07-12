@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>DB連携の仕組み｜MediNode</title>
 <meta name="description" content="MediNodeが連携する2つのNotionデータベース（Medical Knowledge / Reference Library）と必須プロパティ、知識のライフサイクル、任意のNotion AI活用法を解説します。">
-<meta name="theme-color" content="#2563eb">
+<meta name="theme-color" content="#196b4f">
 <link rel="icon" href="assets/icon-192.png">
 <link rel="apple-touch-icon" href="assets/icon-192.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -34,8 +34,27 @@
   .prop b{min-width:88px;color:var(--ink)}
   .prop .ty{font-size:.74rem;color:var(--blue-dark);background:var(--blue-50);border:1px solid var(--blue-100);border-radius:6px;padding:1px 7px;white-space:nowrap}
   .prop span.role{color:var(--slate);font-size:.85rem}
-  .db-overview{display:flex;flex-direction:column;align-items:center;gap:18px;margin:0 auto 36px;max-width:620px;text-align:center}
-  .db-overview .phone{width:min(280px,80vw)}
+  .db-overview{display:flex;flex-direction:column;align-items:center;gap:22px;margin:0 auto 36px;max-width:620px;text-align:center}
+  /* DB構成図（CSS図解） */
+  .db-diagram{display:flex;flex-direction:column;gap:14px;align-items:center;width:100%}
+  .dbd-row{display:flex;align-items:stretch;width:100%;max-width:560px}
+  .dbd-card{flex:1;background:#fff;border:1.5px solid var(--brand-200);border-radius:16px;padding:22px 16px;box-shadow:var(--shadow-sm);text-align:center}
+  .dbd-emo{font-size:1.7rem;display:block;margin-bottom:8px}
+  .dbd-card h4{font-size:.95rem;margin-bottom:6px}
+  .dbd-card p{font-size:.8rem;color:var(--slate);line-height:1.6;margin:0}
+  .dbd-link{position:relative;width:72px;display:grid;place-items:center;flex-shrink:0}
+  .dbd-line{position:absolute;left:-8px;right:-8px;top:50%;height:3px;border-radius:2px;background:var(--brand-100)}
+  .dbd-line::before{content:"";position:absolute;top:50%;left:0;width:9px;height:9px;border-radius:50%;background:var(--brand-400);transform:translateY(-50%);box-shadow:0 0 0 4px rgba(74,174,140,.18);animation:dbflow 2.2s ease-in-out infinite}
+  @keyframes dbflow{0%{left:0;opacity:0}15%{opacity:1}85%{opacity:1}100%{left:calc(100% - 9px);opacity:0}}
+  .dbd-label{position:relative;z-index:1;font-size:.68rem;font-weight:800;color:var(--brand-dark);background:var(--brand-50);border:1px solid var(--brand-200);border-radius:999px;padding:3px 10px;white-space:nowrap}
+  .dbd-opt{font-size:.85rem;color:var(--slate);background:var(--bg-soft);border:1px dashed var(--brand-200);border-radius:999px;padding:7px 18px}
+  @media(max-width:560px){
+    .dbd-row{flex-direction:column}
+    .dbd-link{width:100%;height:48px}
+    .dbd-line{left:50%;right:auto;top:-8px;bottom:-8px;width:3px;height:auto;transform:translateX(-50%)}
+    .dbd-line::before{display:none}
+  }
+  @media(prefers-reduced-motion:reduce){.dbd-line::before{animation:none}}
   .db-overview p{color:var(--slate);font-size:.96rem;line-height:1.8}
 
   .life{display:flex;align-items:stretch;justify-content:center;flex-wrap:wrap;margin-top:8px}
@@ -98,7 +117,14 @@
       <p>必須は医療ナレッジと参考文献の2つ。さらに病院・部署で使うなら、マニュアル用の3つ目（任意）も。配布テンプレには3つとも含まれ、サンプルデータ入りですぐ使えます。</p>
     </div>
     <div class="db-overview reveal">
-      <div class="phone"><img src="assets/onb-db.png" alt="知識本体（Medical DB）と参考文献（Reference DB）を分けて管理する全体像。リレーションで紐付き、知識レベルで学びを育てる"></div>
+      <div class="db-diagram" role="img" aria-label="Medical Knowledge DBとReference Library DBをリレーションで紐付けて管理する構成図。任意でManual DBも追加できる">
+        <div class="dbd-row">
+          <div class="dbd-card"><span class="dbd-emo">🩺</span><h4>Medical Knowledge_DB</h4><p>知識本体<br>❓CQ・💡ナレッジ・📋まとめ</p></div>
+          <div class="dbd-link"><span class="dbd-line"></span><span class="dbd-label">リレーション</span></div>
+          <div class="dbd-card"><span class="dbd-emo">📚</span><h4>Reference Library_DB</h4><p>参考文献<br>著者・年・エビデンスレベル</p></div>
+        </div>
+        <div class="dbd-opt">＋ 📋 Manual &amp; Notice_DB（任意・病院/部署向け）</div>
+      </div>
       <p>「<strong>知識本体（Medical DB）</strong>」と「<strong>参考文献（Reference DB）</strong>」を分けて管理し、リレーションで紐付け。検索・クイズ・ジャンルブラウズの中心はMedical DBです。</p>
     </div>
     <div class="db-grid">

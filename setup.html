@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>セットアップ手順｜MediNode</title>
 <meta name="description" content="MediNodeの導入手順を、Notionやトークンが何かという前提から一つずつ解説。これを見ながら進めれば、初めての方でも迷わず設定できます。">
-<meta name="theme-color" content="#2563eb">
+<meta name="theme-color" content="#196b4f">
 <link rel="icon" href="assets/icon-192.png">
 <link rel="apple-touch-icon" href="assets/icon-192.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -29,7 +29,7 @@
     padding:16px 22px;cursor:pointer;transition:.2s;min-width:200px;text-align:center;
   }
   .route-tab:hover{border-color:var(--blue-100)}
-  .route-tab.active{border-color:var(--blue);background:var(--blue-50);box-shadow:0 6px 16px rgba(37,99,235,.12)}
+  .route-tab.active{border-color:var(--blue);background:var(--blue-50);box-shadow:0 6px 16px rgba(25,107,79,.12)}
   .route-tab .emo{font-size:1.6rem}
   .route-tab .t{font-weight:700;font-size:1rem;margin-top:4px}
   .route-tab .s{font-size:.78rem;color:var(--slate-light)}
@@ -50,7 +50,7 @@
   .step{position:relative;padding:0 0 4px 56px;margin-bottom:8px}
   .step::before{content:"";position:absolute;left:18px;top:42px;bottom:-14px;width:2px;background:var(--line)}
   .step:last-child::before{display:none}
-  .step .badge{position:absolute;left:0;top:2px;width:38px;height:38px;border-radius:11px;background:var(--blue);color:#fff;font-weight:800;display:grid;place-items:center;font-size:1.05rem;box-shadow:0 6px 14px rgba(37,99,235,.28);z-index:2}
+  .step .badge{position:absolute;left:0;top:2px;width:38px;height:38px;border-radius:11px;background:var(--blue);color:#fff;font-weight:800;display:grid;place-items:center;font-size:1.05rem;box-shadow:0 6px 14px rgba(25,107,79,.28);z-index:2}
   .step .badge.opt{background:#fff;color:var(--blue);border:2px solid var(--blue-100)}
   .step .badge.done{background:#16a34a}
   .step-card{background:#fff;border:1px solid var(--line);border-radius:var(--radius);padding:24px 26px;box-shadow:var(--shadow-sm);margin-bottom:18px}
@@ -66,25 +66,25 @@
   .step-card a.inline:hover{text-decoration:underline}
 
   /* what-is inline box */
-  .qbox{background:#f0f9ff;border:1px solid #bae6fd;border-radius:12px;padding:14px 16px;margin:12px 0;font-size:.9rem;color:#0c4a6e}
+  .qbox{background:#eef8f3;border:1px solid var(--brand-200);border-radius:12px;padding:14px 16px;margin:12px 0;font-size:.9rem;color:var(--brand-deep)}
   .qbox summary{cursor:pointer;font-weight:700;color:#0369a1;list-style:none;display:flex;align-items:center;gap:8px}
   .qbox summary::-webkit-details-marker{display:none}
   .qbox summary::before{content:"💡";font-size:1rem}
   .qbox summary::after{content:"＋";margin-left:auto;color:#0369a1;font-weight:800}
   .qbox[open] summary::after{content:"−"}
-  .qbox .body{margin-top:10px;line-height:1.7;color:#0c4a6e}
-  .qbox .body strong{color:#075985}
+  .qbox .body{margin-top:10px;line-height:1.7;color:var(--brand-deep)}
+  .qbox .body strong{color:var(--brand-dark)}
 
   /* mode choice cards (replicating app step2) */
   .mode-choice{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:6px}
   @media(max-width:680px){.mode-choice{grid-template-columns:1fr}}
   .mc{border-radius:14px;padding:18px 20px;border:1.5px solid}
   .mc.simple{border-color:#bbf7d0;background:#f0fdf4}
-  .mc.power{border-color:#bfdbfe;background:#eff6ff}
+  .mc.power{border-color:var(--brand-200);background:var(--brand-50)}
   .mc .mc-head{display:flex;align-items:center;gap:8px;font-weight:700;font-size:1.02rem;margin-bottom:8px;flex-wrap:wrap}
   .mc .pill{font-size:.7rem;font-weight:700;padding:3px 10px;border-radius:999px}
   .mc.simple .pill{background:#16a34a;color:#fff}
-  .mc.power .pill{background:#2563eb;color:#fff}
+  .mc.power .pill{background:var(--brand);color:#fff}
   .mc p{font-size:.9rem;color:var(--slate);margin-bottom:4px}
   .mc .small{font-size:.82rem;color:var(--slate-light)}
 
@@ -117,7 +117,7 @@
   .step1-shot .phone{width:min(230px,72vw)}
 
   /* free DB banner */
-  .free-db-banner{display:flex;align-items:center;gap:28px;background:linear-gradient(135deg,var(--blue-50),#f0f9ff);border:1.5px solid var(--blue-100);border-radius:20px;padding:28px 32px;box-shadow:var(--shadow-sm)}
+  .free-db-banner{display:flex;align-items:center;gap:28px;background:linear-gradient(135deg,var(--blue-50),#eef8f3);border:1.5px solid var(--blue-100);border-radius:20px;padding:28px 32px;box-shadow:var(--shadow-sm)}
   @media(max-width:680px){.free-db-banner{flex-direction:column;text-align:center;gap:18px;padding:26px 22px}}
   .fdb-left{flex:1}
   .fdb-badge{display:inline-block;font-size:.76rem;font-weight:800;letter-spacing:.03em;background:var(--blue);color:#fff;padding:4px 12px;border-radius:999px;margin-bottom:12px}
@@ -199,7 +199,7 @@
     </div>
     <div class="note-callout reveal" style="margin-top:24px">
       <span class="ic">🔒</span>
-      <div>入力したトークンやキーは<strong>あなたの端末（ブラウザ）にだけ保存</strong>され、サーバーには送られません。DBを「Web公開」する必要もありません（非公開のまま読めます）。</div>
+      <div>入力したトークンやキーは、ログイン後に<strong>暗号化したうえで保存</strong>され、スマホ・PCなど別の端末でも同じ設定で使えます。DBを「Web公開」する必要はありません（非公開のまま読めます）。</div>
     </div>
   </div>
 </section>
@@ -225,7 +225,7 @@
         </div>
       </div>
       <div class="step1-shot">
-        <div class="phone"><img src="assets/onb-sources.png" alt="MediNodeのオンボーディング画面。使いたい知識を選んで始められます（自分の知識・みんなの知識・専門医の知識）"></div>
+        <div class="phone"><img src="assets/shot-onb-steps.png" alt="MediNodeのオンボーディング画面。まず使う知識を選ぶ→選んだものを設定→完了して検索開始、の3ステップで始められる"></div>
       </div>
     </div>
 
@@ -472,7 +472,7 @@
     <h2 class="reveal">公開後は、この流れで数分。</h2>
     <p class="reveal">MediNodeは2026年7月中旬に公開予定です。公開されたら、このページを開いたままウィザードを並べて進めるとスムーズです。</p>
     <a class="btn btn-primary btn-arrow reveal" href="coming-soon.html">公開情報を見る</a>
-    <small class="reveal">入力するキーは端末のブラウザにのみ保存されます</small>
+    <small class="reveal">接続設定（鍵を含む）は暗号化して保存・端末間で同期されます</small>
   </div>
 </section>
 
