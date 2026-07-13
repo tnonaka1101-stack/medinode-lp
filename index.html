@@ -180,33 +180,14 @@
   .problem-card .quote span{color:var(--brand)}
   .problem-card p{color:var(--slate)}
 
-  /* ---- setup steps (初心者向け) ---- */
-  .setup-band{background:linear-gradient(180deg,var(--bg-soft),#fff)}
-  .word3{display:flex;gap:14px;justify-content:center;flex-wrap:wrap;margin-bottom:56px}
-  .word-chip{background:#fff;border:1.5px solid var(--brand-200);border-radius:16px;padding:18px 24px;box-shadow:var(--shadow-sm);max-width:250px;text-align:center}
-  .word-chip .wc-term{font-weight:800;color:var(--brand-dark);font-size:1.02rem;margin-bottom:4px}
-  .word-chip p{font-size:.85rem;color:var(--slate);line-height:1.65}
-  .steps{max-width:760px;margin:0 auto;position:relative}
-  .steps::before{content:"";position:absolute;left:27px;top:20px;bottom:20px;width:3px;border-radius:2px;
-    background:linear-gradient(180deg,var(--brand-300),var(--brand-100))}
-  .step{position:relative;display:flex;gap:26px;padding:0 0 40px 0}
-  .step:last-child{padding-bottom:0}
-  .step .s-num{position:relative;z-index:1;flex-shrink:0;width:56px;height:56px;border-radius:18px;
-    background:var(--brand);color:#fff;font-weight:800;font-size:1.3rem;display:grid;place-items:center;
-    box-shadow:0 8px 18px rgba(25,107,79,.30)}
-  .step .s-body{background:#fff;border:1px solid var(--line);border-radius:16px;padding:24px 26px;box-shadow:var(--shadow-sm);flex:1}
-  .step h3{font-size:1.15rem;margin-bottom:6px;display:flex;align-items:center;gap:10px;flex-wrap:wrap}
-  .step .s-time{font-size:.7rem;font-weight:700;color:var(--brand-dark);background:var(--brand-50);border:1px solid var(--brand-200);padding:3px 10px;border-radius:999px}
-  .step p{color:var(--slate);font-size:.95rem}
-  .step .s-tip{margin-top:12px;font-size:.85rem;color:var(--slate);background:var(--brand-50);border-radius:10px;padding:10px 14px;display:flex;gap:8px;align-items:flex-start}
-  .step .s-tip .icn{color:#b45309;margin-top:3px}
-  .setup-cta{text-align:center;margin-top:48px}
-  .setup-cta p{color:var(--slate);font-size:.95rem;margin-top:14px}
-  @media(max-width:600px){
-    .steps::before{left:21px}
-    .step{gap:16px}
-    .step .s-num{width:44px;height:44px;border-radius:14px;font-size:1.1rem}
-  }
+  /* ---- setup teaser (compact) ---- */
+  .setup-teaser{background:linear-gradient(135deg,var(--brand-50),#fff);border:1px solid var(--brand-100);border-radius:22px;padding:34px 32px;text-align:center;box-shadow:var(--shadow-sm)}
+  .st-flow{display:inline-flex;align-items:center;gap:10px;flex-wrap:wrap;justify-content:center;margin-bottom:18px}
+  .st-node{display:inline-flex;align-items:center;gap:9px;font-weight:700;font-size:.98rem;background:#fff;border:1px solid var(--line);border-radius:999px;padding:9px 18px;box-shadow:var(--shadow-sm)}
+  .st-node b{width:23px;height:23px;border-radius:50%;background:var(--brand);color:#fff;font-size:.82rem;display:grid;place-items:center;flex-shrink:0}
+  .st-sep{color:var(--brand);font-weight:800;font-size:1.1rem}
+  .st-lead{color:var(--slate);margin-bottom:22px;font-size:1.05rem;font-weight:600}
+  @media(max-width:560px){.st-flow{flex-direction:column;gap:8px}.st-sep{transform:rotate(90deg)}}
 
   /* ---- tabs ---- */
   .tabs-wrap{display:grid;grid-template-columns:.9fr 1.1fr;gap:56px;align-items:center}
@@ -529,49 +510,19 @@
   </div>
 </section>
 
-<!-- SETUP STEPS（初心者向け） -->
-<section class="section setup-band" id="start">
-  <div class="wrap">
-    <div class="head reveal">
-      <div class="kicker">Getting started</div>
-      <h2>はじめかたは、3ステップだけ。</h2>
-      <p>覚える言葉は3つ、やることは3ステップ。画面のとおりに進めば、Notionがはじめてでも迷わず繋がります。</p>
-    </div>
-
-    <div class="word3 reveal">
-      <div class="word-chip"><div class="wc-term">Notion</div><p>知識を書きためる、無料のメモアプリ。ここに書いたものを検索します。</p></div>
-      <div class="word-chip"><div class="wc-term">データベース（DB）</div><p>Notionの中の表。配布テンプレを複製すれば、自分で作らなくてOK。</p></div>
-      <div class="word-chip"><div class="wc-term">トークン</div><p>NotionとMediNodeを繋ぐ鍵。発行して貼り付けるだけ。</p></div>
-    </div>
-
-    <div class="steps">
-      <div class="step reveal">
-        <div class="s-num">1</div>
-        <div class="s-body">
-          <h3>メールアドレスで登録 <span class="s-time">パスワード不要</span></h3>
-          <p>メールに届くリンク／6桁コードで認証するだけ。パスワードを決めたり覚えたりする必要はありません。</p>
-        </div>
+<!-- SETUP TEASER (compact) -->
+<section class="section" id="start" style="padding:64px 0">
+  <div class="wrap-narrow">
+    <div class="setup-teaser reveal">
+      <div class="st-flow">
+        <span class="st-node"><b>1</b>メールで登録</span>
+        <span class="st-sep">→</span>
+        <span class="st-node"><b>2</b>知識を選ぶ</span>
+        <span class="st-sep">→</span>
+        <span class="st-node"><b>3</b>つないで完了</span>
       </div>
-      <div class="step reveal">
-        <div class="s-num">2</div>
-        <div class="s-body">
-          <h3>使いたい知識を選ぶ <span class="s-time">3つのルート</span></h3>
-          <p>🧑 自分の知識（無料テンプレを複製 or 既存DBをそのまま）、🏥 みんなの知識（病院・部署の共有DB）、⭐ 専門医の知識（プレミアム）。あとから増やせるので、まずは一つで大丈夫。</p>
-          <div class="s-tip"><svg class="icn"><use href="#i-bulb"/></svg><span>迷ったら「無料テンプレを複製」が最短ルート。ボタンを押すだけで、必要なDBが全部そろいます。</span></div>
-        </div>
-      </div>
-      <div class="step reveal">
-        <div class="s-num">3</div>
-        <div class="s-body">
-          <h3>トークンを貼って、接続完了 <span class="s-time">コピペだけ</span></h3>
-          <p>Notionで発行した鍵を貼り付ければ、その場で検索が動き出します。つまずきやすいところは、セットアップページにまとめました。</p>
-        </div>
-      </div>
-    </div>
-
-    <div class="setup-cta reveal">
-      <a class="btn btn-primary btn-arrow" href="setup.html">セットアップ手順をくわしく見る</a>
-      <p>公開前のいまでも、手順の予習とテンプレの複製はできます。</p>
+      <p class="st-lead">はじめかたは、3ステップ。難しい設定はありません。</p>
+      <a class="btn btn-primary btn-arrow" href="setup.html">セットアップを見る</a>
     </div>
   </div>
 </section>
@@ -582,7 +533,7 @@
     <div class="head reveal">
       <div class="kicker">Tabs</div>
       <h2>知識を引く・育てる、5つのタブ</h2>
-      <p>探す・新着・分類・文献・想起。日々の使い方に合わせて、一つの画面ですべてが完結します。さらに、病院・部署で使うなら📋マニュアルタブも。</p>
+      <p>探す・新着・分類・文献・想起。ひとつの画面で完結します。</p>
     </div>
     <div class="tabs-wrap">
       <div class="tabs-list">
@@ -690,17 +641,15 @@
       <div class="mode-card reveal">
         <span class="mode-tag req">必須・すぐ使える</span>
         <h3>シンプルモード</h3>
-        <p style="color:var(--slate)">Notionを直接検索。追加サービス不要で、Notionを直せば次の検索から即反映されます（表示まで1〜3秒）。</p>
-        <ul><li>同期ボタン不要のライブ反映</li><li>必要な鍵はNotion Tokenのみ</li><li>まず試したい人・即反映重視に</li></ul>
+        <p style="color:var(--slate)">Notionを直接検索。追加の設定なしで、直したらすぐ反映。</p>
       </div>
       <div class="mode-card power reveal">
         <span class="mode-tag opt">任意・パワーアップ</span>
         <h3>パワーモード</h3>
-        <p style="color:var(--slate)">Algoliaに事前同期して、0.1秒以下の検索。日本語の部分一致やジャンル絞り込みも軽快です。</p>
-        <ul><li>0.1秒以下のインスタント検索</li><li>Algoliaの無料アカウントが必要</li><li>使うかどうかは自由（任意機能）</li></ul>
+        <p style="color:var(--slate)">Algoliaに同期して、0.1秒以下の検索へ。</p>
       </div>
     </div>
-    <p class="reveal" style="text-align:center;margin-top:24px"><a href="setup.html" style="color:var(--brand);font-weight:600">モードの選び方をセットアップで見る →</a></p>
+    <p class="reveal" style="text-align:center;margin-top:24px"><a href="setup.html" style="color:var(--brand);font-weight:600">モードの選び方を見る →</a></p>
   </div>
 </section>
 
@@ -710,7 +659,7 @@
     <div class="head reveal">
       <div class="kicker">Knowledge lifecycle</div>
       <h2>「曖昧な疑問」から「引き出せる知識」まで</h2>
-      <p>調べたことが迷子にならないよう、知識を状態で管理。捕まえて、自分の言葉にして、体系化し、必要なときに引き出す——ひとつの勉強術が、そのまま画面になっています。</p>
+      <p>捕まえて、自分の言葉にして、必要なときに引き出す。ひとつの勉強術が、そのまま画面になっています。</p>
     </div>
     <div class="life">
       <div class="life-node reveal"><div class="emo">❓</div><h4>CQ（臨床疑問）</h4><p>浮かんだ臨床疑問を、その場で取りこぼさず登録（調査中）。</p></div>
@@ -720,10 +669,6 @@
       <div class="life-node reveal"><div class="emo">📋</div><h4>まとめ</h4><p>たまった知識を体系的な解説へ。ジャンルごとに整理。</p></div>
       <div class="life-arrow reveal">→</div>
       <div class="life-node accent reveal"><div class="emo">🔁</div><h4>引き出す</h4><p>思い出して、初めて使える知識に。MediNodeが担う最後のピース。</p></div>
-    </div>
-    <div class="note-callout reveal" style="max-width:760px;margin:30px auto 0">
-      <svg class="icn" style="color:#7e22ce"><use href="#i-bulb"/></svg>
-      <div><strong>クイズの出題条件：</strong>「💡ナレッジ」かつ「要約が入力済み（10文字以上）」のページを、シャッフルして最大20問ずつ出題します。自分がためた知識が、そのまま自分専用の一問一答になります。</div>
     </div>
   </div>
 </section>
@@ -766,12 +711,12 @@
     <div class="head reveal">
       <div class="kicker">Privacy &amp; PWA</div>
       <h2>検索の中身は、溜め込まない。</h2>
-      <p>検索ワードやNotionの本文をサーバーに蓄積することはありません。接続設定（鍵を含む）は、端末間で同期できるよう暗号化したうえで保存します。</p>
+      <p>日々の知識の中身は、手元に。設定だけを暗号化して同期します。</p>
     </div>
     <div class="priv-grid">
-      <div class="priv-card reveal"><div class="tile t-green"><svg class="icn"><use href="#i-eyeoff"/></svg></div><h4>検索内容は溜めない</h4><p>検索ワードやNotionの本文を、サーバーに蓄積しない設計。日々の知識の中身は手元に残ります。</p></div>
-      <div class="priv-card reveal"><div class="tile t-blue"><svg class="icn"><use href="#i-lock"/></svg></div><h4>設定は暗号化して同期</h4><p>Notion接続などの設定は、ログイン後に暗号化してサーバー保存。スマホ・PCなど別端末でも同じ設定で使えます。</p></div>
-      <div class="priv-card reveal"><div class="tile t-purple"><svg class="icn"><use href="#i-phone"/></svg></div><h4>PWA対応</h4><p>スマホのホーム画面に追加すれば、アプリ感覚でいつでも起動できます。</p></div>
+      <div class="priv-card reveal"><div class="tile t-green"><svg class="icn"><use href="#i-eyeoff"/></svg></div><h4>検索内容は溜めない</h4><p>検索ワードや本文を、サーバーに残しません。</p></div>
+      <div class="priv-card reveal"><div class="tile t-blue"><svg class="icn"><use href="#i-lock"/></svg></div><h4>設定は暗号化して同期</h4><p>接続設定は暗号化して保存。別の端末でもそのまま。</p></div>
+      <div class="priv-card reveal"><div class="tile t-purple"><svg class="icn"><use href="#i-phone"/></svg></div><h4>PWA対応</h4><p>ホーム画面に追加して、ワンタップで起動。</p></div>
     </div>
   </div>
 </section>
@@ -781,8 +726,8 @@
   <div class="wrap">
     <div class="head reveal">
       <div class="kicker">FAQ</div>
-      <h2>はじめる前の、よくある質問</h2>
-      <p>使いはじめる前の、小さな疑問に。</p>
+      <h2>よくある質問</h2>
+      <p>くわしくは<a href="setup.html" style="color:var(--brand);font-weight:600">セットアップ</a>で。</p>
     </div>
     <div class="faq-list">
       <details class="faq-item reveal">
@@ -794,20 +739,8 @@
         <div class="a">配布DBテンプレートが<a href="https://www.notion.com/ja/templates/medinode-db" target="_blank" rel="noopener">無料で公開中</a>です。複製してNotionで知識をためはじめれば、アプリ公開後はそのまま繋ぐだけで検索・クイズが使えます。</div>
       </details>
       <details class="faq-item reveal">
-        <summary><span class="q-ic">Q</span>登録にパスワードは必要？<span class="chev">▾</span></summary>
-        <div class="a">不要です。メールアドレスに届くリンク／6桁コードで認証するだけ。別の端末でログインすれば、Notion接続などの設定も暗号化されたまま引き継がれます。</div>
-      </details>
-      <details class="faq-item reveal">
-        <summary><span class="q-ic">Q</span>スマホでも使える？アプリストアからダウンロード？<span class="chev">▾</span></summary>
-        <div class="a">ブラウザで開くWebアプリ（PWA）なので、ストアからのダウンロードは不要です。スマホのホーム画面に追加すれば、アプリと同じ感覚でワンタップ起動できます。</div>
-      </details>
-      <details class="faq-item reveal">
-        <summary><span class="q-ic">Q</span>すでに使っている自分のNotion DBはそのまま使える？<span class="chev">▾</span></summary>
-        <div class="a">使えます。テンプレの複製は必須ではなく、必須プロパティさえそろえば既存のDBをそのまま接続できます。くわしくは<a href="database.html">DB連携の仕組み</a>をご覧ください。</div>
-      </details>
-      <details class="faq-item reveal">
-        <summary><span class="q-ic">Q</span>パワーモード（Algolia）は必須？<span class="chev">▾</span></summary>
-        <div class="a">任意です。シンプルモードだけで検索・新着・ジャンル・文献・クイズのすべてが使えます。0.1秒以下の検索速度が欲しくなったら、あとからパワーモードを足せます。</div>
+        <summary><span class="q-ic">Q</span>スマホでも使える？<span class="chev">▾</span></summary>
+        <div class="a">ブラウザで開くWebアプリ（PWA）です。ホーム画面に追加すれば、アプリと同じ感覚でワンタップ起動できます。</div>
       </details>
     </div>
   </div>
