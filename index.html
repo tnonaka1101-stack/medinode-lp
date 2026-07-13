@@ -180,6 +180,19 @@
   .problem-card .quote span{color:var(--brand)}
   .problem-card p{color:var(--slate)}
 
+  /* ---- CQ capture feature ---- */
+  .cq-wrap{display:grid;grid-template-columns:1.05fr .95fr;gap:52px;align-items:center;max-width:980px;margin:0 auto}
+  .cq-text .kicker{color:#b45309;font-weight:700;font-size:.86rem;letter-spacing:.08em;text-transform:uppercase;margin-bottom:12px}
+  .cq-text h2{font-size:clamp(1.6rem,3.4vw,2.15rem);font-weight:800;line-height:1.42;margin-bottom:16px}
+  .cq-text h2 .hl{color:#b45309}
+  .cq-text p{color:var(--slate);font-size:1.04rem;line-height:1.85;margin-bottom:14px}
+  .cq-flow{display:inline-flex;align-items:center;gap:8px;flex-wrap:wrap;font-size:.82rem;font-weight:700;color:var(--slate);background:#fff;border:1px solid var(--line);border-radius:999px;padding:9px 16px;box-shadow:var(--shadow-sm)}
+  .cq-flow .a{color:var(--brand);font-weight:800}
+  .cq-shot{display:flex;justify-content:center}
+  .cq-shot .cqphone{position:relative;width:min(272px,74vw);border-radius:40px;padding:9px;background:linear-gradient(160deg,#28372f,#17211c);box-shadow:0 30px 60px rgba(40,33,22,.20),0 10px 22px rgba(40,33,22,.12)}
+  .cq-shot .cqphone img{width:100%;display:block;border-radius:32px}
+  @media(max-width:820px){.cq-wrap{grid-template-columns:1fr;gap:32px}.cq-shot{order:-1}.cq-text{text-align:center}.cq-flow{margin-inline:auto}}
+
   /* ---- setup teaser (compact) ---- */
   .setup-teaser{background:linear-gradient(135deg,var(--brand-50),#fff);border:1px solid var(--brand-100);border-radius:22px;padding:34px 32px;text-align:center;box-shadow:var(--shadow-sm)}
   .st-flow{display:inline-flex;align-items:center;gap:10px;flex-wrap:wrap;justify-content:center;margin-bottom:18px}
@@ -485,6 +498,24 @@
     <div class="problem-card reveal">
       <p class="quote">「あの時、<span>調べておけば</span>よかった」</p>
       <p>一度浮かんだ臨床の疑問は、また同じ場面で戻ってくる。<span class="nobr">配合変化</span>、<span class="nobr">腎機能と用量</span>、<span class="nobr">採血スピッツの順番</span>——。<br>調べたメモはどこかに散らばり、いざという時に引き出せない。<span class="nobr">記録用</span>と<span class="nobr">検索用</span>を二重に書くのも続かない。</p>
+    </div>
+  </div>
+</section>
+
+<!-- CQ CAPTURE -->
+<section class="section">
+  <div class="wrap">
+    <div class="cq-wrap reveal">
+      <div class="cq-text">
+        <div class="kicker">Capture</div>
+        <h2>浮かんだ疑問は、<span class="hl">その場で。</span></h2>
+        <p>当直中にふと湧いた疑問も、画面右下の「CQ」から書いて残すだけ。あなたのNotionに「❓クリニカルクエスチョン」として貯まっていきます。</p>
+        <p>答えが見つかったら「💡ナレッジ」に変えるだけ。そのまま、クイズの一問になります。</p>
+        <span class="cq-flow">❓ 残す <span class="a">→</span> 💡 答えが出たら <span class="a">→</span> 🧠 クイズに</span>
+      </div>
+      <div class="cq-shot">
+        <div class="cqphone"><img src="assets/feat-cq-modal.png" alt="MediNodeの検索画面で開いた「疑問を残す」シート。あとで調べる疑問を入力してCQとして保存できる" loading="lazy"></div>
+      </div>
     </div>
   </div>
 </section>
