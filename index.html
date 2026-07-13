@@ -78,9 +78,7 @@
   @media(max-width:900px){.leaf{display:none}}
 
   /* ---- hero live demo phone ---- */
-  .hero-visual{position:relative;display:grid;place-items:center;min-height:520px;perspective:1400px}
-  .hero-visual .mock{transform:rotate3d(.5,-1,.06,9deg);transition:transform .7s cubic-bezier(.2,.7,.2,1)}
-  .hero-visual:hover .mock{transform:none}
+  .hero-visual{position:relative;display:grid;place-items:center;min-height:520px}
   .hv-glow{position:absolute;width:380px;height:380px;border-radius:50%;
     background:radial-gradient(circle,rgba(25,107,79,.16),rgba(74,174,140,.08) 55%,transparent 72%);
     filter:blur(8px);z-index:0;animation:hvpulse 4s ease-in-out infinite}
@@ -144,6 +142,16 @@
   .mbadge.premium{background:#f3e8ff;color:#7e22ce;border-color:#e9d5ff}
   .mock-more{text-align:center;font-size:.56rem;font-weight:700;color:var(--brand-500);padding:0 0 6px}
   .mock-hint{margin-top:auto;text-align:center;font-size:.56rem;color:var(--slate-light);padding-bottom:4px}
+  /* floating CQ button on hero mock (links to CQ section) */
+  .mock-cq{position:absolute;right:18px;bottom:30px;z-index:7;display:inline-flex;align-items:center;gap:5px;
+    background:#eab84a;color:#5c3d16;font-weight:800;font-size:.74rem;letter-spacing:.02em;
+    padding:8px 15px;border-radius:999px;box-shadow:0 8px 16px rgba(180,120,20,.42);
+    animation:cqfloat 3s ease-in-out infinite}
+  .mock-cq .icn{width:15px;height:15px;stroke-width:2.4}
+  .mock-cq::after{content:"";position:absolute;inset:-5px;border-radius:999px;border:2px solid #eab84a;opacity:.55;animation:cqring 2.6s ease-out infinite}
+  @keyframes cqfloat{0%,100%{transform:translateY(0)}50%{transform:translateY(-5px)}}
+  @keyframes cqring{0%{transform:scale(1);opacity:.5}70%,100%{transform:scale(1.35);opacity:0}}
+  @media(prefers-reduced-motion:reduce){.mock-cq,.mock-cq::after{animation:none}}
 
   /* ---- flow ---- */
   .flow{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
@@ -403,6 +411,7 @@
   <symbol id="i-check" viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></symbol>
   <symbol id="i-rotate" viewBox="0 0 24 24"><path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"/><path d="M3 3v5h5"/></symbol>
   <symbol id="i-gift" viewBox="0 0 24 24"><rect x="3" y="8" width="18" height="4" rx="1"/><path d="M12 8v13"/><path d="M19 12v7a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2v-7"/><path d="M7.5 8a2.5 2.5 0 0 1 0-5A4.8 8 0 0 1 12 8a4.8 8 0 0 1 4.5-5 2.5 2.5 0 0 1 0 5"/></symbol>
+  <symbol id="i-cq" viewBox="0 0 24 24"><path d="M7.9 20A9 9 0 1 0 4 16.1L2 22z"/><path d="M9.5 9a2.5 2.5 0 0 1 4.5 1.5c0 1.5-2 2-2 2.5"/><path d="M12 16h.01"/></symbol>
 </svg>
 
 <header>
@@ -470,6 +479,7 @@
           <div class="mock-results" id="mockResults"></div>
           <div class="mock-hint">あなたのNotionの知識が、そのまま並びます</div>
         </div>
+        <a class="mock-cq" href="#cq" aria-label="疑問をその場で残すCQ機能を見る"><svg class="icn"><use href="#i-cq"/></svg>CQ</a>
       </div>
       <div class="hv-float hv-top"><span class="dot"></span>Notionと連携</div>
       <div class="hv-float hv-mid"><svg class="icn" style="color:#b45309"><use href="#i-zap"/></svg>0.1秒で検索</div>
@@ -503,7 +513,7 @@
 </section>
 
 <!-- CQ CAPTURE -->
-<section class="section">
+<section class="section" id="cq" style="scroll-margin-top:80px">
   <div class="wrap">
     <div class="cq-wrap reveal">
       <div class="cq-text">
