@@ -198,7 +198,14 @@
   .cq-flow .a{color:var(--brand);font-weight:800}
   .cq-shot{display:flex;justify-content:center}
   .cq-shot .cqphone{position:relative;width:min(272px,74vw);border-radius:40px;padding:9px;background:linear-gradient(160deg,#28372f,#17211c);box-shadow:0 30px 60px rgba(40,33,22,.20),0 10px 22px rgba(40,33,22,.12)}
-  .cq-shot .cqphone img{width:100%;display:block;border-radius:32px}
+  /* 実スクショで「タップ→疑問を残すシートが開く」を自動再生 */
+  .cqd{position:relative;border-radius:32px;overflow:hidden}
+  .cqd img{width:100%;display:block}
+  .cqd-b{position:absolute;inset:0;opacity:0;animation:cqswap 6.5s ease-in-out infinite}
+  .cqd-tap{position:absolute;right:12%;bottom:8.5%;width:42px;height:42px;border-radius:50%;border:3px solid #eab84a;background:rgba(234,184,74,.25);opacity:0;animation:cqtap 6.5s ease-in-out infinite;pointer-events:none}
+  @keyframes cqswap{0%,26%{opacity:0}36%,86%{opacity:1}100%{opacity:0}}
+  @keyframes cqtap{0%,15%{opacity:0;transform:scale(.55)}20%{opacity:1;transform:scale(.7)}30%{opacity:0;transform:scale(1.5)}100%{opacity:0}}
+  @media(prefers-reduced-motion:reduce){.cqd-b{opacity:1;animation:none}.cqd-tap{display:none}}
   @media(max-width:820px){.cq-wrap{grid-template-columns:1fr;gap:32px}.cq-shot{order:-1}.cq-text{text-align:center}.cq-flow{margin-inline:auto}}
 
   /* ---- setup teaser (compact) ---- */
@@ -524,7 +531,13 @@
         <span class="cq-flow">❓ 残す <span class="a">→</span> 💡 答えが出たら <span class="a">→</span> 🧠 クイズに</span>
       </div>
       <div class="cq-shot">
-        <div class="cqphone"><img src="assets/feat-cq-modal.png" alt="MediNodeの検索画面で開いた「疑問を残す」シート。あとで調べる疑問を入力してCQとして保存できる" loading="lazy"></div>
+        <div class="cqphone" role="img" aria-label="MediNodeの検索画面。右下の「CQ」をタップすると「疑問を残す」シートが開き、あとで調べる疑問をCQとして保存できる">
+          <div class="cqd">
+            <img class="cqd-a" src="assets/feat-cq-search.png" alt="" loading="lazy">
+            <img class="cqd-b" src="assets/feat-cq-modal.png" alt="" loading="lazy">
+            <span class="cqd-tap"></span>
+          </div>
+        </div>
       </div>
     </div>
   </div>
@@ -703,7 +716,7 @@
       <p>捕まえて、自分の言葉にして、必要なときに引き出す。ひとつの勉強術が、そのまま画面になっています。</p>
     </div>
     <div class="life">
-      <div class="life-node reveal"><div class="emo">❓</div><h4>CQ（臨床疑問）</h4><p>浮かんだ臨床疑問を、その場で取りこぼさず登録（調査中）。</p></div>
+      <div class="life-node reveal"><div class="emo">❓</div><h4>CQ（臨床疑問）</h4><p>まだ答えの出ていない疑問を、その場で取りこぼさず残す。</p></div>
       <div class="life-arrow reveal">→</div>
       <div class="life-node reveal"><div class="emo">💡</div><h4>ナレッジ</h4><p>確認済みの知識に昇格。クイズの出題対象になります。</p></div>
       <div class="life-arrow reveal">→</div>
