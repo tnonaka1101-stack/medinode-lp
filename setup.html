@@ -458,19 +458,27 @@
           <div class="badge opt">+</div>
           <div class="step-card">
             <h3>Algolia設定＆同期 <span class="tag opt">パワーモードのみ</span></h3>
-            <p>シンプルモードなら、この手順は<strong>表示されません</strong>。パワーモードを選んだときだけ必要です。速さがほしくなってからで十分です。</p>
-            <ol>
-              <li><a class="inline" href="https://www.algolia.com/" target="_blank" rel="noopener">Algolia</a> で無料アカウント（Buildプラン）を作成</li>
-              <li>ダッシュボード →「Settings → API Keys」を開き、下の<strong>3つ</strong>をコピー</li>
-              <li>アプリに貼り付け →「🔄 データを再同期する」で同期完了</li>
-            </ol>
+            <p>シンプルモードなら、この手順は<strong>表示されません</strong>。パワーモードを選んだときだけ必要です。やることは、<strong>無料登録して3つのキーをコピーし、貼り付けて再同期</strong>するだけです。</p>
+
+            <div class="guide reveal">
+              <div class="guide-step">
+                <div class="guide-cap"><span class="gn"></span><p><b><a class="inline" href="https://www.algolia.com/" target="_blank" rel="noopener">Algolia</a> で無料登録（Buildプラン）</b>。登録するとアプリが自動で用意されます。ダッシュボード上部の<b>「API Keys」</b>を開きます。</p></div>
+                <div class="guide-shot"><img src="assets/guide-algolia-1-apikeys.png" alt="Algoliaのダッシュボード（Overview）。上部のAPI Keysリンクをクリックする" loading="lazy"></div>
+              </div>
+              <div class="guide-step">
+                <div class="guide-cap"><span class="gn"></span><p><b>3つの値をコピー</b>して、アプリの設定画面に貼り付けます（下でどれがどれか説明します）。</p></div>
+                <div class="guide-shot"><img src="assets/guide-algolia-2-keys.png" alt="AlgoliaのAPI Keys画面。Application ID・Search API Key・Admin API Keyの3つを使う" loading="lazy"></div>
+              </div>
+            </div>
+
             <div class="keys">
               <div class="keycard safe"><span class="kn">1</span><div><h5>Application ID <span class="ktag">公開OK</span></h5><p>アプリの識別番号。名前のようなもので、人に見られても問題ありません。</p></div></div>
-              <div class="keycard safe"><span class="kn">2</span><div><h5>Search-Only API Key <span class="ktag">公開OK・検索用</span></h5><p>「検索するだけ」の鍵。読み取り専用なので安全です。</p></div></div>
+              <div class="keycard safe"><span class="kn">2</span><div><h5>Search API Key <span class="ktag">公開OK・検索用</span></h5><p>「検索するだけ」の鍵。読み取り専用なので安全です。</p></div></div>
               <div class="keycard secret"><span class="kn">3</span><div><h5>Admin API Key <span class="ktag">秘密・同期用</span></h5><p>データを書き換えられる強力な鍵。<strong>絶対に他人に渡さないでください。</strong>同期のときに使います。</p></div></div>
             </div>
-            <div class="warn-callout" style="margin-top:10px"><span class="ic">⚠️</span><div><strong>③Admin Key の欄に ②Search-Only Key を入れる取り違え</strong>に注意。同期に使う鍵は<strong>「Admin」</strong>です。取り違えると「App IDまたはAdmin API Keyが正しくありません」と表示されます。</div></div>
-            <div class="note-callout" style="margin-top:10px"><span class="ic">🔄</span><div>Notionに新しい知識を書いたら、<strong>「🔄 データを再同期する」を押すと反映</strong>されます（パワーモードの特徴）。すぐ反映したい人はシンプルモードが向いています。</div></div>
+            <div class="warn-callout" style="margin-top:10px"><span class="ic">⚠️</span><div><strong>③Admin Key の欄に ②Search API Key を入れる取り違え</strong>に注意。同期に使う鍵は<strong>「Admin」</strong>です。取り違えると「App IDまたはAdmin API Keyが正しくありません」と表示されます。</div></div>
+            <div class="note-callout" style="margin-top:10px"><span class="ic">📦</span><div><strong>インデックスは、初回の「再同期」で自動的に作られます。</strong>Algolia側で新しく作る必要はありません。3つのキーを貼り付けて「🔄 データを再同期する」を押せば、Notionの知識が送られて検索の準備が整います。</div></div>
+            <div class="note-callout" style="margin-top:10px"><span class="ic">🔄</span><div>その後Notionに知識を書き足したら、<strong>「🔄 データを再同期する」を押すと反映</strong>されます（パワーモードの特徴）。すぐ反映したい人はシンプルモードが向いています。</div></div>
           </div>
         </div>
 
