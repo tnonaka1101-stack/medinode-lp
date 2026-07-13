@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@600;700;800&family=Noto+Sans+JP:wght@500;700;800;900&display=swap" rel="stylesheet">
+<style>
+  *{margin:0;padding:0;box-sizing:border-box}
+  :root{--brand:#196b4f;--brand-dark:#155a42;--ink:#211f1b;--slate:#57534b;--accent:#c2673c}
+  html,body{width:1200px;height:630px;overflow:hidden}
+  body{
+    font-family:"Noto Sans JP","Inter",sans-serif;
+    background:
+      radial-gradient(900px 560px at 88% -10%, #e7f3ee, transparent 60%),
+      radial-gradient(760px 520px at -6% 8%, #faf5ec, transparent 55%),
+      linear-gradient(180deg,#fcfbf8,#ffffff 60%);
+    position:relative;
+  }
+  .dots{position:absolute;inset:0;
+    background-image:radial-gradient(rgba(25,107,79,.10) 1.4px,transparent 1.6px);
+    background-size:26px 26px;
+    -webkit-mask-image:radial-gradient(640px 520px at 82% 40%,#000,transparent 72%);}
+  .band{position:absolute;left:0;right:0;bottom:0;height:12px;background:linear-gradient(90deg,var(--brand-dark),var(--brand),#4aae8c)}
+  .wrap{position:relative;height:100%;display:flex;align-items:center;justify-content:space-between;padding:0 70px}
+  .left{max-width:640px}
+  .eyebrow{display:inline-flex;align-items:center;gap:9px;background:#e7f3ee;color:var(--brand-dark);
+    font-weight:700;font-size:19px;letter-spacing:.02em;padding:8px 18px;border-radius:999px;border:1px solid #c4e6d8;margin-bottom:22px}
+  h1{font-size:50px;line-height:1.32;font-weight:900;letter-spacing:.01em;color:var(--ink)}
+  h1 .hl{color:var(--brand)}
+  .lead{margin-top:20px;font-size:21px;line-height:1.55;color:var(--slate);font-weight:500;max-width:560px}
+  .brand{display:flex;align-items:center;gap:14px;margin-top:32px}
+  .brand img{width:52px;height:52px;border-radius:13px;box-shadow:0 8px 20px rgba(28,42,36,.14)}
+  .brand .bn{font-size:29px;font-weight:800;letter-spacing:.02em;color:var(--ink)}
+  .brand .bd{font-size:17px;font-weight:600;color:var(--slate);margin-left:2px}
+  .right{flex-shrink:0;margin-left:36px;text-align:center}
+  .right .big{width:256px;height:256px;border-radius:52px;box-shadow:0 30px 60px rgba(25,107,79,.22),0 12px 26px rgba(28,42,36,.14)}
+  .chip{margin-top:22px;display:inline-flex;align-items:center;gap:8px;background:#fff;border:1px solid #dfeae4;
+    border-radius:999px;padding:9px 18px;font-size:18px;font-weight:700;color:var(--slate);box-shadow:0 6px 16px rgba(40,33,22,.06)}
+  .chip .a{color:var(--accent);font-weight:800}
+</style>
+</head>
+<body>
+  <div class="dots"></div>
+  <div class="wrap">
+    <div class="left">
+      <span class="eyebrow">🩺 医療者のための知識アプリ</span>
+      <h1>普段のNotionが、<br>そのまま<span class="hl">検索DB</span>と<br><span class="hl">一問一答</span>になる。</h1>
+      <p class="lead">症例・文献・メモが、スマホから一瞬で引ける「第二の脳」に。</p>
+      <div class="brand">
+        <img src="assets/icon-512.png" alt="">
+        <div><span class="bn">MediNode</span><span class="bd">Connects with Notion</span></div>
+      </div>
+    </div>
+    <div class="right">
+      <img class="big" src="assets/icon-512.png" alt="">
+      <div class="chip"><span class="a">CQ</span>疑問をその場で残す</div>
+    </div>
+  </div>
+  <div class="band"></div>
+</body>
+</html>
