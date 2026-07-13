@@ -152,28 +152,19 @@
   .route-meta span{font-size:.76rem;font-weight:700;background:#fff;border:1px solid var(--line);border-radius:999px;padding:4px 12px;color:var(--slate)}
   .route-meta span b{color:var(--brand)}
 
-  /* ---- UI browser-window mock (visual how-to) ---- */
-  .uiguide{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin:14px 0 4px}
-  @media(max-width:680px){.uiguide{grid-template-columns:1fr}}
-  .uifig{display:flex;flex-direction:column}
-  .uiwin{border:1px solid var(--line);border-radius:12px;overflow:hidden;box-shadow:var(--shadow-sm);background:#fff}
-  .uiwin-bar{display:flex;align-items:center;gap:5px;padding:8px 11px;background:#f1efe9;border-bottom:1px solid var(--line)}
-  .uiwin-bar i{width:9px;height:9px;border-radius:50%;background:#d9d4ca;display:block}
-  .uiwin-url{margin-left:6px;font-size:.6rem;color:var(--slate-light);background:#fff;border:1px solid var(--line);border-radius:6px;padding:3px 9px;font-family:"Inter",monospace;flex:1;overflow:hidden;white-space:nowrap;text-overflow:ellipsis}
-  .uiwin-body{padding:14px;display:flex;flex-direction:column;gap:9px}
-  .uiwin-body .ui-row{font-size:.74rem;color:var(--slate);display:flex;align-items:center;gap:7px}
-  .uiwin-body .ui-lab{font-size:.62rem;font-weight:700;color:var(--slate-light)}
-  .ui-btn{display:inline-flex;align-items:center;gap:5px;font-size:.66rem;font-weight:700;color:#fff;background:var(--brand);border-radius:7px;padding:5px 11px;align-self:flex-start}
-  .ui-input{font-size:.66rem;font-family:"Inter",monospace;color:var(--brand-dark);background:var(--bg-soft);border:1px solid var(--line);border-radius:7px;padding:6px 9px;display:flex;align-items:center;justify-content:space-between;gap:8px}
-  .ui-copy{font-size:.58rem;font-weight:700;color:#fff;background:var(--accent);border-radius:5px;padding:3px 8px;white-space:nowrap}
-  .ui-menu{border:1px solid var(--line);border-radius:9px;box-shadow:var(--shadow-md);overflow:hidden;background:#fff;align-self:flex-end;min-width:150px}
-  .ui-menu .mi{font-size:.66rem;padding:7px 11px;color:var(--slate);border-bottom:1px solid var(--line);display:flex;align-items:center;gap:7px}
-  .ui-menu .mi:last-child{border-bottom:none}
-  .ui-menu .mi.hot{background:var(--brand-50);color:var(--brand-dark);font-weight:700}
-  .ui-mark{outline:2px solid var(--accent);outline-offset:2px;border-radius:8px}
-  .uifig figcaption{font-size:.82rem;color:var(--slate);margin-top:10px;display:flex;gap:7px;align-items:flex-start}
-  .uifig figcaption b{color:var(--brand-dark)}
-  .uifig figcaption .n{flex-shrink:0;width:20px;height:20px;border-radius:6px;background:var(--brand);color:#fff;font-size:.7rem;font-weight:800;display:grid;place-items:center}
+  /* ---- real screenshot guide (Notion token) ---- */
+  .guide{display:flex;flex-direction:column;gap:8px;margin:16px 0 4px;counter-reset:gstep}
+  .guide-step{background:#fff;border:1px solid var(--line);border-radius:14px;padding:16px 18px;box-shadow:var(--shadow-sm)}
+  .guide-cap{display:flex;gap:11px;align-items:flex-start;margin-bottom:12px}
+  .guide-cap .gn{counter-increment:gstep;flex-shrink:0;width:27px;height:27px;border-radius:8px;background:var(--brand);color:#fff;font-weight:800;font-size:.86rem;display:grid;place-items:center}
+  .guide-cap .gn::before{content:counter(gstep)}
+  .guide-cap p{font-size:.94rem;color:var(--slate);margin:0;line-height:1.65}
+  .guide-cap b{color:var(--ink)}
+  .guide-shot{border:1px solid var(--line);border-radius:10px;overflow:hidden;background:#f7f5ef}
+  .guide-shot img{width:100%;display:block}
+  .guide-shot.portrait img{max-width:420px;margin:0 auto}
+  .guide-note{font-size:.85rem;color:var(--slate-light);margin-top:10px;display:flex;gap:7px;align-items:flex-start}
+  .guide-note::before{content:"↑";color:var(--accent-600);font-weight:800}
 
   /* ---- Algolia 3-keys card ---- */
   .keys{display:flex;flex-direction:column;gap:10px;margin:12px 0 4px}
@@ -425,39 +416,35 @@
         <div class="step reveal">
           <div class="badge">4</div>
           <div class="step-card">
-            <h3>合鍵（コネクトToken）を作って接続する <span class="tag req">必須</span></h3>
-            <p>やることは3つ。<strong>鍵をつくり、読み込むDBに接続を許可して、アプリに貼ります。</strong></p>
+            <h3>コネクト（鍵）を作って、DBに接続する <span class="tag req">必須</span></h3>
+            <p>Notion側での準備は、実際の画面で。下の順番どおりに進めれば大丈夫です。</p>
 
-            <div class="uiguide reveal">
-              <figure class="uifig">
-                <div class="uiwin" aria-hidden="true">
-                  <div class="uiwin-bar"><i></i><i></i><i></i><span class="uiwin-url">notion.so/my-integrations</span></div>
-                  <div class="uiwin-body">
-                    <span class="ui-btn ui-mark">＋ 新規コネクト</span>
-                    <div class="ui-row"><span class="ui-lab">認証方法</span> アクセストークン</div>
-                    <div class="ui-row"><span class="ui-lab">作成すると表示されます ▼</span></div>
-                    <div class="ui-input ui-mark"><span>ntn_a1b2c3d4e5f6…</span><span class="ui-copy">📋 コピー</span></div>
-                  </div>
-                </div>
-                <figcaption><span class="n">1</span><span><b>鍵をつくってコピー</b>：<a class="inline" href="https://www.notion.so/my-integrations" target="_blank" rel="noopener">notion.so/my-integrations</a> を開き（要ログイン）→「新規コネクト」→ 認証方法「アクセストークン」→ 作成後に出る <code>ntn_</code> で始まる文字列をコピー。</span></figcaption>
-              </figure>
-
-              <figure class="uifig">
-                <div class="uiwin" aria-hidden="true">
-                  <div class="uiwin-bar"><i></i><i></i><i></i><span class="uiwin-url">あなたのDBページ</span></div>
-                  <div class="uiwin-body">
-                    <div class="ui-row" style="justify-content:flex-end;width:100%"><span class="ui-lab">右上の</span><span class="ui-btn ui-mark" style="background:#e5e7eb;color:#374151">···</span></div>
-                    <div class="ui-menu">
-                      <div class="mi">🔗 リンクをコピー</div>
-                      <div class="mi">📄 複製</div>
-                      <div class="mi hot ui-mark">🔌 コネクトを追加</div>
-                    </div>
-                  </div>
-                </div>
-                <figcaption><span class="n">2</span><span><b>読み込みを許可</b>：使うDBページを開き、右上「<strong>…</strong>」→「<strong>コネクトを追加</strong>」→ さきほどのコネクトを選択。<strong>Medical DBとReference DBの両方</strong>で行います。</span></figcaption>
-              </figure>
+            <div class="guide reveal">
+              <div class="guide-step">
+                <div class="guide-cap"><span class="gn"></span><p><b>「新規コネクト」を作成</b>。<a class="inline" href="https://www.notion.so/my-integrations" target="_blank" rel="noopener">notion.so/my-integrations</a> を開き（要ログイン）、名前を付けて、認証方法は「アクセストークン」を選びます。</p></div>
+                <div class="guide-shot"><img src="assets/guide-token-1-create.png" alt="Notionの新規コネクト作成画面。コネクト名を入力し、認証方法でアクセストークンを選んでコネクトを作成する" loading="lazy"></div>
+              </div>
+              <div class="guide-step">
+                <div class="guide-cap"><span class="gn"></span><p><b>アクセストークン（＝鍵）をコピー</b>。作成後の画面に表示されます。機能はそのままでOK。<code>ntn_</code> で始まる文字列です。</p></div>
+                <div class="guide-shot"><img src="assets/guide-token-2-copy.png" alt="コネクト設定画面のアクセストークン欄。ここに表示される文字列がMediNodeに貼り付ける鍵になる" loading="lazy"></div>
+              </div>
+              <div class="guide-step">
+                <div class="guide-cap"><span class="gn"></span><p><b>使うDBをページで開き、右上の「…」</b>をクリック。Medical・Reference（部署を使うならその）DBで行います。</p></div>
+                <div class="guide-shot"><img src="assets/guide-token-3-menu.png" alt="Notionのデータベースをフルページで開き、右上の三点メニューをクリックする" loading="lazy"></div>
+              </div>
+              <div class="guide-step">
+                <div class="guide-cap"><span class="gn"></span><p>メニューの<b>「接続」→「接続を追加」</b>を選びます。</p></div>
+                <div class="guide-shot"><img src="assets/guide-token-4-add.png" alt="三点メニューの接続から接続を追加を選ぶ" loading="lazy"></div>
+              </div>
+              <div class="guide-step">
+                <div class="guide-cap"><span class="gn"></span><p>さきほど作った<b>「MediNode」を探してクリック</b>。</p></div>
+                <div class="guide-shot"><img src="assets/guide-token-5-select.png" alt="接続を追加の一覧から作成したMediNodeコネクトを選ぶ" loading="lazy"></div>
+              </div>
+              <div class="guide-step">
+                <div class="guide-cap"><span class="gn"></span><p><b>「ページに追加」で接続完了</b>。あとは、コピーしたトークンと各DBのURLを、アプリのセットアップ画面に貼り付けて保存するだけです。</p></div>
+                <div class="guide-shot portrait"><img src="assets/guide-token-6-confirm.png" alt="このページにMediNodeを追加する確認ダイアログでページに追加を押す" loading="lazy"></div>
+              </div>
             </div>
-            <div class="note-callout" style="margin-top:6px"><span class="ic">3️⃣</span><div><strong>アプリに貼る</strong>：セットアップ画面で、コピーしたコネクトTokenと各DBのURLを貼り付けて保存すれば完了です。</div></div>
 
             <details class="qbox" style="margin-top:14px">
               <summary>「インテグレーション」と「コネクト」って違うもの？</summary>
