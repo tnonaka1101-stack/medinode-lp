@@ -89,6 +89,49 @@
   .bubble.user{align-self:flex-end;background:var(--brand);color:#fff;border-bottom-right-radius:4px}
   .bubble.ai{align-self:flex-start;background:var(--bg-soft);border:1px solid var(--line);border-bottom-left-radius:4px;color:var(--slate)}
   .bubble.ai b{color:var(--ink)}
+  /* テンプレ4種 */
+  .tpl-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;max-width:1000px;margin:0 auto}
+  @media(max-width:900px){.tpl-grid{grid-template-columns:1fr 1fr}}
+  @media(max-width:520px){.tpl-grid{grid-template-columns:1fr}}
+  .tpl{background:#fff;border:1px solid var(--line);border-radius:14px;padding:18px;box-shadow:var(--shadow-sm)}
+  .tpl .e{font-size:1.3rem;margin-bottom:6px;display:block}
+  .tpl h4{font-size:.95rem;margin-bottom:6px}
+  .tpl .when{display:inline-block;font-size:.7rem;font-weight:700;border-radius:999px;padding:2px 9px;margin-bottom:8px;background:var(--brand-50);color:var(--brand-dark);border:1px solid var(--brand-200)}
+  .tpl p{font-size:.82rem;color:var(--slate);margin:0}
+  /* 育て方（昇格デモ） */
+  .grow-wrap{display:grid;grid-template-columns:1fr 1fr;gap:44px;align-items:center;max-width:960px;margin:48px auto 0}
+  @media(max-width:820px){.grow-wrap{grid-template-columns:1fr;gap:30px}}
+  .grow-steps{display:flex;flex-direction:column;gap:14px}
+  .gs{display:flex;gap:12px;align-items:flex-start}
+  .gs .n{width:26px;height:26px;border-radius:8px;background:var(--brand-50);color:var(--brand-dark);display:grid;place-items:center;font-size:.85rem;font-weight:800;flex-shrink:0;border:1px solid var(--brand-200)}
+  .gs p{font-size:.93rem;color:var(--slate);margin:0}
+  .gs p b{color:var(--ink)}
+  .grow-demo{position:relative;max-width:400px;margin:0 auto;padding-bottom:26px;width:100%}
+  .gd-card{background:#fff;border:1px solid var(--line);border-radius:16px;padding:20px 22px;box-shadow:var(--shadow-md)}
+  .gd-top{position:relative;height:26px;margin-bottom:10px}
+  .gd-badge{position:absolute;left:0;top:0;font-size:.78rem;font-weight:800;padding:3px 12px;border-radius:999px;white-space:nowrap}
+  .b-cq{background:#fef3c7;color:#b45309;animation:gdcq 9s infinite}
+  .b-know{background:#dcfce7;color:#15803d;opacity:0;animation:gdknow 9s infinite}
+  @keyframes gdcq{0%{opacity:1}62%{opacity:1}66%{opacity:0}96%{opacity:0}100%{opacity:1}}
+  @keyframes gdknow{0%{opacity:0}62%{opacity:0}64%{opacity:1;transform:scale(1.12)}67%{transform:scale(1)}96%{opacity:1}100%{opacity:0}}
+  .gd-title{font-weight:700;font-size:.98rem;margin-bottom:12px}
+  .gd-todo{display:flex;gap:9px;align-items:center;font-size:.85rem;color:var(--slate);padding:7px 0;border-top:1px dashed var(--line)}
+  .tick{width:18px;height:18px;border-radius:5px;border:2px solid var(--line);display:grid;place-items:center;font-size:.68rem;font-weight:800;flex-shrink:0;color:transparent;background:transparent}
+  .t1{animation:gdt1 9s infinite}
+  .t2{animation:gdt2 9s infinite}
+  .t3{animation:gdt3 9s infinite}
+  @keyframes gdt1{0%,14%{background:transparent;border-color:var(--line);color:transparent}18%,96%{background:var(--brand);border-color:var(--brand);color:#fff}100%{background:transparent;border-color:var(--line);color:transparent}}
+  @keyframes gdt2{0%,30%{background:transparent;border-color:var(--line);color:transparent}34%,96%{background:var(--brand);border-color:var(--brand);color:#fff}100%{background:transparent;border-color:var(--line);color:transparent}}
+  @keyframes gdt3{0%,46%{background:transparent;border-color:var(--line);color:transparent}50%,96%{background:var(--brand);border-color:var(--brand);color:#fff}100%{background:transparent;border-color:var(--line);color:transparent}}
+  .gd-quiz{position:absolute;right:6px;bottom:0;background:var(--brand);color:#fff;font-size:.78rem;font-weight:700;padding:7px 14px;border-radius:999px;box-shadow:var(--shadow-md);opacity:0;animation:gdquiz 9s infinite}
+  @keyframes gdquiz{0%,72%{opacity:0;transform:translateY(6px)}76%{opacity:1;transform:none}96%{opacity:1}100%{opacity:0}}
+  @media(prefers-reduced-motion:reduce){
+    .b-cq,.b-know,.t1,.t2,.t3,.gd-quiz{animation:none}
+    .b-cq{opacity:0}
+    .b-know{opacity:1}
+    .t1,.t2,.t3{background:var(--brand);border-color:var(--brand);color:#fff}
+    .gd-quiz{opacity:1}
+  }
   /* 用語の補足 */
   .term-note{background:var(--bg-soft);border:1px solid var(--line);border-left:4px solid var(--brand-300);border-radius:12px;padding:16px 20px;font-size:.92rem;color:var(--slate);max-width:820px;margin:0 auto 24px}
   .term-note b{color:var(--ink)}
@@ -242,8 +285,54 @@
   </div>
 </section>
 
+<!-- 使い方（Notionだけで回す） -->
+<section class="section">
+  <div class="wrap">
+    <div class="head reveal">
+      <div class="kicker">Daily use</div>
+      <h2>書いた疑問が、知識に育つまで。</h2>
+      <p>アプリに繋ぐ前から、Notionだけで始められます。詳しい書き方はテンプレ同梱の📖記入マニュアルに。ここでは、いちばん大事な流れだけ。</p>
+    </div>
+    <div class="tpl-grid">
+      <div class="tpl reveal"><span class="e">❓</span><span class="when">疑問をAIに投げたい</span><h4>CQ（AI版）</h4><p>Notion AIに疑問を聞くと、このテンプレでページと暫定回答が自動で立ちます（下のAIスキル設置後）。</p></div>
+      <div class="tpl reveal"><span class="e">❓</span><span class="when">まずはこれ</span><h4>CQ（通常版）</h4><p>自分で調べて書くタイプ。タイトルに疑問文を書くだけでも、立派な1枚です。</p></div>
+      <div class="tpl reveal"><span class="e">💡</span><span class="when">答えを知っている</span><h4>ナレッジ</h4><p>確認できている知識を、CQを経ずに直接登録。要約が入ればクイズに出ます。</p></div>
+      <div class="tpl reveal"><span class="e">📋</span><span class="when">5枚たまったら</span><h4>まとめ</h4><p>同じ領域のナレッジを束ねる"地図"。週1回の棚卸しで作るのがおすすめ。</p></div>
+    </div>
+    <p class="reveal" style="text-align:center;color:var(--slate);font-size:.9rem;margin-top:16px">テンプレートはDBの「新規」ボタン横の▼から選べます。<strong>タイトルは疑問文で</strong>——昇格すると、そのままクイズの問題文になります。</p>
+    <div class="grow-wrap">
+      <div class="reveal">
+        <h3 style="font-size:1.2rem;margin-bottom:16px">❓を💡に変える前に、3つだけ。</h3>
+        <div class="grow-steps">
+          <div class="gs"><span class="n">1</span><p><b>背景・きっかけを自分の言葉で書く。</b>どんな症例・場面でその疑問が出たか。ここだけはAIに書かせない欄です。</p></div>
+          <div class="gs"><span class="n">2</span><p><b>Answerを一次文献・ガイドラインで確かめる。</b>AIの下書きは暫定情報。数値と適応は必ず原文で。</p></div>
+          <div class="gs"><span class="n">3</span><p><b>根拠の文献を「参考文献」でつなぐ。</b>Reference Library に1論文＝1ページで残します。</p></div>
+        </div>
+        <p style="font-size:.93rem;color:var(--slate);margin-top:16px">3つ済んだら、<strong>知識レベルを ❓CQ → 💡ナレッジ に変えるだけ</strong>。その瞬間から、クイズに出題されはじめます。</p>
+      </div>
+      <div class="grow-demo reveal" role="img" aria-label="CQページに3つの確認が付いていき、ナレッジに昇格してクイズに出題されるまでのアニメーション">
+        <div class="gd-card">
+          <div class="gd-top">
+            <span class="gd-badge b-cq">❓ CQ</span>
+            <span class="gd-badge b-know">💡 ナレッジ</span>
+          </div>
+          <div class="gd-title">敗血症性ショックの第一選択昇圧薬は？</div>
+          <div class="gd-todo"><span class="tick t1">✓</span>背景・きっかけを書いた</div>
+          <div class="gd-todo"><span class="tick t2">✓</span>一次文献で確かめた</div>
+          <div class="gd-todo"><span class="tick t3">✓</span>参考文献をつないだ</div>
+        </div>
+        <div class="gd-quiz">🧠 クイズに出題されます</div>
+      </div>
+    </div>
+    <div class="note-callout reveal" style="max-width:820px;margin:40px auto 0">
+      <span class="ic">📋</span>
+      <div>💡ナレッジが同じ領域に<strong>5枚ほどたまったら、📋まとめ</strong>に束ねます（週1回の棚卸しがおすすめ）。まとめはクイズには出ず、アプリでジャンルを開いたときに"そのジャンルの地図"として先頭に表示されます。</div>
+    </div>
+  </div>
+</section>
+
 <!-- あると便利（任意） -->
-<section class="section" id="ai">
+<section class="section" id="ai" style="background:var(--bg-soft)">
   <div class="wrap">
     <div class="head reveal">
       <div class="kicker">Optional</div>
@@ -340,7 +429,7 @@
 </section>
 
 <!-- FAQ -->
-<section class="section" style="background:var(--bg-soft)">
+<section class="section">
   <div class="wrap">
     <div class="head reveal">
       <div class="kicker">FAQ</div>
