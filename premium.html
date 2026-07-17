@@ -4,19 +4,19 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>プレミアムと検索モード｜MediNode</title>
-<meta name="description" content="MediNodeの所有者フィルタ（全て／個人／部署／プレミアム）と、シンプル／パワーの2つの検索モード。プレミアムでは、専門医がまとめた医療知識を、自分のNotionと同じ画面で引けます。">
+<meta name="description" content="MediNodeプレミアムでは、救急・集中治療の専門医がまとめた医療ナレッジを、自分のNotionと同じ画面で引けます。ガイドラインの要約に加え、専門医が『自分はこうする』を書き添えた「集中治療医の実践」つき。">
 <meta name="theme-color" content="#196b4f">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="MediNode">
 <meta property="og:title" content="プレミアム｜MediNode">
-<meta property="og:description" content="救急・集中治療の専門医がまとめた医療ナレッジを、自分のNotionと同じ画面で。">
+<meta property="og:description" content="救急・集中治療の専門医がまとめた医療ナレッジを、自分のNotionと同じ画面で。専門医が『自分はこうする』まで書いた「集中治療医の実践」つき。">
 <meta property="og:image" content="https://medinode-lp.vercel.app/assets/ogp.png">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta property="og:url" content="https://medinode-lp.vercel.app/premium.html">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="プレミアム｜MediNode">
-<meta name="twitter:description" content="救急・集中治療の専門医がまとめた医療ナレッジを、自分のNotionと同じ画面で。">
+<meta name="twitter:description" content="救急・集中治療の専門医がまとめた医療ナレッジを、自分のNotionと同じ画面で。専門医が『自分はこうする』まで書いた「集中治療医の実践」つき。">
 <meta name="twitter:image" content="https://medinode-lp.vercel.app/assets/ogp.png">
 <link rel="icon" href="assets/icon-192.png">
 <link rel="apple-touch-icon" href="assets/icon-192.png">
@@ -107,6 +107,24 @@
   .sample-points li strong{color:var(--ink)}
   @media(max-width:760px){.sample-points li{justify-content:center;text-align:left}}
 
+  /* 集中治療医の実践 (signature block) */
+  .prac-wrap{display:grid;grid-template-columns:1.05fr .95fr;gap:44px;align-items:center}
+  @media(max-width:860px){.prac-wrap{grid-template-columns:1fr;gap:30px}}
+  .prac-lead p{font-size:1rem;color:var(--slate);line-height:1.9;margin-bottom:16px}
+  .prac-lead .prac-why{list-style:none;display:flex;flex-direction:column;gap:12px;margin-top:20px}
+  .prac-lead .prac-why li{display:flex;gap:12px;align-items:flex-start;font-size:.95rem;color:var(--slate);line-height:1.65}
+  .prac-lead .prac-why li span{flex-shrink:0;font-size:1.15rem}
+  .prac-lead .prac-why strong{color:var(--ink)}
+  /* mimic the app's green callout */
+  .sig-card{background:#f0faf4;border:1px solid #b6e3c8;border-left:4px solid #196b4f;border-radius:16px;padding:26px 26px 22px;box-shadow:var(--shadow-sm)}
+  .sig-card .sig-head{display:flex;align-items:center;gap:9px;font-weight:800;color:#14603f;font-size:1.02rem;margin-bottom:16px}
+  .sig-card .sig-head .sig-ic{font-size:1.25rem}
+  .sig-row{margin-bottom:14px}
+  .sig-row .sig-label{font-weight:700;color:#14603f;font-size:.94rem;display:block;margin-bottom:3px}
+  .sig-row p{margin:0;font-size:.92rem;color:#2f4f42;line-height:1.75}
+  .sig-card .sig-note{margin:16px 0 0;padding-top:12px;border-top:1px dashed #b6e3c8;font-size:.8rem;color:#5b7d6d}
+  .sig-cap{font-size:.82rem;color:var(--slate-light);text-align:right;margin-top:10px}
+
   /* who is it for */
   .for-list{list-style:none;display:flex;flex-direction:column;gap:14px;max-width:680px;margin:0 auto}
   .for-list li{display:flex;gap:16px;align-items:flex-start;background:#fff;border:1px solid var(--line);border-radius:14px;padding:20px 22px;box-shadow:var(--shadow-sm)}
@@ -144,7 +162,7 @@
     <div class="crumb"><a href="index.html">ホーム</a> ／ プレミアム</div>
     <span class="eyebrow">⭐ Premium</span>
     <h1>あなたのNotionに、<br>専門医の知識を“足す”。</h1>
-    <p>救急・集中治療の専門医がキュレーションした医療ナレッジ・参考文献を、自分のメモと<strong>同じ画面で</strong>。集める前から、確かな知識がそばにあります。</p>
+    <p>救急・集中治療の専門医がキュレーションした医療ナレッジ・参考文献を、自分のメモと<strong>同じ画面で</strong>。ガイドラインの要約だけでなく、専門医が<strong>「自分はこうする」</strong>まで書き添えた一節つき。集める前から、確かな知識がそばにあります。</p>
   </div>
 </section>
 
@@ -177,22 +195,62 @@
   </div>
 </section>
 
-<!-- sample content -->
+<!-- 集中治療医の実践 (flagship differentiator) -->
 <section class="section" style="background:var(--bg-soft)">
   <div class="wrap">
     <div class="head reveal">
+      <div class="kicker">集中治療医の実践</div>
+      <h2>ガイドラインの“先”にある、<br>「私はこうする」まで。</h2>
+      <p>教科書やAIの要約は、どこにでもあります。MediNodeプレミアムのナレッジには、その先に<strong>救急・集中治療の専門医が現場でどう判断しているか</strong>を、本人の言葉で書き添えています。</p>
+    </div>
+    <div class="prac-wrap reveal">
+      <div class="prac-lead">
+        <p>ベッドサイドで本当に効くのは、「正解」よりも<strong>「経験者ならどこを見て、何を優先するか」</strong>だったりします。プレミアムの各ナレッジには、専門医が実際の手順・迷いどころ・後輩に必ず伝えることを綴った<strong>「集中治療医の実践」</strong>の一節が入っています。</p>
+        <ul class="prac-why">
+          <li><span>🩺</span><div><strong>教科書には載らない“さじ加減”</strong>——初期設定の入り方、優先順位、落とし穴。</div></li>
+          <li><span>🗣</span><div><strong>研修医への一言</strong>——現場で毎回言っている、いちばん大事な注意点。</div></li>
+          <li><span>✅</span><div><strong>正直な但し書きつき</strong>——「施設・症例により判断は異なります」。断定しすぎない誠実さ。</div></li>
+        </ul>
+      </div>
+      <div>
+        <div class="sig-card">
+          <div class="sig-head"><span class="sig-ic">🧑‍⚕️</span>集中治療医の実践</div>
+          <div class="sig-row">
+            <span class="sig-label">モードの選び方</span>
+            <p>私は初期モードに、まず PC/AC（従圧）で入ることが多いです。気道内圧を見ながら進められるので、立ち上げのときに安心感があります。</p>
+          </div>
+          <div class="sig-row">
+            <span class="sig-label">換気量の詰め方</span>
+            <p>最初から欲張らず 6〜8 mL/kg PBW で始めて、あとは血液ガスを見ながら合わせていきます。閉塞性の患者さんでは、とにかく auto-PEEP を作らないことを最優先に。</p>
+          </div>
+          <div class="sig-row">
+            <span class="sig-label">研修医に伝えること</span>
+            <p>「アラームを初期値のまま放置しない」。ここだけは、毎回しつこいくらいに言っています。</p>
+          </div>
+          <p class="sig-note">※筆者の実践です。施設・症例により判断は異なります。</p>
+        </div>
+        <p class="sig-cap">収録例：「人工呼吸器の開始時、最初に確認・設定すべき項目は？」より</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- sample content -->
+<section class="section">
+  <div class="wrap">
+    <div class="head reveal">
       <div class="kicker">Sample</div>
-      <h2>“ここまで作り込まれている”を、実物で。</h2>
+      <h2>図解も、“ここまで作り込む”。</h2>
       <p>1つのナレッジが、図解・数値・カットオフ・出典つきで整理されています。これが検索やクイズで、そのまま引き出せます。</p>
     </div>
-    <div class="sample-solo reveal">
-      <div class="phone phone-tall"><img src="assets/premium-sample.jpg" alt="プレミアム収録ナレッジの実例。イヌサフラン（コルヒチン）中毒の初期対応とICU管理を、病期フロー図・数値・カットオフ・出典つきで整理"></div>
+    <div class="sample-solo reveal" style="grid-template-columns:1.15fr 1fr">
+      <div class="shot" style="border-radius:16px;overflow:hidden;border:1px solid var(--line);box-shadow:var(--shadow-md)"><img src="assets/premium-sample-vent.jpg" alt="プレミアム収録ナレッジの実例。人工呼吸器の開始時に確認・設定すべき項目を、手順・初期値・安全域・アラーム確認まで図解でまとめたインフォグラフィック" style="display:block;width:100%"></div>
       <div class="sample-points">
-        <p class="sample-cap">収録例：イヌサフラン（コルヒチン）中毒の初期対応とICU管理</p>
+        <p class="sample-cap">収録例：人工呼吸器の開始時、最初に確認・設定すべき項目は？</p>
         <ul>
-          <li><span>📊</span>病期・経過がひと目で分かる<strong>フロー図</strong></li>
-          <li><span>🔢</span>カットオフ値・投与量などの<strong>具体的な数値</strong></li>
-          <li><span>📚</span>ガイドライン・論文の<strong>出典つき</strong></li>
+          <li><span>📊</span>立ち上げ手順がひと目で分かる<strong>フロー図</strong></li>
+          <li><span>🔢</span>VT・PEEP・プラトー圧などの<strong>具体的な初期値</strong></li>
+          <li><span>📚</span>ARDSnet など<strong>ガイドライン・論文の出典つき</strong></li>
           <li><span>🔍</span>検索・クイズから<strong>そのまま引き出せる</strong></li>
         </ul>
       </div>
@@ -209,7 +267,7 @@
       <p>専門医がキュレーションした知識を、あなたの知識と並べて、全タブで活用できます。</p>
     </div>
     <div class="prem-feat-grid">
-      <div class="prem-feat reveal"><div class="ic">🩺</div><h4>専門医がキュレーション</h4><p>救急・集中治療の現場で使う知識を、専門医が継続的に追加・更新。自分で一から集めなくても、確かな知識をすぐ引けます。</p></div>
+      <div class="prem-feat reveal"><div class="ic">🧑‍⚕️</div><h4>「集中治療医の実践」つき</h4><p>ガイドラインの要約だけでなく、専門医が<strong>「自分はこうする」</strong>を書き添えた一節つき。教科書に載らないさじ加減や、研修医への一言まで。</p></div>
       <div class="prem-feat reveal"><div class="ic">❓</div><h4>臨床疑問を投稿できる</h4><p>気になる臨床疑問を投稿すると、<strong>専門医が回答し、プレミアムナレッジに反映</strong>。みんなの疑問が、みんなの知識に育っていきます。</p></div>
       <div class="prem-feat reveal"><div class="ic">🔀</div><h4>自分の知識と横断検索</h4><p>個人・部署・プレミアムを「全て」で統合検索。自分のメモと専門医の知識を、同じ画面で並べて確認できます。</p></div>
       <div class="prem-feat reveal"><div class="ic">📚</div><h4>エビデンスに基づく文献も</h4><p>ナレッジだけでなく、根拠となる<strong>参考文献（ガイドライン・論文）</strong>も収録。クイズ学習の問題集としても使えます。</p></div>
@@ -229,8 +287,8 @@
       <p>救急・集中治療の現場で実際に浮かぶ疑問を、エビデンスに基づいて整理。検索すれば、その場で答えに辿り着けます。</p>
     </div>
     <div class="q-grid reveal">
-      <div class="q-item"><span class="q-mark">Q</span><p>カフ血圧とAライン血圧が乖離。どちらを信じる？</p></div>
-      <div class="q-item"><span class="q-mark">Q</span><p>ショックのとき、ノルアドはどう開始・増減する？</p></div>
+      <div class="q-item"><span class="q-mark">Q</span><p>緊急透析はいつ始める？（AEIOU）</p></div>
+      <div class="q-item"><span class="q-mark">Q</span><p>ショックの輸液、いつ攻めて・いつ引く？（ROSE）</p></div>
       <div class="q-item"><span class="q-mark">Q</span><p>尿量が出ない。どこから評価を始める？</p></div>
       <div class="q-item"><span class="q-mark">Q</span><p>人工呼吸器、最初に確認すべき設定は？</p></div>
       <div class="q-item"><span class="q-mark">Q</span><p>「ムセる」患者、誤嚥のリスク評価はどうする？</p></div>
@@ -274,6 +332,7 @@
       </div>
       <ul>
         <li>専門医がキュレーションした医療ナレッジ・参考文献</li>
+        <li>各ナレッジに「集中治療医の実践」（専門医の判断）つき</li>
         <li>臨床疑問を投稿 → 専門医が回答してナレッジに反映</li>
         <li>全タブで使える「⭐プレミアム」フィルタ</li>
         <li>個人のNotion／Algolia設定は不要・すぐ使える</li>
