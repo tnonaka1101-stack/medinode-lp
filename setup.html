@@ -656,6 +656,25 @@
     </div>
     <div style="display:flex;flex-direction:column;gap:14px">
       <div class="warn-callout reveal"><span class="ic">📱</span><div><strong>スマホのホーム画面に追加（PWA）するなら：</strong>SafariとPWAは保存場所が別です。<strong>先にホーム画面へ追加してから、PWAを開いて設定</strong>してください。Safariで設定してもPWAには引き継がれません。</div></div>
+      <details class="qbox reveal">
+        <summary>ホーム画面への追加手順を画像で見る（iPhone・Safari）</summary>
+        <div class="body">
+          <div class="guide">
+            <div class="guide-step">
+              <div class="guide-cap"><span class="gn"></span><p><b>SafariでMediNodeを開き、メニューから「共有」をタップ</b>。<br><small>※ お使いのiOSによっては、画面下の共有ボタン（□に↑のマーク）を直接タップする形になります。どちらでも同じ画面に進めます。</small></p></div>
+              <div class="guide-shot portrait"><img src="assets/guide-pwa-1-share.jpg" alt="SafariでMediNodeを開き、メニューの共有をタップする" loading="lazy"></div>
+            </div>
+            <div class="guide-step">
+              <div class="guide-cap"><span class="gn"></span><p>表示されたメニューを下にスクロールし、<b>「ホーム画面に追加」をタップ</b>。</p></div>
+              <div class="guide-shot portrait"><img src="assets/guide-pwa-2-add.jpg" alt="共有メニューを下にスクロールしてホーム画面に追加をタップする" loading="lazy"></div>
+            </div>
+            <div class="guide-step">
+              <div class="guide-cap"><span class="gn"></span><p><b>「Webアプリとして開く」がオン</b>になっていることを確認し、右上の<b>「追加」をタップ</b>。ホーム画面にMediNodeのアイコンが追加され、次からはアプリのようにワンタップで開けます。<br><small>※ このスイッチが表示されない場合も、そのまま「追加」で問題ありません。</small></p></div>
+              <div class="guide-shot portrait"><img src="assets/guide-pwa-3-webapp.jpg" alt="Webアプリとして開くがオンになっていることを確認して追加をタップする" loading="lazy"></div>
+            </div>
+          </div>
+        </div>
+      </details>
       <div class="warn-callout reveal"><span class="ic">🔄</span><div><strong>追加した知識が出てこない：</strong>パワーモードでは、Notionを更新したら「🔄 データを再同期する」が必要です。シンプルモードは即反映で同期不要です。</div></div>
       <div class="warn-callout reveal"><span class="ic">🚫</span><div><strong>同期で「403エラー」：</strong>DBへの「コネクトを追加」が漏れています。各DBの「…→コネクトを追加」を確認してください。</div></div>
       <div class="warn-callout reveal"><span class="ic">🔑</span><div><strong>トークン作成ページでNotionアプリが開いてしまう：</strong>Notionアプリにはコネクトの作成画面がないため、そこから先へ進めません。SafariやChromeのアドレス欄に notion.so/my-integrations を直接入力して、ブラウザで開いてください。ブラウザならスマホでも作成できます。</div></div>
