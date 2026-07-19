@@ -178,6 +178,22 @@
   .jsc-inline{display:flex;gap:9px;margin-bottom:14px}
   .jsc-field.sm{flex:1;font-size:.72rem;color:var(--slate);padding:9px 10px}
   .jsc-sendbtn{margin-top:auto;background:var(--brand);color:#fff;font-weight:800;font-size:.9rem;border-radius:12px;padding:13px;box-shadow:0 8px 18px rgba(25,107,79,.28)}
+  /* scene 1: settings list row that opens the Notion form (external link) */
+  .jsc-setrow{display:flex;align-items:center;gap:11px;background:#fff;border:1px solid var(--line);border-radius:14px;padding:13px 14px;box-shadow:var(--shadow-sm)}
+  .jsc-setrow .jsc-setic{width:34px;height:34px;flex-shrink:0;border-radius:9px;background:#faf5ff;color:#7c3aed;display:grid;place-items:center;font-size:1.15rem;font-weight:800}
+  .jsc-setrow .jsc-settx{flex:1;min-width:0}
+  .jsc-setrow .jsc-settx b{display:block;font-size:.9rem;color:var(--ink)}
+  .jsc-setrow .jsc-settx small{display:block;margin-top:2px;font-size:.71rem;color:var(--slate-light);line-height:1.45}
+  .jsc-setrow .jsc-ext{flex-shrink:0;color:var(--slate-light);font-size:1rem}
+  .jscene.active .jsc-setrow{animation:jsPulse 1.6s ease-in-out .3s 2}
+  .jsc-hint{margin-top:14px;font-size:.74rem;color:var(--slate-light);text-align:center;line-height:1.6;text-wrap:pretty}
+  /* scene 2: the Notion form */
+  .jsc-notion-head{display:flex;align-items:center;gap:8px;font-size:.74rem;font-weight:700;color:var(--slate);margin-bottom:14px}
+  .jsc-notion-head .jsc-nmark{width:17px;height:17px;flex-shrink:0;border-radius:4px;background:#211f1b;color:#fff;font-size:.72rem;font-weight:800;display:grid;place-items:center}
+  .jsc-form-title{font-size:1rem;font-weight:800;color:var(--ink);margin-bottom:14px}
+  .jsc-flabel{font-size:.71rem;font-weight:700;color:var(--slate);margin:0 2px 5px}
+  .jsc-flabel+.jsc-field{margin-bottom:12px}
+  .jsc-textarea+.jsc-flabel{margin-top:2px}
   .jsc-doc{font-size:2.9rem;text-align:center;margin:10px 0 8px}
   .jsc-doc-name{text-align:center;font-weight:800;color:var(--ink);font-size:.98rem;margin-bottom:22px}
   .jsc-doc-name small{display:block;font-size:.72rem;color:var(--slate-light);font-weight:600;margin-top:2px}
@@ -345,19 +361,25 @@
       <div class="jrny-phone">
         <div class="jp-frame">
           <div class="jp-screen" id="jrnyScreen">
-            <!-- 1. 投稿する -->
+            <!-- 1. 投稿ボタン（設定→Notionフォームへの外部リンク） -->
             <div class="jscene js-scene active">
               <div class="jsc-bar"><span class="jsc-dot"></span>設定</div>
-              <div class="jsc-card"><div class="jsc-row"><span class="jsc-ic">⭐</span><div><b>プレミアム</b><small>ご利用中</small></div></div></div>
-              <button class="jsc-postbtn">✍️ 臨床疑問を投稿する</button>
-              <span class="jsc-tap"></span>
+              <div class="jsc-setrow">
+                <span class="jsc-setic">?</span>
+                <div class="jsc-settx"><b>臨床疑問を投稿する ⭐</b><small>専門医が選定してプレミアムナレッジとして配信</small></div>
+                <span class="jsc-ext">↗</span>
+              </div>
+              <p class="jsc-hint">タップすると、記入用のNotionフォームが開きます。</p>
             </div>
-            <!-- 2. 疑問を送る -->
+            <!-- 2. Notionのフォームに記入して送信 -->
             <div class="jscene js-scene">
-              <div class="jsc-sheet-title">臨床疑問を投稿</div>
+              <div class="jsc-notion-head"><span class="jsc-nmark">N</span>Notionのフォーム</div>
+              <div class="jsc-form-title">臨床疑問の投稿</div>
+              <div class="jsc-flabel">疑問・気になっていること</div>
               <div class="jsc-field jsc-textarea">人工呼吸器のウィーニング、SBTの合格基準は？<span class="jsc-caret"></span></div>
-              <div class="jsc-inline"><div class="jsc-field sm">職種：集中治療医</div><div class="jsc-field sm">ペンネーム：任意</div></div>
-              <button class="jsc-sendbtn">送信する</button>
+              <div class="jsc-flabel">職種／ペンネーム（任意・匿名可）</div>
+              <div class="jsc-inline"><div class="jsc-field sm">集中治療医</div><div class="jsc-field sm">匿名</div></div>
+              <button class="jsc-sendbtn">送信</button>
             </div>
             <!-- 3. 専門医が回答 -->
             <div class="jscene js-scene">
@@ -386,8 +408,8 @@
       </div>
 
       <ol class="jrny-steps" id="jrnySteps">
-        <li class="jstep on"><span class="jstep-n">1</span><div><b>投稿する</b><small>設定から「臨床疑問を投稿する」をタップ。</small></div></li>
-        <li class="jstep"><span class="jstep-n">2</span><div><b>疑問を送る</b><small>職種・ペンネームは任意。匿名でも送れます。</small></div></li>
+        <li class="jstep on"><span class="jstep-n">1</span><div><b>投稿ボタンを押す</b><small>設定の「臨床疑問を投稿する ↗」から、記入用のNotionフォームが開きます。</small></div></li>
+        <li class="jstep"><span class="jstep-n">2</span><div><b>フォームに記入して送信</b><small>開いたNotionのフォームに疑問を記入。職種・ペンネームは任意（匿名可）。</small></div></li>
         <li class="jstep"><span class="jstep-n">3</span><div><b>専門医が回答</b><small>Dr.ノードが調べ、「私はこうする」まで添えてナレッジ化。</small></div></li>
         <li class="jstep"><span class="jstep-n">4</span><div><b>通知が届く</b><small>解決すると、アプリを開いたときにお知らせ。</small></div></li>
         <li class="jstep"><span class="jstep-n">5</span><div><b>ナレッジに残る</b><small>「現場の疑問から」の由来バッジつきで、みんなの知識に。</small></div></li>
