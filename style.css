@@ -213,3 +213,23 @@ footer{border-top:1px solid var(--line);padding:48px 0 40px;background:var(--bg-
 .cta-band .btn-primary{background:#fff;color:var(--brand-dark);box-shadow:0 14px 30px rgba(0,0,0,.28)}
 .cta-band .btn-primary:hover{background:var(--brand-50);transform:translateY(-2px)}
 .cta-band small{display:block;margin-top:16px;color:#9ecdb8;font-size:.85rem}
+
+/* ---------- 公開記念キャンペーン（8/18まで。終了後はこのブロックとindexのsectionを削除） ---------- */
+.campaign{padding:34px 0 10px}
+.cp-card{position:relative;background:linear-gradient(135deg,var(--brand-deep),var(--brand));border-radius:24px;padding:44px 40px;color:#fff;overflow:hidden;box-shadow:0 18px 44px rgba(18,79,58,.35)}
+.cp-badge{display:inline-flex;align-items:center;gap:8px;background:#ffd98a;color:#5a3c07;font-weight:800;border-radius:999px;padding:8px 18px;font-size:.92rem;margin-bottom:14px;letter-spacing:.02em}
+.cp-card h2{font-size:clamp(1.5rem,3.2vw,2.15rem);margin:0 0 8px;color:#fff;line-height:1.35}
+.cp-hl{color:#ffd98a}
+.cp-sub{color:#d7ebe2;margin:0 0 26px;font-size:.98rem}
+.cp-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-bottom:26px}
+.cp-item{position:relative;background:rgba(255,255,255,.10);border:1px solid rgba(255,255,255,.22);border-radius:16px;padding:20px 14px 16px;text-align:center}
+.cp-num{font-size:2.1rem;font-weight:800;color:#ffd98a;line-height:1}
+.cp-num span{font-size:1rem;margin-left:2px}
+.cp-item h3{font-size:.95rem;margin:10px 0 4px;color:#fff;font-weight:700}
+.cp-item p{font-size:.78rem;color:#cfe3d8;margin:0;line-height:1.5}
+.cp-new-pill{position:absolute;top:-11px;left:50%;transform:translateX(-50%);background:var(--accent);color:#fff;font-size:.72rem;font-weight:800;border-radius:999px;padding:3px 12px;letter-spacing:.06em}
+.cp-cta{display:flex;align-items:center;gap:18px;flex-wrap:wrap}
+.campaign .btn-primary{background:#fff;color:var(--brand-dark);box-shadow:0 14px 30px rgba(0,0,0,.24)}
+.campaign .btn-primary:hover{background:var(--brand-50)}
+.cp-note{font-size:.8rem;color:#cfe3d8;margin:0}
+@media(max-width:880px){.cp-grid{grid-template-columns:1fr 1fr}.cp-card{padding:30px 22px 26px}}
