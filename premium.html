@@ -147,6 +147,87 @@
   .for-list .for-ic{font-size:1.6rem;flex-shrink:0;line-height:1.2}
   .for-list strong{color:var(--ink)}
   .for-list div{color:var(--slate);font-size:.94rem;line-height:1.7}
+
+  /* ---- journey: your question becomes knowledge (guided phone tour) ---- */
+  .jrny{display:grid;grid-template-columns:290px 1fr;gap:56px;align-items:center;max-width:920px;margin:8px auto 0}
+  @media(max-width:820px){.jrny{grid-template-columns:1fr;gap:34px;justify-items:center}}
+  .jp-frame{width:280px;height:568px;background:linear-gradient(160deg,#28372f,#17211c);border-radius:42px;padding:13px;box-shadow:var(--shadow-lg);position:relative}
+  .jp-frame::before{content:"";position:absolute;top:21px;left:50%;transform:translateX(-50%);width:96px;height:20px;background:#0d1512;border-radius:0 0 14px 14px;z-index:5}
+  .jp-screen{position:relative;width:100%;height:100%;background:var(--bg-soft);border-radius:30px;overflow:hidden}
+  .jscene{position:absolute;inset:0;opacity:0;transition:opacity .55s ease;display:flex;flex-direction:column;padding:46px 16px 18px;pointer-events:none}
+  .jscene.active{opacity:1}
+  .jsc-bar{display:flex;align-items:center;gap:7px;font-size:.74rem;font-weight:800;color:var(--slate);margin-bottom:14px}
+  .jsc-bar .jsc-dot{width:7px;height:7px;border-radius:50%;background:var(--brand-400)}
+  .jsc-card{background:#fff;border:1px solid var(--line);border-radius:14px;padding:13px 15px;box-shadow:var(--shadow-sm);margin-bottom:16px}
+  .jsc-row{display:flex;align-items:center;gap:11px}
+  .jsc-row .jsc-ic{font-size:1.3rem}
+  .jsc-row b{display:block;font-size:.92rem;color:var(--ink)}
+  .jsc-row small{font-size:.74rem;color:var(--brand-dark);font-weight:700}
+  .jsc-postbtn{margin-top:auto;background:#fff;border:1.5px solid var(--brand-200);color:var(--brand-dark);font-weight:800;font-size:.9rem;border-radius:12px;padding:13px;box-shadow:var(--shadow-sm)}
+  .jscene.active .jsc-postbtn{animation:jsPulse 1.6s ease-in-out .3s 2}
+  @keyframes jsPulse{0%,100%{box-shadow:0 0 0 0 rgba(25,107,79,0)}50%{box-shadow:0 0 0 6px rgba(25,107,79,.14)}}
+  .jsc-tap{position:absolute;right:44px;bottom:44px;width:40px;height:40px;border-radius:50%;border:3px solid var(--brand-400);opacity:0}
+  .jscene.active .jsc-tap{animation:jsTap 1.6s ease-out .5s 2}
+  @keyframes jsTap{0%{opacity:.7;transform:scale(.6)}70%,100%{opacity:0;transform:scale(1.5)}}
+  .jsc-sheet-title{font-size:1rem;font-weight:800;color:var(--ink);margin-bottom:14px}
+  .jsc-field{background:#fff;border:1px solid var(--line);border-radius:11px;padding:12px 13px;font-size:.82rem;color:var(--ink);line-height:1.6;box-shadow:var(--shadow-sm)}
+  .jsc-textarea{min-height:96px;margin-bottom:12px}
+  .jsc-caret{display:inline-block;width:2px;height:.95em;background:var(--brand);vertical-align:-2px;margin-left:1px}
+  .jscene.active .jsc-caret{animation:jsCaret 1s steps(1) infinite}
+  @keyframes jsCaret{50%{opacity:0}}
+  .jsc-inline{display:flex;gap:9px;margin-bottom:14px}
+  .jsc-field.sm{flex:1;font-size:.72rem;color:var(--slate);padding:9px 10px}
+  .jsc-sendbtn{margin-top:auto;background:var(--brand);color:#fff;font-weight:800;font-size:.9rem;border-radius:12px;padding:13px;box-shadow:0 8px 18px rgba(25,107,79,.28)}
+  .jsc-doc{font-size:2.9rem;text-align:center;margin:10px 0 8px}
+  .jsc-doc-name{text-align:center;font-weight:800;color:var(--ink);font-size:.98rem;margin-bottom:22px}
+  .jsc-doc-name small{display:block;font-size:.72rem;color:var(--slate-light);font-weight:600;margin-top:2px}
+  .jsc-working{display:flex;align-items:center;gap:10px;justify-content:center;font-size:.82rem;color:var(--slate);font-weight:600;margin-bottom:20px;text-align:center}
+  .jsc-spin{flex-shrink:0;width:16px;height:16px;border-radius:50%;border:2.5px solid var(--brand-200);border-top-color:var(--brand)}
+  .jscene.active .jsc-spin{animation:jsSpin .9s linear infinite}
+  @keyframes jsSpin{to{transform:rotate(360deg)}}
+  .jsc-checkline{background:#f0faf4;border:1px solid #b6e3c8;border-left:4px solid var(--brand);border-radius:12px;padding:14px 15px;font-size:.82rem;color:#2f4f42;line-height:1.9;font-weight:600}
+  .jsc-notif{display:flex;align-items:center;gap:11px;background:#faf5ff;border:1px solid #ddd6fe;border-radius:14px;padding:14px 15px;box-shadow:0 8px 20px rgba(124,58,237,.14);transform:translateY(-14px);opacity:0}
+  .jscene.active .jsc-notif{animation:jsNotifIn .6s cubic-bezier(.2,.9,.3,1.3) .25s forwards}
+  @keyframes jsNotifIn{to{transform:translateY(0);opacity:1}}
+  .jsc-notif .jsc-notif-ic{font-size:1.5rem;flex-shrink:0}
+  .jsc-notif b{display:block;font-size:.84rem;color:#6d28d9;line-height:1.45}
+  .jsc-notif small{font-size:.72rem;color:#8b5cf6;font-weight:700}
+  .jsc-skel{height:52px;border-radius:12px;background:linear-gradient(90deg,#fff,#f3f0ea);border:1px solid var(--line);margin-top:12px;opacity:.8}
+  .jsc-result{background:#fff;border:1px solid var(--line);border-radius:14px;padding:15px 16px;box-shadow:var(--shadow-sm)}
+  .jsc-badges{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:9px}
+  .jsc-badge{font-size:.68rem;font-weight:700;padding:3px 9px;border-radius:999px}
+  .jsc-badge.team{background:#eef2ff;color:#4338ca}
+  .jsc-badge.origin{background:#f0fdfa;color:#0f766e;border:1px solid #99f6e4}
+  .jscene.active .jsc-badge.origin{animation:jsBadge 1.5s ease-in-out .4s 2}
+  @keyframes jsBadge{0%,100%{box-shadow:0 0 0 0 rgba(13,148,136,0)}50%{box-shadow:0 0 0 4px rgba(13,148,136,.16)}}
+  .jsc-result b{display:block;font-size:.9rem;color:var(--ink);line-height:1.45;margin-bottom:6px}
+  .jsc-result p{margin:0;font-size:.78rem;color:var(--slate);line-height:1.6}
+  /* step timeline */
+  .jrny-steps{list-style:none;display:flex;flex-direction:column;gap:6px;width:100%;max-width:420px}
+  .jstep{display:flex;gap:16px;align-items:flex-start;padding:14px 16px;border-radius:14px;border:1px solid transparent;transition:.35s}
+  .jstep.on{background:#fff;border-color:var(--brand-100);box-shadow:var(--shadow-sm)}
+  .jstep-n{flex-shrink:0;width:30px;height:30px;border-radius:50%;background:#ede9e0;color:var(--slate-light);font-weight:800;font-size:.9rem;display:grid;place-items:center;transition:.35s}
+  .jstep.on .jstep-n{background:var(--brand);color:#fff;box-shadow:0 0 0 5px var(--brand-50)}
+  .jstep b{display:block;font-size:.98rem;color:var(--ink);margin-bottom:2px}
+  .jstep small{font-size:.85rem;color:var(--slate);line-height:1.55}
+  .jstep.on b{color:var(--brand-dark)}
+  @media(prefers-reduced-motion:reduce){
+    .jscene.active .jsc-postbtn,.jscene.active .jsc-tap,.jscene.active .jsc-caret,.jscene.active .jsc-spin,.jscene.active .jsc-notif,.jscene.active .jsc-badge.origin{animation:none}
+    .jsc-notif{transform:none;opacity:1}
+  }
+
+  /* ---- price card value lead (access / companionship framing) ---- */
+  .price-lead{font-size:1.02rem;color:var(--ink);line-height:1.8;margin:6px auto 22px;max-width:400px;text-align:center;text-wrap:balance}
+  .price-lead strong{color:#6d28d9;font-weight:800}
+  .price-lead .pl-sub{display:block;margin-top:8px;font-size:.9rem;color:var(--slate);font-weight:500;line-height:1.85;text-wrap:pretty}
+
+  /* ---- living knowledge base (soft cadence — de-emphasised) ---- */
+  .grow-band{display:flex;gap:13px;align-items:center;max-width:660px;margin:34px auto 0;background:var(--brand-50);border:1px solid var(--brand-100);border-radius:14px;padding:15px 20px}
+  .grow-band .grow-ic{flex-shrink:0;font-size:1.35rem}
+  .grow-band div{font-size:.9rem;color:#3a5a4c;line-height:1.75;text-wrap:pretty}
+  .grow-band strong{color:#14603f}
+  .grow-band .grow-num{color:var(--slate-light);font-weight:500}
+  @media(max-width:600px){.grow-band{flex-direction:column;text-align:center;gap:8px}}
 </style>
 </head>
 <body>
@@ -248,9 +329,74 @@
         <p class="sig-cap">収録例：「人工呼吸器の開始時、最初に確認・設定すべき項目は？」より</p>
       </div>
     </div>
+  </div>
+</section>
+
+<!-- journey: your question becomes knowledge -->
+<section class="section" style="background:linear-gradient(180deg,#ffffff,var(--brand-50))">
+  <div class="wrap">
+    <div class="head reveal">
+      <div class="kicker">Your question → Knowledge</div>
+      <h2>読むだけじゃない。<br>あなたの疑問が、ナレッジになって返ってくる。</h2>
+      <p>現場でぶつかった「これ、どうする？」を投稿すると、専門医が調べて回答し、プレミアムナレッジに加えていきます。解決したら、アプリにお知らせが届きます。</p>
+    </div>
+
+    <div class="jrny reveal">
+      <div class="jrny-phone">
+        <div class="jp-frame">
+          <div class="jp-screen" id="jrnyScreen">
+            <!-- 1. 投稿する -->
+            <div class="jscene js-scene active">
+              <div class="jsc-bar"><span class="jsc-dot"></span>設定</div>
+              <div class="jsc-card"><div class="jsc-row"><span class="jsc-ic">⭐</span><div><b>プレミアム</b><small>ご利用中</small></div></div></div>
+              <button class="jsc-postbtn">✍️ 臨床疑問を投稿する</button>
+              <span class="jsc-tap"></span>
+            </div>
+            <!-- 2. 疑問を送る -->
+            <div class="jscene js-scene">
+              <div class="jsc-sheet-title">臨床疑問を投稿</div>
+              <div class="jsc-field jsc-textarea">人工呼吸器のウィーニング、SBTの合格基準は？<span class="jsc-caret"></span></div>
+              <div class="jsc-inline"><div class="jsc-field sm">職種：集中治療医</div><div class="jsc-field sm">ペンネーム：任意</div></div>
+              <button class="jsc-sendbtn">送信する</button>
+            </div>
+            <!-- 3. 専門医が回答 -->
+            <div class="jscene js-scene">
+              <div class="jsc-doc">🧑‍⚕️</div>
+              <div class="jsc-doc-name">Dr.ノード<small>救急科・集中治療専門医</small></div>
+              <div class="jsc-working"><span class="jsc-spin"></span>調べて、ナレッジにまとめています…</div>
+              <div class="jsc-checkline">✓ エビデンス（ガイドライン・論文）を確認<br>✓「私はこうする」を書き添える</div>
+            </div>
+            <!-- 4. 通知が届く -->
+            <div class="jscene js-scene">
+              <div class="jsc-bar"><span class="jsc-dot"></span>ホーム</div>
+              <div class="jsc-notif"><span class="jsc-notif-ic">🎉</span><div><b>投稿された臨床疑問がナレッジになりました</b><small>タップして見る</small></div></div>
+              <div class="jsc-skel"></div><div class="jsc-skel"></div>
+            </div>
+            <!-- 5. ナレッジに残る -->
+            <div class="jscene js-scene">
+              <div class="jsc-bar"><span class="jsc-dot"></span>検索結果</div>
+              <div class="jsc-result">
+                <div class="jsc-badges"><span class="jsc-badge team">ナレッジ</span><span class="jsc-badge origin">現場の疑問から（集中治療医）</span></div>
+                <b>SBT（自発呼吸トライアル）の合格基準は？</b>
+                <p>RSBI＜105、SpO₂・呼吸数・循環の安定を確認。私はまず…</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <ol class="jrny-steps" id="jrnySteps">
+        <li class="jstep on"><span class="jstep-n">1</span><div><b>投稿する</b><small>設定から「臨床疑問を投稿する」をタップ。</small></div></li>
+        <li class="jstep"><span class="jstep-n">2</span><div><b>疑問を送る</b><small>職種・ペンネームは任意。匿名でも送れます。</small></div></li>
+        <li class="jstep"><span class="jstep-n">3</span><div><b>専門医が回答</b><small>Dr.ノードが調べ、「私はこうする」まで添えてナレッジ化。</small></div></li>
+        <li class="jstep"><span class="jstep-n">4</span><div><b>通知が届く</b><small>解決すると、アプリを開いたときにお知らせ。</small></div></li>
+        <li class="jstep"><span class="jstep-n">5</span><div><b>ナレッジに残る</b><small>「現場の疑問から」の由来バッジつきで、みんなの知識に。</small></div></li>
+      </ol>
+    </div>
+
     <div class="ask-band reveal">
       <span class="ask-ic">✍️</span>
-      <p><strong>読むだけじゃない。あなたの臨床疑問も、代わりに答えます。</strong>プレミアムに登録すると、アプリに<strong>「臨床疑問を投稿する」</strong>ボタンが現れます。現場でぶつかった「これ、どうする？」を送っておけば、専門医が調べて回答し、プレミアムナレッジに加えていきます。疑問が解決してナレッジになると、アプリを開いたときにお知らせが届きます。できあがったナレッジには「現場の疑問から」の目印がつきます（実名は表示されません）。
+      <p><strong>あなたの投稿は、あなただけのものになりません。</strong>実名は表示されず（職種とペンネーム、または匿名）、できあがったナレッジは他のプレミアム会員も引けるようになります。現場の一つの疑問が、みんなの知識に育ちます。
       <span class="ask-note">※個別の回答をお約束するものではなく、反映までお時間をいただくことがあります。</span></p>
     </div>
   </div>
@@ -275,6 +421,10 @@
           <li><span>🔍</span><div>検索・クイズから<strong>そのまま引き出せる</strong></div></li>
         </ul>
       </div>
+    </div>
+    <div class="grow-band reveal">
+      <span class="grow-ic">🌱</span>
+      <div><strong>止まらないナレッジベース。</strong>専門医の手で、あたらしいナレッジが毎週増え続けています<span class="grow-num">（だいたい週1〜2本）</span>。あなたの投稿も、その一部に。</div>
     </div>
   </div>
 </section>
@@ -348,20 +498,22 @@
       <div class="star">⭐</div>
       <h3>MediNode プレミアム</h3>
       <div class="price-note">月額980円（税込）<br><span>いつでも解約OK</span></div>
+      <p class="price-lead">読む・訊く・引ける。<strong>月980円で、救急・集中治療の専門医がそばに。</strong><span class="pl-sub">「私はこうする」まで読めて、あなたの疑問には代わりに調べて答えます。集めた蔵書を買うのではなく、専門医の伴走を続けて受けとる形です。</span></p>
       <div style="text-align:left;background:var(--brand-50);border:1px solid var(--brand-100);border-radius:12px;padding:14px 16px;margin-bottom:18px;font-size:.9rem;color:var(--slate);line-height:1.75">
         <strong style="color:var(--brand-dark)">8/18まで、公開記念キャンペーン中。</strong> <strong>①アカウント登録だけ</strong>で、そのまま<strong>7日間</strong>試せます（コード・カード不要。通常3日）。もっと長く試すなら——<strong>②noteの無料コード</strong>をアプリに入力すればカード不要で<strong>1ヶ月</strong>（通常3週間）、<strong>③カード登録</strong>なら<strong>最初の2週間無料</strong>。①②は期間が終わると自動で通常表示に戻り、③も期間中に解約すれば料金はかかりません。すでに使っている方は、アプリ内の<strong>友達紹介コード</strong>もどうぞ——紹介された方は<strong>2週間</strong>の無料おためし、紹介した方もプレミアム期間が<strong>14日</strong>のびます。
       </div>
       <ul>
+        <li>臨床疑問を投稿 → 専門医が代わりに調べて回答・ナレッジ化</li>
+        <li>各ナレッジに「集中治療医の実践」（“私はこうする”）つき</li>
         <li>専門医がキュレーションした医療ナレッジ・参考文献</li>
-        <li>各ナレッジに「集中治療医の実践」（専門医の判断）つき</li>
-        <li>臨床疑問を投稿 → 専門医が回答してナレッジに反映</li>
         <li>全タブで使える「⭐プレミアム」フィルタ</li>
         <li>個人のNotion／Algolia設定は不要・すぐ使える</li>
         <li>個人・部署の知識と統合して横断検索</li>
         <li>ログインで端末をまたいで引き継ぎ・いつでも解約可</li>
       </ul>
       <a class="btn btn-prem" href="https://medical-search-public.vercel.app/" target="_blank" rel="noopener">アプリで登録する（まずは無料）</a>
-      <p style="margin-top:16px;font-size:.82rem;color:var(--slate-light)">お申し込み・コードの入力・お支払いは、アプリ内で行います（決済代行：Stripe。カード情報はStripeが管理し、アプリは保持しません）。無料コードは<a href="https://note.com/gifted_arnica594" target="_blank" rel="noopener" style="color:var(--brand)">Dr.ノードのnote</a>で配布しています。</p>
+      <p style="margin-top:16px;font-size:.82rem;color:var(--slate-light);text-wrap:pretty">お申し込み・コードの入力・お支払いは、アプリ内で行います（決済代行：Stripe。カード情報はStripeが管理し、アプリは保持しません）。無料コードは<a href="https://note.com/gifted_arnica594" target="_blank" rel="noopener" style="color:var(--brand)">Dr.ノードのnote</a>で配布しています。</p>
+      <p style="margin-top:10px;font-size:.78rem;color:var(--slate-light);text-wrap:pretty">※ サービス内容の向上・維持のため、将来的に料金を改定する場合があります。変更する際は、事前にアプリ内やnote等でお知らせします。</p>
     </div>
   </div>
 </section>
@@ -390,6 +542,27 @@
 <script>
   const io=new IntersectionObserver((e)=>{e.forEach(x=>{if(x.isIntersecting){x.target.classList.add('in');io.unobserve(x.target);}})},{threshold:.12});
   document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+
+  /* guided phone tour: 投稿→回答→ナレッジ化→通知→由来バッジ */
+  (function(){
+    const scenes=[].slice.call(document.querySelectorAll('#jrnyScreen .js-scene'));
+    const steps=[].slice.call(document.querySelectorAll('#jrnySteps .jstep'));
+    if(!scenes.length) return;
+    const reduce=window.matchMedia('(prefers-reduced-motion:reduce)').matches;
+    if(reduce){ steps.forEach(s=>s.classList.add('on')); return; }
+    let i=0, timer=null;
+    function show(n){
+      scenes.forEach((s,k)=>s.classList.toggle('active',k===n));
+      steps.forEach((s,k)=>s.classList.toggle('on',k===n));
+    }
+    function start(){ if(timer) return; timer=setInterval(function(){ i=(i+1)%scenes.length; show(i); },2700); }
+    function stop(){ if(timer){ clearInterval(timer); timer=null; } }
+    /* run only while the tour is on screen */
+    const wrap=document.querySelector('.jrny');
+    if(wrap && 'IntersectionObserver' in window){
+      new IntersectionObserver(function(e){ e.forEach(function(x){ x.isIntersecting?start():stop(); }); },{threshold:.25}).observe(wrap);
+    } else { start(); }
+  })();
 </script>
 <script src="assets/lp-counter.js" defer></script>
 <script src="assets/attribution.js" defer></script>
