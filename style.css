@@ -234,3 +234,9 @@ footer{border-top:1px solid var(--line);padding:48px 0 40px;background:var(--bg-
 .cp-note{font-size:.8rem;color:#cfe3d8;margin:0}
 @media(max-width:880px){.cp-grid{grid-template-columns:1fr 1fr}.cp-card{padding:30px 22px 26px}}
 .cp-old{font-size:.95rem;color:#9ecdb8;text-decoration:line-through;text-decoration-thickness:2px;margin-bottom:4px;font-weight:700}
+.cp-referral{display:flex;gap:16px;align-items:flex-start;background:rgba(255,255,255,.10);border:1px solid rgba(255,255,255,.22);border-radius:16px;padding:18px 20px;margin-bottom:22px}
+.cp-ref-pill{flex:none;background:var(--accent);color:#fff;font-size:.74rem;font-weight:800;border-radius:999px;padding:5px 12px;letter-spacing:.04em;white-space:nowrap;margin-top:2px}
+.cp-ref-lead{margin:0 0 4px;font-weight:800;font-size:1.02rem;color:#fff}
+.cp-ref-desc{margin:0;font-size:.86rem;color:#d7ebe2;line-height:1.65}
+.cp-ref-desc b{color:#ffd98a;font-weight:800}
+@media(max-width:640px){.cp-referral{flex-direction:column;gap:10px}}
