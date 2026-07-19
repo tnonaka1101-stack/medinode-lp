@@ -233,3 +233,4 @@ footer{border-top:1px solid var(--line);padding:48px 0 40px;background:var(--bg-
 .campaign .btn-primary:hover{background:var(--brand-50)}
 .cp-note{font-size:.8rem;color:#cfe3d8;margin:0}
 @media(max-width:880px){.cp-grid{grid-template-columns:1fr 1fr}.cp-card{padding:30px 22px 26px}}
+.cp-old{font-size:.95rem;color:#9ecdb8;text-decoration:line-through;text-decoration-thickness:2px;margin-bottom:4px;font-weight:700}
