@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>MediNode｜普段のNotionが、そのまま検索DB＋一問一答になる</title>
-<meta name="description" content="MediNodeは、Notionに蓄積した医療知識・参考文献をスマホ・PCから高速検索できる医療者向けWebアプリ。普段の記録が、そのまま検索データベースと一問一答クイズになります。">
+<title>MediNode｜経験は、検索できる。</title>
+<meta name="description" content="症例も、文献も、当直の学びも。Notionに書いたあなたの記録が、現場で引き出せる「第二の脳」に。医療者のための知識検索アプリMediNode。検索と一問一答クイズ、無料ではじめられます。">
 <meta name="theme-color" content="#196b4f">
 <link rel="icon" href="assets/icon-192.png">
 <link rel="apple-touch-icon" href="assets/icon-192.png">
@@ -45,26 +45,45 @@
   .hv-float .icn{width:16px;height:16px}
   .note-callout .icn{width:20px;height:20px;margin-top:2px}
 
-  /* ---- hero ---- */
+  /* 告知バーとヒーローの緑が続くので、境界に薄い罫線を入れる */
+  .announce{border-bottom:1px solid rgba(255,255,255,.16)}
+
+  /* ---- sticky mobile CTA（ヒーロー通過後に表示・最下部CTAで消える） ---- */
+  .sticky-cta{position:fixed;left:0;right:0;bottom:0;z-index:60;display:none;
+    padding:10px 16px calc(10px + env(safe-area-inset-bottom));
+    background:rgba(255,255,255,.92);backdrop-filter:saturate(180%) blur(12px);
+    border-top:1px solid var(--line);box-shadow:0 -6px 20px rgba(40,33,22,.08);
+    transform:translateY(110%);transition:transform .3s ease}
+  .sticky-cta.show{transform:none}
+  .sticky-cta .btn{width:100%;padding:14px 20px;font-size:1rem}
+  @media(max-width:780px){.sticky-cta{display:block}}
+  @media(prefers-reduced-motion:reduce){.sticky-cta{transition:none}}
+
+  /* ---- hero（OGPカードと同じ常盤グリーンの世界観） ---- */
   .hero{
-    position:relative;overflow:hidden;
-    background:radial-gradient(900px 500px at 80% -8%,var(--brand-50),transparent 58%),
-      radial-gradient(760px 460px at -8% 8%,#faf5ec,transparent 55%),
-      linear-gradient(180deg,#fcfbf8,#fff 60%);
-    padding:80px 0 72px;
+    position:relative;overflow:hidden;color:#f6efe0;
+    background:
+      radial-gradient(780px 560px at 86% 30%, rgba(127,223,184,.15), transparent 62%),
+      linear-gradient(150deg,#175c44,#124a36 55%,#0e3a2b);
+    padding:84px 0 80px;
   }
   .hero::before{content:"";position:absolute;inset:0;pointer-events:none;
-    background-image:radial-gradient(rgba(87,83,75,.09) 1px,transparent 1.5px);
-    background-size:22px 22px;
-    -webkit-mask-image:radial-gradient(720px 520px at 74% 30%,#000,transparent 72%);
-    mask-image:radial-gradient(720px 520px at 74% 30%,#000,transparent 72%)}
+    background-image:radial-gradient(rgba(246,239,224,.10) 1.5px,transparent 1.7px);
+    background-size:30px 30px;
+    -webkit-mask-image:linear-gradient(115deg,transparent 42%,#000);
+    mask-image:linear-gradient(115deg,transparent 42%,#000)}
   .hero-grid{display:grid;grid-template-columns:1.05fr .95fr;gap:56px;align-items:center}
-  .eyebrow{display:inline-flex;align-items:center;gap:8px;background:var(--brand-50);color:var(--brand-dark);
-    font-weight:700;font-size:.82rem;letter-spacing:.04em;padding:7px 14px;border-radius:999px;border:1px solid var(--brand-200);margin-bottom:22px}
-  .hero h1{font-size:clamp(2rem,4.6vw,3.15rem);line-height:1.32;font-weight:800;letter-spacing:.005em;margin-bottom:22px}
-  .hero h1 .hl{color:var(--brand);white-space:nowrap}
-  .hero p.lead{font-size:1.12rem;color:var(--slate);margin-bottom:30px;max-width:520px}
+  .eyebrow{display:inline-flex;align-items:center;gap:8px;background:rgba(255,255,255,.10);color:#eaf5ef;
+    font-weight:700;font-size:.82rem;letter-spacing:.04em;padding:7px 14px;border-radius:999px;border:1px solid rgba(255,255,255,.28);margin-bottom:22px}
+  .hero h1{font-size:clamp(2.5rem,6vw,3.9rem);line-height:1.34;font-weight:800;letter-spacing:.02em;margin-bottom:24px;color:#fff}
+  .hero h1 .hl{color:#ffc95c;white-space:nowrap;border-bottom:.14em solid rgba(255,201,92,.85);padding-bottom:.04em}
+  .hero p.lead{font-size:1.12rem;color:#cfe3d8;margin-bottom:30px;max-width:520px}
+  .hero p.lead b{color:#7fdfb8;font-weight:700}
   .hero-actions{display:flex;gap:14px;flex-wrap:wrap;margin-bottom:18px}
+  .hero .btn-primary{background:#ffc95c;color:#42300a;box-shadow:0 12px 28px rgba(0,0,0,.32)}
+  .hero .btn-primary:hover{background:#ffd67e;transform:translateY(-2px);box-shadow:0 16px 32px rgba(0,0,0,.38)}
+  .hero .btn-ghost{background:rgba(255,255,255,.08);color:#fff;border:1.5px solid rgba(255,255,255,.38)}
+  .hero .btn-ghost:hover{background:rgba(255,255,255,.16);border-color:rgba(255,255,255,.6)}
   .hero-note-link{display:inline-flex;align-items:center;gap:10px;margin-bottom:20px;
     background:#fff;border:1px solid var(--accent-100);border-radius:999px;padding:7px 8px 7px 8px;
     box-shadow:var(--shadow-sm);font-size:.84rem;font-weight:600;color:var(--slate);transition:.2s ease}
@@ -75,9 +94,11 @@
   .hero-note-link:hover .hnl-arrow{transform:translateX(3px)}
   @media(max-width:900px){.hero-note-link{margin-inline:auto}}
   .hero-trust{display:flex;gap:10px;flex-wrap:wrap}
-  .trust-pill{display:inline-flex;align-items:center;gap:7px;font-size:.8rem;font-weight:600;color:var(--slate);
-    background:#fff;border:1px solid var(--line);border-radius:999px;padding:6px 14px;box-shadow:var(--shadow-sm)}
-  .trust-pill .tp-ic{color:var(--brand-500);font-weight:800}
+  .trust-pill{display:inline-flex;align-items:center;gap:7px;font-size:.8rem;font-weight:700;color:#eaf5ef;
+    background:rgba(255,255,255,.10);border:1.5px solid rgba(255,255,255,.30);border-radius:999px;padding:6px 14px}
+  .trust-pill .tp-ic{color:#ffc95c;font-weight:800}
+  .hero .hero-start{color:#cfe3d8}
+  .hero .hero-start b{color:#7fdfb8}
 
   /* leaf accents (アプリのオンボーディングと同じ若葉モチーフ) */
   .leaf{position:absolute;font-size:1.5rem;opacity:.5;animation:leafsway 6s ease-in-out infinite;pointer-events:none}
@@ -86,9 +107,9 @@
 
   /* ---- hero live demo phone ---- */
   .hero-visual{position:relative;display:grid;place-items:center;min-height:520px}
-  .hv-glow{position:absolute;width:380px;height:380px;border-radius:50%;
-    background:radial-gradient(circle,rgba(25,107,79,.16),rgba(74,174,140,.08) 55%,transparent 72%);
-    filter:blur(8px);z-index:0;animation:hvpulse 4s ease-in-out infinite}
+  .hv-glow{position:absolute;width:400px;height:400px;border-radius:50%;
+    background:radial-gradient(circle,rgba(127,223,184,.30),rgba(127,223,184,.12) 55%,transparent 72%);
+    filter:blur(10px);z-index:0;animation:hvpulse 4s ease-in-out infinite}
   @keyframes hvpulse{0%,100%{transform:scale(1);opacity:.9}50%{transform:scale(1.06);opacity:1}}
   .hv-float{position:absolute;z-index:5;background:#fff;border:1px solid var(--line);
     border-radius:14px;padding:11px 16px;box-shadow:var(--shadow-md);
@@ -111,11 +132,11 @@
   /* ---- app mock（実アプリの常盤デザインをCSSで再現） ---- */
   .mock{position:relative;z-index:2;width:min(290px,78vw);border-radius:40px;padding:10px;
     background:linear-gradient(160deg,#28372f,#17211c);
-    box-shadow:0 34px 64px rgba(25,107,79,.22),0 12px 26px rgba(28,42,36,.14)}
+    box-shadow:0 36px 74px rgba(0,0,0,.45),0 12px 26px rgba(0,0,0,.25),0 0 0 1px rgba(255,255,255,.14)}
   .mock::before{content:"";position:absolute;top:14px;left:50%;transform:translateX(-50%);
     width:104px;height:22px;background:#17211c;border-radius:0 0 14px 14px;z-index:6}
   .mock-screen{border-radius:31px;background:linear-gradient(180deg,#f0f9f5,#fbfdfc 30%);overflow:hidden;
-    display:flex;flex-direction:column;height:560px}
+    display:flex;flex-direction:column;height:560px;color:var(--ink)}
   .mock-head{display:flex;align-items:center;justify-content:space-between;padding:32px 14px 8px}
   .mock-head .mh-brand{display:flex;align-items:center;gap:7px;font-weight:800;font-size:.94rem;letter-spacing:.02em}
   .mock-head img{width:21px;height:21px;border-radius:6px}
@@ -233,6 +254,14 @@
   .start-note{text-align:center;color:var(--slate-light,#8a8f8b);font-size:.85rem;margin-top:18px}
   @media(max-width:760px){.start-paths{grid-template-columns:1fr}.path-card{padding:24px 20px}}
   .setup-teaser{background:linear-gradient(135deg,var(--brand-50),#fff);border:1px solid var(--brand-100);border-radius:22px;padding:34px 32px;text-align:center;box-shadow:var(--shadow-sm)}
+  /* ---- quickstart（ヒーロー直下の30秒導線） ---- */
+  .quickstart{background:linear-gradient(135deg,var(--brand-50),#fff);border:1.5px solid var(--brand-200);border-radius:24px;padding:42px 36px;text-align:center;box-shadow:var(--shadow-md)}
+  .quickstart .qs-kicker{color:var(--brand-500);font-weight:700;font-size:.84rem;letter-spacing:.08em;text-transform:uppercase;margin-bottom:10px}
+  .quickstart h2{font-size:clamp(1.5rem,3.2vw,2rem);font-weight:800;line-height:1.45;margin-bottom:10px}
+  .quickstart .qs-lead{color:var(--slate);font-size:1.02rem;margin-bottom:24px}
+  .quickstart .st-flow{margin-bottom:26px}
+  .quickstart small{display:block;margin-top:14px;color:var(--slate-light);font-size:.85rem}
+  @media(max-width:560px){.quickstart{padding:32px 22px}}
   .st-flow{display:inline-flex;align-items:center;gap:10px;flex-wrap:wrap;justify-content:center;margin-bottom:18px}
   .st-node{display:inline-flex;align-items:center;gap:9px;font-weight:700;font-size:.98rem;background:#fff;border:1px solid var(--line);border-radius:999px;padding:9px 18px;box-shadow:var(--shadow-sm)}
   .st-node b{width:23px;height:23px;border-radius:50%;background:var(--brand);color:#fff;font-size:.82rem;display:grid;place-items:center;flex-shrink:0}
@@ -470,13 +499,13 @@
 
 <!-- HERO -->
 <section class="hero">
-  <span class="leaf" style="top:12%;left:4%;color:var(--brand-400)"><svg class="icn"><use href="#i-leaf"/></svg></span>
-  <span class="leaf" style="bottom:14%;right:5%;animation-delay:1.4s;color:var(--brand-400)"><svg class="icn"><use href="#i-leaf"/></svg></span>
+  <span class="leaf" style="top:12%;left:4%;color:rgba(127,223,184,.55)"><svg class="icn"><use href="#i-leaf"/></svg></span>
+  <span class="leaf" style="bottom:14%;right:5%;animation-delay:1.4s;color:rgba(127,223,184,.55)"><svg class="icn"><use href="#i-leaf"/></svg></span>
   <div class="wrap hero-grid">
     <div>
       <span class="eyebrow"><svg class="icn"><use href="#i-steth"/></svg><span>医療者のための知識アプリ・公開中</span></span>
-      <h1>普段のNotionが、<br>そのまま<span class="hl">検索DB</span>と<br><span class="hl">一問一答</span>になる。</h1>
-      <p class="lead">移動中も、当直中も、知識はすぐそこに。いつものNotionに書いた<span class="nobr">症例・文献・メモ</span>が、<span class="nobr">スマホ・PC</span>から一瞬で引ける<span class="nobr">「第二の脳」</span>に変わります。入力し直す手間はありません。</p>
+      <h1>経験は、<br><span class="hl">検索</span>できる。</h1>
+      <p class="lead">症例も、文献も、当直の学びも。いつものNotionに書いたあなたの記録が、<b>現場で引き出せる</b><span class="nobr">「第二の脳」</span>に変わります。入力し直す手間はありません。</p>
       <div class="hero-actions">
         <a class="btn btn-primary btn-arrow" href="https://medical-search-public.vercel.app/" target="_blank" rel="noopener">今すぐ体験する（無料）</a>
         <a class="btn btn-ghost" href="setup.html">自分のNotionをつなぐ</a>
@@ -488,9 +517,9 @@
         <span class="hnl-arrow">→</span>
       </a>
       <div class="hero-trust">
-        <span class="trust-pill"><span class="tp-ic">✓</span>いつものNotionに繋ぐだけ</span>
-        <span class="trust-pill"><span class="tp-ic">✓</span>検索の中身は溜めない設計</span>
-        <span class="trust-pill"><span class="tp-ic">✓</span>スマホのホーム画面から起動</span>
+        <span class="trust-pill"><span class="tp-ic">⌕</span>高速検索</span>
+        <span class="trust-pill"><span class="tp-ic">✓</span>一問一答クイズ</span>
+        <span class="trust-pill"><span class="tp-ic">🔗</span>いつものNotionにつなぐだけ</span>
       </div>
     </div>
     <div class="hero-visual">
@@ -522,16 +551,20 @@
   </div>
 </section>
 
-<!-- free DB available now -->
-<section class="section" style="padding:48px 0 0">
+<!-- QUICKSTART: 30秒ではじめる -->
+<section class="section" id="quickstart" style="padding:56px 0 8px">
   <div class="wrap-narrow">
-    <div class="free-db-banner reveal">
-      <div class="fdb-left">
-        <span class="fdb-badge" style="display:inline-flex;align-items:center;gap:6px"><svg class="icn"><use href="#i-gift"/></svg>無料テンプレート</span>
-        <h3>配布DBテンプレートも、無料で使えます。</h3>
-        <p>Medical・Reference・📋Manual の3つのDB入り。複製すれば、知識の整理を今日から始められます。あとは、アプリに繋ぐだけ。Notion側の準備は<a href="notion.html" style="color:var(--brand);font-weight:700">Notionの準備ガイド</a>に図解があります。</p>
+    <div class="quickstart reveal">
+      <div class="qs-kicker">Try it now</div>
+      <h2>さわってみるのが、いちばん早い。</h2>
+      <p class="qs-lead">メールアドレスひとつで、<b>30秒</b>ではじめられます。</p>
+      <div class="st-flow">
+        <span class="st-node"><b>1</b>アプリを開く</span><span class="st-sep">→</span>
+        <span class="st-node"><b>2</b>メールで6桁コード</span><span class="st-sep">→</span>
+        <span class="st-node"><b>3</b>検索してみる</span>
       </div>
-      <a class="btn btn-primary btn-arrow fdb-btn" href="https://www.notion.com/ja/templates/medinode-db" target="_blank" rel="noopener">無料テンプレを入手</a>
+      <a class="btn btn-primary btn-arrow" href="https://medical-search-public.vercel.app/" target="_blank" rel="noopener">アプリを開いてはじめる</a>
+      <small>カードもNotion設定もいりません。専門医の救急・集中治療ナレッジを、3日間そのまま検索・クイズできます。</small>
     </div>
   </div>
 </section>
@@ -614,6 +647,16 @@
       </div>
     </div>
     <p class="start-note reveal">体験と自分のNotionは併用できます。部署の共有DBにもつながります。</p>
+
+    <!-- free DB template（Notionとつなぐ派の入口） -->
+    <div class="free-db-banner reveal" style="margin-top:36px">
+      <div class="fdb-left">
+        <span class="fdb-badge" style="display:inline-flex;align-items:center;gap:6px"><svg class="icn"><use href="#i-gift"/></svg>無料テンプレート</span>
+        <h3>配布DBテンプレートも、無料で使えます。</h3>
+        <p>Medical・Reference・📋Manual の3つのDB入り。複製すれば、知識の整理を今日から始められます。あとは、アプリに繋ぐだけ。Notion側の準備は<a href="notion.html" style="color:var(--brand);font-weight:700">Notionの準備ガイド</a>に図解があります。</p>
+      </div>
+      <a class="btn btn-primary btn-arrow fdb-btn" href="https://www.notion.com/ja/templates/medinode-db" target="_blank" rel="noopener">無料テンプレを入手</a>
+    </div>
   </div>
 </section>
 
@@ -884,20 +927,25 @@
 </section>
 
 <!-- FINAL CTA -->
-<section class="section cta-band">
+<section class="section cta-band" id="finalCta">
   <div class="wrap">
-    <h2 class="reveal">いつものNotionを、<br>「引ける知識」に変えてみる。</h2>
-    <p class="reveal">MediNodeは公開中です。メールアドレスひとつで、まず3日間の体験からどうぞ。</p>
+    <h2 class="reveal">経験は、<span style="color:#ffc95c">検索</span>できる。</h2>
+    <p class="reveal">症例も、文献も、当直の学びも。メールアドレスひとつで、まず3日間の体験からどうぞ。</p>
     <a class="btn btn-primary btn-arrow reveal" href="https://medical-search-public.vercel.app/" target="_blank" rel="noopener">今すぐ体験する（無料）</a>
     <small class="reveal">医療者全般向け・スマホでもPCでも使えます</small>
   </div>
 </section>
 
+<!-- sticky CTA (mobile) -->
+<div class="sticky-cta" id="stickyCta">
+  <a class="btn btn-primary btn-arrow" href="https://medical-search-public.vercel.app/" target="_blank" rel="noopener" tabindex="-1">無料で体験する</a>
+</div>
+
 <footer>
   <div class="wrap foot">
     <div>
       <div class="brand"><img src="assets/icon-192.png" alt="" style="width:30px;height:30px;border-radius:8px">MediNode</div>
-      <p class="foot-tagline">普段のNotionが、そのまま検索DBと一問一答になる、医療者向けの知識アプリ。</p>
+      <p class="foot-tagline">経験は、検索できる。いつものNotionが、そのまま検索DBと一問一答になる、医療者向けの知識アプリ。</p>
     </div>
     <div class="foot-col">
       <h5>ページ</h5>
@@ -979,6 +1027,25 @@
       },130);
     }
     cycle();
+  })();
+
+  // sticky CTA（モバイル）: ヒーローを通過したら表示、最下部CTAが見えたら隠す
+  (function(){
+    const bar=document.getElementById('stickyCta');
+    const hero=document.querySelector('.hero');
+    const final=document.getElementById('finalCta');
+    if(!bar||!hero||!final) return;
+    const link=bar.querySelector('a');
+    function update(){
+      const heroGone=hero.getBoundingClientRect().bottom<=0;
+      const finalSeen=final.getBoundingClientRect().top<window.innerHeight;
+      const on=heroGone&&!finalSeen;
+      bar.classList.toggle('show',on);
+      link.tabIndex=on?0:-1;
+    }
+    addEventListener('scroll',update,{passive:true});
+    addEventListener('resize',update);
+    update();
   })();
 
   // quiz mock: 答えの表示をゆっくりループ（タップでも切替可能）
