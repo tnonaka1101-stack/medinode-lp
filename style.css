@@ -178,7 +178,10 @@ footer{border-top:1px solid var(--line);padding:48px 0 40px;background:var(--bg-
 .foot-col a{display:block;font-size:.92rem;color:var(--slate);margin-bottom:8px}
 .foot-col a:hover{color:var(--brand)}
 .foot-tagline{font-size:.9rem;color:var(--slate);max-width:280px;margin-top:6px}
-.foot-copy{width:100%;border-top:1px solid var(--line);margin-top:30px;padding-top:22px;font-size:.82rem;color:var(--slate-light);display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px}
+.foot-legal{width:100%;border-top:1px solid var(--line);margin-top:30px;padding-top:20px;display:flex;flex-wrap:wrap;gap:8px 20px}
+.foot-legal a{font-size:.82rem;color:var(--slate-light);text-decoration:none}
+.foot-legal a:hover{color:var(--brand-600);text-decoration:underline}
+.foot-copy{width:100%;border-top:1px solid var(--line);margin-top:18px;padding-top:18px;font-size:.82rem;color:var(--slate-light);display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px}
 
 /* ---------- generic cards ---------- */
 .card{background:#fff;border:1px solid var(--line);border-radius:var(--radius);box-shadow:var(--shadow-sm)}
@@ -239,4 +242,5 @@ footer{border-top:1px solid var(--line);padding:48px 0 40px;background:var(--bg-
 .cp-ref-lead{margin:0 0 4px;font-weight:800;font-size:1.02rem;color:#fff}
 .cp-ref-desc{margin:0;font-size:.86rem;color:#d7ebe2;line-height:1.65}
 .cp-ref-desc b{color:#ffd98a;font-weight:800}
+.cp-ref-note{margin:10px 0 0;font-size:.76rem;color:#a9c9bd;line-height:1.6}
 @media(max-width:640px){.cp-referral{flex-direction:column;gap:10px}}
