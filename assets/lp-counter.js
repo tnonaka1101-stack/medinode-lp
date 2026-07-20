@@ -19,6 +19,8 @@
       if (document.referrer) {
         const host = new URL(document.referrer).hostname.replace(/^www\./, '');
         if (host && host !== location.hostname) {
+          const SEARCH_HOSTS = ['google.', 'bing.', 'yahoo.', 'duckduckgo.', 'baidu.', 'ecosia.'];
+          if (SEARCH_HOSTS.some(function (s) { return host.indexOf(s) !== -1; })) return 'search';
           const map = {
             't.co': 'x', 'x.com': 'x', 'twitter.com': 'x',
             'note.com': 'note', 'note.mu': 'note',

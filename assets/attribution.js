@@ -33,6 +33,10 @@
     'youtu.be': 'youtube',
   };
 
+  // 検索エンジン（自然検索）のリファラーは媒体「search」にまとめる。
+  const SEARCH_HOSTS = ['google.', 'bing.', 'yahoo.', 'duckduckgo.', 'baidu.', 'ecosia.'];
+  const isSearchHost = (host) => SEARCH_HOSTS.some((s) => host.indexOf(s) !== -1);
+
   const detect = () => {
     // 明示されたutm_sourceが最優先（今後LINE配布リンク等に付ける想定）。
     const fromQuery = new URLSearchParams(location.search).get('utm_source');
@@ -45,6 +49,7 @@
       if (document.referrer) {
         const host = new URL(document.referrer).hostname.replace(/^www\./, '');
         if (host && host !== location.hostname) {
+          if (isSearchHost(host)) return 'search';
           return REFERRER_MAP[host] || host.slice(0, 40);
         }
       }
