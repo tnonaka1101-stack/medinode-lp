@@ -1,6 +1,6 @@
 # 引き継ぎ: MediNodeプレミアム ブラッシュアップ作業
 
-最終更新: 2026-07-29
+最終更新: 2026-07-29（Phase 1 本番デプロイ済みに更新）
 このファイルは、新しいセッション（Claude／人間）が**これだけ読めば作業を再開できる**ことを目的とする。
 
 ---
@@ -14,8 +14,8 @@
 - リポジトリ:
   - `tnonaka1101-stack/medinode-lp` … LPサイト（このリポジトリ）。**書き込み可**。
   - `drnode0/medical-search-template` … アプリ本体（Next.js 16 / Supabase / Stripe / Algolia / vitest）。
-    **このセッション環境からは読み取り専用**（下記 §4 参照）。
     本番: https://medical-search-public.vercel.app/（mainへのプッシュでVercel自動デプロイ）。
+    **ローカルクローン `~/medical-search-public` からの push は通る**（下記 §4 参照）。
 
 ## 2. これまでの成果物（すべて medinode-lp の `claude/medinode-premium-brushup-6kn2bg` ブランチ）
 
@@ -27,7 +27,13 @@
 | `docs/patches/README.md` | パッチの適用＝デプロイ手順・環境変数・権限付与の方法 |
 | `docs/HANDOFF.md` | このファイル |
 
-## 3. Phase 1 実装の状態（完成・未デプロイ）
+## 3. Phase 1 実装の状態（**本番デプロイ済み・env待ちの暗転状態**）
+
+> **2026-07-29 更新**: ローカルクローン `~/medical-search-public` から main（コミット dc8cd5e）へ
+> push 済み・Vercel デプロイ完了。本番の `GET /api/cq/submit` が 200 `{"available":false}` を
+> 返すことを確認（env 未設定時の想定どおりのフォールバック状態）。
+> 受付DBには不足していた4列（投稿者職種／通知先ユーザーID／出典／投稿経路）を追加済み。
+> **残りは Vercel の環境変数2つだけ**（§5 参照）。
 
 **何を作ったか**: プレミアムへの臨床疑問投稿のアプリ内完結。
 これまで「設定→外部Notionフォーム」だった投稿を、既存のCQキャプチャモーダルに
@@ -44,27 +50,32 @@
   （受付DB＝現行Notionフォームと同じDB）を設定するまで、クライアントは自動で
   従来の外部フォーム案内にフォールバック。**envを入れた瞬間が公開**。
 
-## 4. 最大の運用上の注意: アプリ本体リポジトリへの書き込み権限
+## 4. アプリ本体リポジトリへの書き込み権限（**解決済み**）
 
-このセッション環境（Claude Code / tnonaka1101-stackのGitHub App）は
-`drnode0/medical-search-template` に対して**読み取り専用**。以下すべて403で確認済み:
-git push（プロキシ経由）／GitHub APIのref作成／フォーク作成。
-`list_repos` は can_push:true を返すが、実際のApp installationトークンは書き込み不可。
+**結論（2026-07-29）**: 403 は旧セッションのサンドボックス環境
+（tnonaka1101-stack の GitHub App 経由）に固有の問題だった。
+オーナーの Mac 上のローカルクローン **`~/medical-search-public`** は drnode0 の認証で
+push できる（Phase 1 はこの経路でデプロイ済み）。パッチ運用（docs/patches/）は
+**歴史的経緯として残すだけで、今後は不要**。
 
-- **回避策（現行）**: 実装をパッチとして medinode-lp に退避（§2）。
-  ユーザーがローカルで `git am` → main へ push → Vercel自動デプロイ（1分。手順は patches/README.md）。
-- **恒久対応**: GitHubに **drnode0** でログイン → Settings → Applications →
+- 今後のセッションは `~/medical-search-public` で作業して直接 push すればよい。
+  作業前に必ず `git fetch origin main` してリベース（main の動きが速い）。
+- サンドボックス環境（クラウド版等）で作業する場合のみ旧403問題が再発しうる。
+  その場合の恒久対応: GitHubに **drnode0** でログイン → Settings → Applications →
   Installed GitHub Apps → Claude → `medical-search-template` を書き込み権限で追加。
-  付与後は新セッションで直接 push〜PR〜マージまで可能になる。
-- 新セッションはまず `git push` を試し、通ればパッチ運用は不要（パッチと同内容の
-  ブランチをそのまま push すればよい）。
 
 ## 5. 次のアクション（優先順）
 
-1. **デプロイ確認**（ユーザーがパッチ適用済みか確認）。未適用なら patches/README.md の手順を案内。
-2. **env設定の確認**: Vercelに `CQ_INTAKE_NOTION_TOKEN` / `CQ_INTAKE_DB_ID`。
-   受付DBに任意列（投稿者職種=セレクト／ペンネーム／通知先ユーザーID／出典／投稿経路=セレクト）を
-   足すと投稿内容が自動で載る（無くても動く）。
+1. ~~デプロイ確認~~ **完了**（2026-07-29、main dc8cd5e・本番probe確認済み）。
+2. **env設定（オーナー作業・これだけでアプリ内投稿が公開される）**:
+   Vercel → medical-search-public → Settings → Environment Variables に以下2つを追加。
+   再デプロイ不要・次のリクエストから有効。
+   - `CQ_INTAKE_DB_ID` = `88b5241c1cdc48228ae4a1ba3ed54120`
+     （受付DB「❓ MediNode 臨床疑問受付_DB」のデータベースID・確認済み）
+   - `CQ_INTAKE_NOTION_TOKEN` = 受付DBに「コンテンツを挿入」権限で接続した
+     Notion Integration トークン（https://www.notion.so/my-integrations で発行し、
+     受付DBのページで ••• → コネクト → 対象Integrationを接続）
+   - 受付DBの推奨4列（投稿者職種／通知先ユーザーID／出典／投稿経路）は**追加済み**。
 3. **Phase 2**: 未解決CQボード＋「私も気になる」投票（実装計画に詳細あり）。
    コールドスタート対策として**作者のセルフ投稿5〜10件**が必須である旨をユーザーに伝えること。
 4. Phase 3以降は implementation-plan の順（ステータス可視化→検索性→静かな日常性→SRS同期→出口）。
