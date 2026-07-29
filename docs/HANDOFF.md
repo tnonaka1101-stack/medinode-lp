@@ -67,15 +67,12 @@ push できる（Phase 1 はこの経路でデプロイ済み）。パッチ運�
 ## 5. 次のアクション（優先順）
 
 1. ~~デプロイ確認~~ **完了**（2026-07-29、main dc8cd5e・本番probe確認済み）。
-2. **env設定（オーナー作業・これだけでアプリ内投稿が公開される）**:
-   Vercel → medical-search-public → Settings → Environment Variables に以下2つを追加。
-   再デプロイ不要・次のリクエストから有効。
-   - `CQ_INTAKE_DB_ID` = `88b5241c1cdc48228ae4a1ba3ed54120`
-     （受付DB「❓ MediNode 臨床疑問受付_DB」のデータベースID・確認済み）
-   - `CQ_INTAKE_NOTION_TOKEN` = 受付DBに「コンテンツを挿入」権限で接続した
-     Notion Integration トークン（https://www.notion.so/my-integrations で発行し、
-     受付DBのページで ••• → コネクト → 対象Integrationを接続）
-   - 受付DBの推奨4列（投稿者職種／通知先ユーザーID／出典／投稿経路）は**追加済み**。
+2. ~~env設定~~ **完了・アプリ内投稿は本番で点灯済み**（2026-07-29）。
+   オーナーが `CQ_INTAKE_NOTION_TOKEN` / `CQ_INTAKE_DB_ID`（=`88b5241c1cdc48228ae4a1ba3ed54120`）を
+   Vercel に設定し再デプロイ → probe `{"available":true}`・未ログインPOST 401 を確認済み。
+   受付DBの推奨4列（投稿者職種／通知先ユーザーID／出典／投稿経路）も追加済み。
+   ※注: env変更は「次のリクエストから有効」ではなく**再デプロイで反映**される（Vercelの仕様）。
+   残る目視は、オーナー実機での投稿1件（受付DBに投稿経路=アプリ内で載るか）のみ。
 3. **Phase 2**: 未解決CQボード＋「私も気になる」投票（実装計画に詳細あり）。
    コールドスタート対策として**作者のセルフ投稿5〜10件**が必須である旨をユーザーに伝えること。
 4. Phase 3以降は implementation-plan の順（ステータス可視化→検索性→静かな日常性→SRS同期→出口）。
