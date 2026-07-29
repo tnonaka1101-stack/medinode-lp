@@ -67,12 +67,11 @@
 
 ## Phase 2: 未解決CQボード＋「私も気になる」投票（B-1）
 
-**状態: 実装完了・PR待ち（2026-07-29）**
-ブランチ `claude/phase2-cq-board`（コミット bf5e705）。
-PR: https://github.com/drnode0/medical-search-template/compare/main...claude/phase2-cq-board?expand=1
-検証: tsc 0エラー／vitest 444件全通過／build成功／ローカル実データで板5件を目視（ライト・ダーク）。
-**マージ前に `supabase/migrations/0017_cq_votes.sql` の適用が必要**
-（未適用のままマージすると、会員が投票ボタンを押しても500になる）。
+**状態: 本番デプロイ済み（2026-07-29）** — main = bf5e705。
+migration 0017_cq_votes は Supabase 適用済み（REST で存在確認）。
+本番検証: `/api/cq/board` が板5件を返す・未ログイン投票は 401・
+返却JSONに個人情報項目なし。tsc 0／vitest 444件／build も通過済み。
+残: オーナーのプレミアム実機で「私も気になる」を1回押して票が入るかの目視。
 
 目安: 1週間／KPI: 週の投票数・投票者ユニーク数
 
