@@ -361,42 +361,48 @@
       <div class="jrny-phone">
         <div class="jp-frame">
           <div class="jp-screen" id="jrnyScreen">
-            <!-- 1. 投稿ボタン（設定→Notionフォームへの外部リンク） -->
+            <!-- 1. 画面右下のCQボタン（アプリ内で完結） -->
             <div class="jscene js-scene active">
-              <div class="jsc-bar"><span class="jsc-dot"></span>設定</div>
-              <div class="jsc-setrow">
-                <span class="jsc-setic">?</span>
-                <div class="jsc-settx"><b>臨床疑問を投稿する ⭐</b><small>専門医が選定してプレミアムナレッジとして配信</small></div>
-                <span class="jsc-ext">↗</span>
+              <div class="jsc-bar"><span class="jsc-dot"></span>検索</div>
+              <div class="jsc-skel"></div><div class="jsc-skel"></div><div class="jsc-skel"></div>
+              <div style="display:flex;justify-content:flex-end;margin-top:18px">
+                <span style="display:inline-flex;align-items:center;gap:6px;background:#f59e0b;color:#fff;font-weight:700;border-radius:999px;padding:10px 16px;box-shadow:0 4px 14px rgba(0,0,0,.18)">💬 CQ</span>
               </div>
-              <p class="jsc-hint">タップすると、記入用のNotionフォームが開きます。</p>
+              <p class="jsc-hint">浮かんだ疑問を、その場でそのまま書けます。</p>
             </div>
-            <!-- 2. Notionのフォームに記入して送信 -->
+            <!-- 2. アプリ内の投稿シート（専門医に訊くを選ぶ） -->
             <div class="jscene js-scene">
-              <div class="jsc-notion-head"><span class="jsc-nmark">N</span>Notionのフォーム</div>
-              <div class="jsc-form-title">臨床疑問の投稿</div>
-              <div class="jsc-flabel">疑問・気になっていること</div>
+              <div class="jsc-form-title">疑問をCQとして残す</div>
               <div class="jsc-field jsc-textarea">人工呼吸器のウィーニング、SBTの合格基準は？<span class="jsc-caret"></span></div>
-              <div class="jsc-flabel">職種／ペンネーム（任意・匿名可）</div>
-              <div class="jsc-inline"><div class="jsc-field sm">集中治療医</div><div class="jsc-field sm">匿名</div></div>
-              <button class="jsc-sendbtn">送信</button>
+              <div class="jsc-flabel">送り先</div>
+              <div class="jsc-inline"><div class="jsc-field sm">自分のNotion</div><div class="jsc-field sm" style="border-color:#9333ea;color:#7c3aed;font-weight:700">⭐ 専門医に訊く</div></div>
+              <div class="jsc-flabel">職種・経験年数（ペンネームは任意）</div>
+              <div class="jsc-inline"><div class="jsc-field sm">集中治療医</div><div class="jsc-field sm">7年目</div></div>
+              <button class="jsc-sendbtn">専門医に送る</button>
             </div>
-            <!-- 3. 専門医が回答 -->
+            <!-- 3. みんなの臨床疑問に浮かぶ -->
+            <div class="jscene js-scene">
+              <div class="jsc-bar"><span class="jsc-dot"></span>みんなの臨床疑問</div>
+              <div class="jsc-result" style="border-radius:18px">
+                <b>SBT（自発呼吸トライアル）の合格基準は？</b>
+                <p>♡ 2人が気にしています ・ 集中治療医</p>
+              </div>
+              <div class="jsc-result" style="border-radius:18px;opacity:.7">
+                <b>血液ガスは静脈血で代用できる？</b>
+                <p>♡ 1人が気にしています ・ 医師</p>
+              </div>
+            </div>
+            <!-- 4. 専門医が回答 -->
             <div class="jscene js-scene">
               <div class="jsc-doc">🧑‍⚕️</div>
               <div class="jsc-doc-name">Dr.ノード<small>救急科・集中治療専門医</small></div>
               <div class="jsc-working"><span class="jsc-spin"></span>調べて、ナレッジにまとめています…</div>
               <div class="jsc-checkline">✓ エビデンス（ガイドライン・論文）を確認<br>✓「私はこうする」を書き添える</div>
             </div>
-            <!-- 4. 通知が届く -->
+            <!-- 5. 通知が届き、ナレッジに残る -->
             <div class="jscene js-scene">
               <div class="jsc-bar"><span class="jsc-dot"></span>ホーム</div>
               <div class="jsc-notif"><span class="jsc-notif-ic">🎉</span><div><b>投稿された臨床疑問がナレッジになりました</b><small>タップして見る</small></div></div>
-              <div class="jsc-skel"></div><div class="jsc-skel"></div>
-            </div>
-            <!-- 5. ナレッジに残る -->
-            <div class="jscene js-scene">
-              <div class="jsc-bar"><span class="jsc-dot"></span>検索結果</div>
               <div class="jsc-result">
                 <div class="jsc-badges"><span class="jsc-badge team">ナレッジ</span><span class="jsc-badge origin">現場の疑問から（集中治療医）</span></div>
                 <b>SBT（自発呼吸トライアル）の合格基準は？</b>
@@ -408,11 +414,11 @@
       </div>
 
       <ol class="jrny-steps" id="jrnySteps">
-        <li class="jstep on"><span class="jstep-n">1</span><div><b>投稿ボタンを押す</b><small>設定の「臨床疑問を投稿する ↗」から、記入用のNotionフォームが開きます。</small></div></li>
-        <li class="jstep"><span class="jstep-n">2</span><div><b>フォームに記入して送信</b><small>開いたNotionのフォームに疑問を記入。職種・ペンネームは任意（匿名可）。</small></div></li>
-        <li class="jstep"><span class="jstep-n">3</span><div><b>専門医が回答</b><small>Dr.ノードが調べ、「私はこうする」まで添えてナレッジ化。</small></div></li>
-        <li class="jstep"><span class="jstep-n">4</span><div><b>通知が届く</b><small>解決すると、アプリを開いたときにお知らせ。</small></div></li>
-        <li class="jstep"><span class="jstep-n">5</span><div><b>ナレッジに残る</b><small>「現場の疑問から」の由来バッジつきで、みんなの知識に。</small></div></li>
+        <li class="jstep on"><span class="jstep-n">1</span><div><b>右下の「CQ」ボタンを押す</b><small>浮かんだ疑問を、その場でそのまま書きます。</small></div></li>
+        <li class="jstep"><span class="jstep-n">2</span><div><b>「専門医に訊く」を選んで送信</b><small>職種と経験年数を添えます（ペンネームは任意）。アプリ内で完結し、フォームへの移動はありません。</small></div></li>
+        <li class="jstep"><span class="jstep-n">3</span><div><b>「みんなの臨床疑問」に浮かぶ</b><small>ほかの会員も気になる問いに印をつけられ、多くの人が気にする問いから答えていきます。</small></div></li>
+        <li class="jstep"><span class="jstep-n">4</span><div><b>専門医が回答</b><small>Dr.ノードが調べ、「私はこうする」まで添えてナレッジ化。</small></div></li>
+        <li class="jstep"><span class="jstep-n">5</span><div><b>通知が届き、ナレッジに残る</b><small>解決するとアプリにお知らせ。「現場の疑問から」の由来バッジつきで、みんなの知識に。</small></div></li>
       </ol>
     </div>
 
