@@ -712,7 +712,7 @@
     <div class="head reveal">
       <div class="kicker">Tabs</div>
       <h2>知識を引く・育てる、5つのタブ</h2>
-      <p>探す・新着・分類・文献・想起。ひとつの画面で完結します。</p>
+      <p>探す・新着・分類・文献・想起。ひとつの画面で完結します。検索タブの一番上には毎日1問の「今日の1問」、マニュアルDBを設定した人にはマニュアルタブも出ます。</p>
     </div>
     <div class="tabs-wrap">
       <div class="tabs-list">
@@ -720,7 +720,7 @@
         <div class="tab-item reveal"><div class="tile t-teal"><svg class="icn"><use href="#i-clock"/></svg></div><div><h4>新着</h4><p>最終更新の新しい順に表示。直近で書いた記録をすぐ確認。</p></div></div>
         <div class="tab-item reveal"><div class="tile t-amber"><svg class="icn"><use href="#i-folder"/></svg></div><div><h4>ジャンル</h4><p>循環・呼吸器・神経・感染症など、ジャンル別にブラウズ。</p></div></div>
         <div class="tab-item reveal"><div class="tile t-blue"><svg class="icn"><use href="#i-bookmark"/></svg></div><div><h4>文献</h4><p>著者・ジャーナル・発行年・エビデンスレベルで参考文献を管理。</p></div></div>
-        <div class="tab-item reveal"><div class="tile t-purple"><svg class="icn"><use href="#i-bulb"/></svg></div><div><h4>クイズ</h4><p>ナレッジがそのままシャッフル出題の一問一答に（最大20問）。</p></div></div>
+        <div class="tab-item reveal"><div class="tile t-purple"><svg class="icn"><use href="#i-bulb"/></svg></div><div><h4>クイズ</h4><p>ナレッジがそのまま一問一答に。「覚えた／まだ」で記録され、まだの問題から優先して出ます。</p></div></div>
       </div>
       <div class="tabs-shot reveal">
         <!-- ジャンル画面の再現モック -->
@@ -815,11 +815,11 @@
     <div class="head reveal">
       <div class="kicker">Two modes</div>
       <h2>同じ知識を、2通りの速度で引ける</h2>
-      <p>すぐ試すならシンプルモード、速さを求めるならパワーモード。用途で選べます。</p>
+      <p>初回はシンプルモードで始まります。検索の待ち時間が気になってきたら、設定からパワーモードへ切り替えられます。</p>
     </div>
     <div class="mode-grid">
       <div class="mode-card reveal">
-        <span class="mode-tag req">必須・すぐ使える</span>
+        <span class="mode-tag req">標準・すぐ使える</span>
         <h3>シンプルモード</h3>
         <p style="color:var(--slate)">Notionを直接検索。追加の設定なしで、直したらすぐ反映。</p>
       </div>
@@ -897,6 +897,24 @@
       <div class="priv-card reveal"><div class="tile t-green"><svg class="icn"><use href="#i-eyeoff"/></svg></div><h4>検索内容は溜めない</h4><p>検索ワードや本文を、サーバーに残しません。</p></div>
       <div class="priv-card reveal"><div class="tile t-blue"><svg class="icn"><use href="#i-lock"/></svg></div><h4>設定は暗号化して同期</h4><p>接続設定は暗号化して保存。別の端末でもそのまま。</p></div>
       <div class="priv-card reveal"><div class="tile t-purple"><svg class="icn"><use href="#i-phone"/></svg></div><h4>PWA対応</h4><p>ホーム画面に追加して、ワンタップで起動。</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- recent updates -->
+<section class="section" id="updates">
+  <div class="wrap-narrow">
+    <div class="head reveal">
+      <div class="kicker">Updates</div>
+      <h2>公開したあとも、毎週手が入っています</h2>
+      <p>使ってくれている方の声が、そのまま次の更新になります。直近の分から。</p>
+    </div>
+    <div class="reveal" style="max-width:640px;margin:0 auto;display:flex;flex-direction:column;gap:16px">
+      <div style="display:flex;gap:14px;align-items:baseline"><span style="flex:0 0 72px;color:var(--slate);font-size:13px;font-weight:700">2026-08</span><p style="margin:0">Notion接続を刷新。Notionの画面でページを選んで許可するだけでつながるようになりました（トークン不要・スマホだけでも完了）。セットアップも「登録 → 対象 → Notionとつなぐ → 完了」の4歩に。</p></div>
+      <div style="display:flex;gap:14px;align-items:baseline"><span style="flex:0 0 72px;color:var(--slate);font-size:13px;font-weight:700">2026-08</span><p style="margin:0">「あなたの未解決の問い」画面を追加。答えの出ていないCQが一枚の空に浮かび、解決すると消えていきます。</p></div>
+      <div style="display:flex;gap:14px;align-items:baseline"><span style="flex:0 0 72px;color:var(--slate);font-size:13px;font-weight:700">2026-08</span><p style="margin:0">プレミアム本文の組版を医学書に寄せて改修。本文内検索・要点モード・「つづけて読む」枠と、「役に立った」ボタンが入りました。</p></div>
+      <div style="display:flex;gap:14px;align-items:baseline"><span style="flex:0 0 72px;color:var(--slate);font-size:13px;font-weight:700">2026-07</span><p style="margin:0">「今日の1問」を開始。検索タブの一番上に、監修ナレッジから毎日1問。通知でも受け取れます（1日1問だけ）。</p></div>
+      <div style="display:flex;gap:14px;align-items:baseline"><span style="flex:0 0 72px;color:var(--slate);font-size:13px;font-weight:700">2026-07</span><p style="margin:0">公開。以来、モニターの方の報告をもとにセットアップの詰まりどころを毎週直しています。</p></div>
     </div>
   </div>
 </section>
