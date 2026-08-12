@@ -437,7 +437,7 @@
               </div>
               <div class="way">
                 <div class="way-head">🔗 ② 既存のDBに連携する <span class="way-pill">すでにNotionで運用中の方</span></div>
-                <p>すでに医療メモのDBをNotionで使っているなら、複製せず<strong>そのDBのURLを貼って接続</strong>できます。その際は<strong>必須プロパティ名（名前・ジャンル・知識レベル・要約・キーワード）を正確に合わせて</strong>おきます。選択肢の値（ジャンル名など）は自由でOKです。</p>
+                <p>すでに医療メモのDBをNotionで使っているなら、複製せず、<strong>そのDBのあるページをNotionの画面で選んで許可</strong>すれば接続できます。その際は<strong>必須プロパティ名（名前・ジャンル・知識レベル・要約・キーワード）を正確に合わせて</strong>おきます。選択肢の値（ジャンル名など）は自由でOKです。</p>
                 <a class="way-link" href="notion.html">🧭 Notion側の準備だけを図解で見る →</a>
               </div>
             </div>
@@ -677,9 +677,11 @@
         </div>
       </details>
       <div class="warn-callout reveal"><span class="ic">🔄</span><div><strong>追加した知識が出てこない：</strong>パワーモードでは、Notionを更新したら「🔄 データを再同期する」が必要です。シンプルモードは即反映で同期不要です。</div></div>
-      <div class="warn-callout reveal"><span class="ic">🚫</span><div><strong>同期で「403エラー」：</strong>DBへの「コネクトを追加」が漏れています。各DBの「…→コネクトを追加」を確認してください。</div></div>
-      <div class="warn-callout reveal"><span class="ic">🔑</span><div><strong>トークン作成ページでNotionアプリが開いてしまう：</strong>Notionアプリにはコネクトの作成画面がないため、そこから先へ進めません。SafariやChromeのアドレス欄に notion.so/my-integrations を直接入力して、ブラウザで開いてください。ブラウザならスマホでも作成できます。</div></div>
-      <div class="note-callout reveal"><span class="ic">🔐</span><div><strong>Web公開は不要：</strong>アプリ内の閲覧はトークン＋API経由なので、DBは非公開のままでOK。医療情報を扱うため、Web公開はオフのままを推奨します。</div></div>
+      <div class="warn-callout reveal"><span class="ic">📱</span><div><strong>接続ボタンでNotionアプリが開いてしまう：</strong>接続ページの「リンクをコピー」を押して、SafariやChromeのアドレス欄に貼り付けて開いてください。スマホだけで完了できます。</div></div>
+      <div class="warn-callout reveal"><span class="ic">🔍</span><div><strong>許可する画面に目当てのページが出ない／「読み込めるDBがありません」：</strong>選べるのは複製した「本体」のページです（別のページに貼ったリンクドビューは対象外）。許可した直後はNotion側の反映が数秒遅れることがあるので、「もう一度読み込む」を押してください。</div></div>
+      <div class="warn-callout reveal"><span class="ic">🚫</span><div><strong>【手動接続の場合】同期で「403エラー」：</strong>DBへの「コネクトを追加」が漏れています。各DBの「…→コネクトを追加」を確認してください。</div></div>
+      <div class="warn-callout reveal"><span class="ic">🔑</span><div><strong>【手動接続の場合】トークン作成ページでNotionアプリが開いてしまう：</strong>Notionアプリにはコネクトの作成画面がないため、そこから先へ進めません。SafariやChromeのアドレス欄に notion.so/my-integrations を直接入力して、ブラウザで開いてください。ブラウザならスマホでも作成できます。</div></div>
+      <div class="note-callout reveal"><span class="ic">🔐</span><div><strong>Web公開は不要：</strong>アプリ内の閲覧は、あなたが許可した接続（API）経由なので、DBは非公開のままでOK。医療情報を扱うため、Web公開はオフのままを推奨します。</div></div>
     </div>
   </div>
 </section>
